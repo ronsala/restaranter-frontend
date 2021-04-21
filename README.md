@@ -26,9 +26,7 @@ You can either clone the repository directly from GitHub into a local directory 
 
 Once you Fork or Clone this app, cd into that directory and then execute:
 
-bundle install
-rails db:migrate
-rails s
+<!-- TODO: -->
 
 ## Contributing
 
@@ -36,7 +34,7 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/ronsa
 
 ## Code of Conduct
 
-Everyone interacting in the TriviaTrader project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
+Everyone interacting in this project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
 
 ## License
 
