@@ -7,6 +7,7 @@ import { Menu } from './features/menu/Menu';
 function App() {
   return (
     <div className="App">
+      <h1>Hello, Redux Toolkit 2020</h1>
       <Menu />
     </div>
   );

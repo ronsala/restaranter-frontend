@@ -2,14 +2,30 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const menuSlice = createSlice({
   name: 'menu',
-  initialState: [],
+  initialState: {
+    loading: false,
+    hasErrors: false,
+    menus: []
+  },
   reducers: {
     addMenu: (state, action) => {
       state.push(action.payload)
+    },
+    getMenus: state => {
+      state.loading = true
+    },
+    getMenusSuccess: (state, { payload }) => {
+      state.menu = payload
+      state.loading = false
+      state.hasErrors = false
+    },
+    getMenusFailure: state => {
+      state.loading = false
+      state.hasErrors = true
     }
   },
 })
 
-export const { addMenu } = menuSlice.actions
+export const { addMenu, getMenu, getMenuSuccess, getMenuFailure } = menuSlice.actions
 
 export default menuSlice.reducer
