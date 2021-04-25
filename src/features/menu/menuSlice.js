@@ -1,4 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+// import { fetchMenus } from "./menuAPI";
+
+export const fetchMenus = createAsyncThunk('menu/fetchMenus', async () => {
+  const response = await fetch('http://localhost:3000/api/v1/menus')
+  return response.menu
+})
 
 export const menuSlice = createSlice({
   name: 'menu',
@@ -26,6 +32,10 @@ export const menuSlice = createSlice({
   },
 })
 
-export const { addMenu, getMenus, getMenusSuccess, getMenusFailure } = menuSlice.actions
+export const { addMenu, getMenus, getMenusSuccess, getMenusFailure } = menuSlice.actions;
 
-export default menuSlice.reducer
+// export const selectMenuById = (state, menuId) => {
+//   state.menu.find(menu => menu.id === menuId);
+// };
+
+export default menuSlice.reducer;

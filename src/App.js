@@ -10,9 +10,9 @@ function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchMenus())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchMenus())
+  // }, [dispatch])
 
   return (
     <div className="App">
