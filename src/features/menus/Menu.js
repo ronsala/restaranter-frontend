@@ -3,9 +3,12 @@ import { addMenus, selectMenuById, menusSelector } from './menusSlice';
 // import fetchMenus from './menuAPI'
 // import styles from './Menu.module.css';
 
-export function Menu() {
-  // const menu = useSelector(selectMenuById(state, 2));
+export const Menu = () => {
+  // const { menuId } = match.params
+  // debugger
+  const menu = useSelector((state) => selectMenuById(state, 0));
   // const dispatch = useDispatch();
+  // console.log('menus in Menu.js:', menus);
 
   return (
     <div>

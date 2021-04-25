@@ -6,10 +6,13 @@ const initialState = {
   error: null,
 }
 
-export const fetchMenus = createAsyncThunk('menus/fetchMenus', async () => {
-  const response = await fetch('http://localhost:3000/api/v1/menus')
-  return response.json()
-})
+export const fetchMenus = createAsyncThunk(
+  'menus/fetchMenus', 
+  async () => {
+    const response = await fetch('http://localhost:3000/api/v1/menus')
+    return response.json()
+  }
+)
 
 export const menusSlice = createSlice({
   name: 'menu',
@@ -22,6 +25,7 @@ export const menusSlice = createSlice({
   extraReducers: {
     [fetchMenus.pending]: (state, action) => {
       state.status = 'loading'
+      state.error = null
     },
     [fetchMenus.fulfilled]: (state, action) => {
       state.status = 'succeeded'
@@ -38,13 +42,13 @@ export const menusSlice = createSlice({
 
 export const { addMenu } = menusSlice.actions;
 
-export const menusSelector = state => state.menus;
+export const selectMenus = state => state.menus;
 
 // console.log('state.menus in menuSlice.js:', state.menus);
 
+export default menusSlice.reducer;
 
 export const selectMenuById = (state, menuId) => {
-  state.menus.find(menu => menu.id === menuId);
+  // debugger
+  state.menus.menus.find(menu => menu.id === menuId);
 };
-
-export default menusSlice.reducer;
