@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addMenu, getMenus, getMenusSuccess, getMenusFailure } from './menusSlice';
-import fetchMenus from './menuAPI'
+import { addMenus, selectMenuById, menusSelector } from './menusSlice';
+// import fetchMenus from './menuAPI'
 // import styles from './Menu.module.css';
 
 export function Menu() {
-  // const menu = useSelector(selectMenuById(2));
+  // const menu = useSelector(selectMenuById(state, 2));
   // const dispatch = useDispatch();
 
   return (

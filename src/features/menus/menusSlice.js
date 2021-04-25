@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-// import { fetchMenus } from "./menuAPI";
 
 const initialState = {
   menus: [],
@@ -7,10 +6,8 @@ const initialState = {
   error: null,
 }
 
-export const fetchMenus = createAsyncThunk('menu/fetchMenus', async () => {
+export const fetchMenus = createAsyncThunk('menus/fetchMenus', async () => {
   const response = await fetch('http://localhost:3000/api/v1/menus')
-  // const data = await response.json()
-  // return data
   return response.json()
 })
 
@@ -29,8 +26,8 @@ export const menusSlice = createSlice({
     [fetchMenus.fulfilled]: (state, action) => {
       state.status = 'succeeded'
       // Add any fetched posts to the array
-      debugger
-      state.menu = state.menu.concat(action.payload.data)
+      // debugger
+      state.menus = state.menus.concat(action.payload.data)
     },
     [fetchMenus.rejected]: (state, action) => {
       state.status = 'failed'
@@ -41,8 +38,13 @@ export const menusSlice = createSlice({
 
 export const { addMenu } = menusSlice.actions;
 
-// export const selectMenuById = (state, menuId) => {
-//   state.menu.find(menu => menu.id === menuId);
-// };
+export const menusSelector = state => state.menus;
+
+// console.log('state.menus in menuSlice.js:', state.menus);
+
+
+export const selectMenuById = (state, menuId) => {
+  state.menus.find(menu => menu.id === menuId);
+};
 
 export default menusSlice.reducer;

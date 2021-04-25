@@ -1,18 +1,15 @@
-import menuReducer, { 
-  addMenu, 
-  getMenu, 
-  getMenuSuccess, 
-  getMenuFailure 
+import menusReducer, { 
+  addMenu
 } from './menusSlice';
 
-describe('menu reducer', () => {
+describe('menus reducer', () => {
   const initialState = {
     menus: [],
     status: 'idle',
     error: null
   };
   it('should handle initial state', () => {
-    expect(menuReducer(undefined, { type: 'unknown' })).toEqual({
+    expect(menusReducer(undefined, { type: 'unknown' })).toEqual({
       menus: [],
       status: 'idle',
       error: null

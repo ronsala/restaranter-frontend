@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { Counter } from './features/counter/Counter';
 import { Menu } from './features/menus/Menu';
 // import { fetchMenus } from './features/menu/menuAPI';
-import { fetchMenus } from './features/menus/menusSlice';
+import { fetchMenus, menusSelector } from './features/menus/menusSlice';
 // import './App.css';
 
 function App() {
 
   const dispatch = useDispatch();
+  const { menus } = useSelector(menusSelector);
+  console.log('menus in App.js:', menus);
 
   useEffect(() => {
     dispatch(fetchMenus())
