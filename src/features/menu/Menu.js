@@ -1,8 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addMenu } from './menuSlice';
-// import styles from './Counter.module.css';
+import { addMenu, getMenus, getMenusSuccess, getMenusFailure } from './menuSlice';
+import fetchMenus from './menuAPI'
+// import styles from './Menu.module.css';
 
 export function Menu() {
+//   const count = useSelector(selectCount);
+  // const dispatch = useDispatch();
 
   return (
     <div>

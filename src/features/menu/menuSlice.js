@@ -26,6 +26,6 @@ export const menuSlice = createSlice({
   },
 })
 
-export const { addMenu, getMenu, getMenuSuccess, getMenuFailure } = menuSlice.actions
+export const { addMenu, getMenus, getMenusSuccess, getMenusFailure } = menuSlice.actions
 
 export default menuSlice.reducer
