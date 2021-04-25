@@ -3,19 +3,19 @@ import menuReducer, {
   getMenu, 
   getMenuSuccess, 
   getMenuFailure 
-} from './menuSlice';
+} from './menusSlice';
 
 describe('menu reducer', () => {
   const initialState = {
-    loading: false,
-    hasErrors: false,
     menus: [],
+    status: 'idle',
+    error: null
   };
   it('should handle initial state', () => {
     expect(menuReducer(undefined, { type: 'unknown' })).toEqual({
-      loading: false,
-      hasErrors: false,
       menus: [],
+      status: 'idle',
+      error: null
     });
   });
 });

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addMenu, getMenus, getMenusSuccess, getMenusFailure } from './menuSlice';
+import { addMenu, getMenus, getMenusSuccess, getMenusFailure } from './menusSlice';
 import fetchMenus from './menuAPI'
 // import styles from './Menu.module.css';
 
