@@ -6,7 +6,7 @@ import { addMenus, selectMenuById, menusSelector } from './menusSlice';
 export const Menu = () => {
   // const { menuId } = match.params
   // debugger
-  const menu = useSelector((state) => selectMenuById(state, 0));
+  const menu = useSelector((state) => selectMenuById(state, 2));
   // const dispatch = useDispatch();
   // console.log('menus in Menu.js:', menus);
 

@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { 
+  createAsyncThunk, 
+  createSlice,
+  createEntityAdapter,
+} from '@reduxjs/toolkit';
 
 const initialState = {
   menus: [],
@@ -13,6 +17,12 @@ export const fetchMenus = createAsyncThunk(
     return response.json()
   }
 )
+
+const menusAdapter = createEntityAdapter();
+
+// export const {
+//   selectById: selectMenuById,
+// } = menusAdapter.getSelectors((state) => state.menus)
 
 export const menusSlice = createSlice({
   name: 'menu',
@@ -50,5 +60,5 @@ export default menusSlice.reducer;
 
 export const selectMenuById = (state, menuId) => {
   // debugger
-  state.menus.menus.find(menu => menu.id === menuId);
+  // state.menus.find(menu => menu.id === menuId);
 };
