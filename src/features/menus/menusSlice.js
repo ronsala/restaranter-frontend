@@ -14,11 +14,13 @@ export const fetchMenus = createAsyncThunk(
   'menus/fetchMenus', 
   async () => {
     const response = await fetch('http://localhost:3000/api/v1/menus')
-    return response.json()
+    const menus = await response.json();
+    console.log('menus:', menus);
+    return menus
   }
 )
 
-const menusAdapter = createEntityAdapter();
+const menusAdapter = createEntityAdapter()
 
 // export const {
 //   selectById: selectMenuById,
@@ -39,8 +41,9 @@ export const menusSlice = createSlice({
     },
     [fetchMenus.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      // Add any fetched posts to the array
+      // Add any fetched menus to the array
       // debugger
+      console.log('action:', action);
       state.menus = state.menus.concat(action.payload.data)
     },
     [fetchMenus.rejected]: (state, action) => {
