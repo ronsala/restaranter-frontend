@@ -72,5 +72,81 @@ zsh: correct 'tsc' to 'tac' [nyae]? n
 Version 4.2.4
 ```
 
+## Fri Apr 30 20:23:18 EDT 2021
 
+Trying to get menu data to browser.
+
+Read [https://blog.logrocket.com/building-the-simplest-crud-out-there-with-entity-management/](https://blog.logrocket.com/building-the-simplest-crud-out-there-with-entity-management/), looking at [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) and [https://abhimanyuchauhan-61309.medium.com/createasyncthunk-in-redux-toolkit-4d8d2f0412d3](https://abhimanyuchauhan-61309.medium.com/createasyncthunk-in-redux-toolkit-4d8d2f0412d3).
+
+## Sat May  1 19:45:58 EDT 2021
+
+Am able to see dummy data I put in initialState in menusSlice.js in the Redux Dev Tools.
+
+Can pull data from the backend, but am unsure about how to take it from there. Am looking at [https://redux.js.org/tutorials/essentials/part-5-async-logic](https://redux.js.org/tutorials/essentials/part-5-async-logic).
+
+Getting an action in fetchMenus.fulfilled but without a payload:
+
+```
+action: 
+{type: "menus/fetchMenus/fulfilled", payload: undefined, meta: {…}}
+meta: {arg: undefined, requestId: "qs6CUbfiJt834wurhfPEW", requestStatus: "fulfilled"}
+payload: undefined
+type: "menus/fetchMenus/fulfilled"
+__proto__: Object
+```
+
+Found that with this function:
+
+```
+export const fetchMenus = createAsyncThunk(
+  'menus/fetchMenus', 
+  async () => {
+    const response = await fetch('http://localhost:3000/api/v1/menus')
+    const menus = await response.json();
+    console.log('menus:', menus);
+    return response.menus
+  }
+)
+```
+
+Can get this in browser console:
+
+```
+menus: 
+{data: Array(2)}
+data: Array(2)
+0:
+attributes: {name: "Imposters Bar & Grill"}
+id: "6"
+type: "menu"
+__proto__: Object
+1: {id: "7", type: "menu", attributes: {…}}
+```
+
+After having it return `menus` instead, could see this under State in Redux Dev Tools (RDT):
+
+```
+{
+  menus: {
+    menus: [
+      {
+        id: '6',
+        type: 'menu',
+        attributes: {
+          name: 'Imposters Bar & Grill'
+        }
+      },
+      {
+        id: '7',
+        type: 'menu',
+        attributes: {
+          name: 'Phoebe\'s Cafe'
+        }
+      }
+    ],
+    status: 'succeeded',
+    error: null
+  }
+}
+```
 
