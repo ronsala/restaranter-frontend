@@ -150,3 +150,60 @@ After having it return `menus` instead, could see this under State in Redux Dev 
 }
 ```
 
+## Mon May  3 12:49:39 EDT 2021
+
+Watching [01 - CRUD example with create entity adapter and create async thunk - redux toolkit](https://www.youtube.com/watch?v=5zmaUSkyE1I&t=519s)
+
+Refactored the function to:
+
+```
+export const fetchMenus = createAsyncThunk(
+  'menus/fetchMenus', 
+  async () => {
+    const menus = await fetch('http://localhost:3000/api/v1/menus')
+    .then((res) => res.json());
+    return menus
+  }
+)
+```
+
+```
+RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹menu› » bcm "select menus from store"
+```
+
+I can now display the name of a menu in browser by uncommenting a line of JSX that shows it. When I reload the page, I get an error, presumably since there's not yet data in the store:
+
+```
+×
+TypeError: Cannot read property 'attributes' of undefined
+Menu
+src/features/menus/Menu.js:17
+  14 |   return (
+  15 |     <div>
+  16 |       <h1>Menu.js</h1>
+> 17 |       <h1>{ menus[0].attributes.name }</h1>
+  18 |     </div>
+  19 |   );
+  20 | }
+```
+
+Working around it, at least for now, with:
+
+```
+  useEffect(() => {
+    dispatch(fetchMenus())
+  }, [dispatch])
+
+  const menus = useSelector(menusSelectors.selectAll);
+
+  return (
+    <div>
+      { (typeof menus[0] !== 'undefined') ? (
+        <h1>{ menus[0].attributes.name }</h1> 
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+```
+

@@ -4,47 +4,36 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 
-const initialState = {
-  menus: [],
-  status: 'idle',
-  error: null,
-}
-
 export const fetchMenus = createAsyncThunk(
   'menus/fetchMenus', 
   async () => {
-    const response = await fetch('http://localhost:3000/api/v1/menus')
-    const menus = await response.json();
-    console.log('menus:', menus);
+    const menus = await fetch('http://localhost:3000/api/v1/menus')
+    .then((res) => res.json());
     return menus
   }
 )
 
-const menusAdapter = createEntityAdapter()
-
-// export const {
-//   selectById: selectMenuById,
-// } = menusAdapter.getSelectors((state) => state.menus)
+const menusAdapter = createEntityAdapter({
+  selectId: (menu) => menu.id,
+})
 
 export const menusSlice = createSlice({
   name: 'menu',
-  initialState,
+  // initialState,
+  initialState: menusAdapter.getInitialState({
+    status: 'idle'
+  }),
   reducers: {
-    addMenu: (state, action) => {
-      state.push(action.payload)
-    }
+    setAllMenus: menusAdapter.setAll
   },
   extraReducers: {
-    [fetchMenus.pending]: (state, action) => {
+    [fetchMenus.pending]: (state) => {
       state.status = 'loading'
       state.error = null
     },
     [fetchMenus.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      // Add any fetched menus to the array
-      // debugger
-      console.log('action:', action);
-      state.menus = state.menus.concat(action.payload.data)
+      menusAdapter.setAll(state, action.payload.data)
     },
     [fetchMenus.rejected]: (state, action) => {
       state.status = 'failed'
@@ -53,15 +42,12 @@ export const menusSlice = createSlice({
   },
 })
 
-export const { addMenu } = menusSlice.actions;
+export const {} = menusSlice.actions;
 
 export const selectMenus = state => state.menus;
 
-// console.log('state.menus in menuSlice.js:', state.menus);
+export const menusSelectors = menusAdapter.getSelectors(
+  (state) => state.menus
+)
 
 export default menusSlice.reducer;
-
-export const selectMenuById = (state, menuId) => {
-  // debugger
-  // state.menus.find(menu => menu.id === menuId);
-};
