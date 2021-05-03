@@ -150,3 +150,20 @@ After having it return `menus` instead, could see this under State in Redux Dev 
 }
 ```
 
+## Mon May  3 12:49:39 EDT 2021
+
+Watching [01 - CRUD example with create entity adapter and create async thunk - redux toolkit](https://www.youtube.com/watch?v=5zmaUSkyE1I&t=519s)
+
+Refactored the function to:
+
+```
+export const fetchMenus = createAsyncThunk(
+  'menus/fetchMenus', 
+  async () => {
+    const menus = await fetch('http://localhost:3000/api/v1/menus')
+    .then((res) => res.json());
+    return menus
+  }
+)
+```
+

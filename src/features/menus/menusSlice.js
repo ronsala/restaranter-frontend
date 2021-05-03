@@ -13,9 +13,8 @@ const initialState = {
 export const fetchMenus = createAsyncThunk(
   'menus/fetchMenus', 
   async () => {
-    const response = await fetch('http://localhost:3000/api/v1/menus')
-    const menus = await response.json();
-    console.log('menus:', menus);
+    const menus = await fetch('http://localhost:3000/api/v1/menus')
+    .then((res) => res.json());
     return menus
   }
 )
@@ -42,8 +41,6 @@ export const menusSlice = createSlice({
     [fetchMenus.fulfilled]: (state, action) => {
       state.status = 'succeeded'
       // Add any fetched menus to the array
-      // debugger
-      console.log('action:', action);
       state.menus = state.menus.concat(action.payload.data)
     },
     [fetchMenus.rejected]: (state, action) => {
