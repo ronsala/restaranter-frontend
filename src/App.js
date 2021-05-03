@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { Counter } from './features/counter/Counter';
 import { Menu } from './features/menus/Menu';
 // import { fetchMenus } from './features/menu/menuAPI';
-import { fetchMenus } from './features/menus/menusSlice';
+import { fetchMenus, menusSelectors } from './features/menus/menusSlice';
 // import './App.css';
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
   useEffect(() => {
     dispatch(fetchMenus())
   }, [dispatch])
-  // debugger
-  // const { menus } = useSelector(selectMenus);
+  // const { menus } = useSelector(menusSelectors.selectAll);
+  // const menus = useSelector(menusSelectors.selectAll);
 
   // const renderedMenus = menus.map(menu => {
   //   return <Menu key={menu.id} menu={menu} />
@@ -25,9 +25,6 @@ function App() {
 
   // return (<ul className="">{renderedMenus}</ul>)
 
-
-//   console.log('menus in App.js:', menus);
-//   // debugger
   return (
     <div className="App">
       <h1>Hello, Redux Toolkit 2020</h1>

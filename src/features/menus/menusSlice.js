@@ -4,11 +4,11 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 
-const initialState = {
-  menus: [],
-  status: 'idle',
-  error: null,
-}
+// const initialState = {
+//   menus: [],
+//   status: 'idle',
+//   error: null,
+// }
 
 export const fetchMenus = createAsyncThunk(
   'menus/fetchMenus', 
@@ -19,19 +19,25 @@ export const fetchMenus = createAsyncThunk(
   }
 )
 
-const menusAdapter = createEntityAdapter()
-
+const menusAdapter = createEntityAdapter({
+  selectId: (menu) => menu.id,
+})
+// debugger
 // export const {
 //   selectById: selectMenuById,
 // } = menusAdapter.getSelectors((state) => state.menus)
 
 export const menusSlice = createSlice({
   name: 'menu',
-  initialState,
+  // initialState,
+  initialState: menusAdapter.getInitialState({
+    status: 'idle'
+  }),
   reducers: {
-    addMenu: (state, action) => {
-      state.push(action.payload)
-    }
+    setAllMenus: menusAdapter.setAll
+    // addMenu: (state, action) => {
+    //   state.push(action.payload)
+    // }
   },
   extraReducers: {
     [fetchMenus.pending]: (state, action) => {
@@ -40,8 +46,9 @@ export const menusSlice = createSlice({
     },
     [fetchMenus.fulfilled]: (state, action) => {
       state.status = 'succeeded'
+      menusAdapter.setAll(state, action.payload.data)
       // Add any fetched menus to the array
-      state.menus = state.menus.concat(action.payload.data)
+      // state.menus = state.menus.concat(action.payload.data)
     },
     [fetchMenus.rejected]: (state, action) => {
       state.status = 'failed'
@@ -54,7 +61,11 @@ export const { addMenu } = menusSlice.actions;
 
 export const selectMenus = state => state.menus;
 
-// console.log('state.menus in menuSlice.js:', state.menus);
+export const menusSelectors = menusAdapter.getSelectors(
+  (state) => state.menus
+)
+
+// console.log('menusSelectors:', menusSelectors);
 
 export default menusSlice.reducer;
 
