@@ -19,7 +19,6 @@ const menusAdapter = createEntityAdapter({
 
 export const menusSlice = createSlice({
   name: 'menu',
-  // initialState,
   initialState: menusAdapter.getInitialState({
     status: 'idle'
   }),
