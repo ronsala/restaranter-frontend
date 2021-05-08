@@ -1,11 +1,20 @@
+import { 
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+} from "react-router-dom";
 import { Menu } from './features/menus/Menu';
 // import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <RestaurantsContainer />
-    </div>
+    <Router>
+      <div className="App">
+        App component
+        {/* <RestaurantsContainer /> */}
+      </div>
+    </Router>
   );
 }
 

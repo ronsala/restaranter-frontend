@@ -215,3 +215,50 @@ Looked at [https://blog.logrocket.com/smarter-redux-with-redux-toolkit/](https:/
 
 ## Sat May  8 14:23:40 EDT 2021
 
+```
+RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹restaurant*› » bcm "experiment with component file structure"
+✔ belly committed your work with this message: experiment with component file structure
+✔ belly pushed your work to origin
+RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹restaurant› » npm install --save react-router-dom
+
+added 10 packages, changed 6 packages, and audited 1760 packages in 4s
+
+130 packages are looking for funding
+  run `npm fund` for details
+
+2 moderate severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹restaurant*› » npm audit
+# npm audit report
+
+hosted-git-info  <2.8.9 || >=3.0.0 <3.0.8
+Severity: moderate
+Regular Expression Denial of Service - https://npmjs.com/advisories/1677
+fix available via `npm audit fix`
+node_modules/hosted-git-info
+
+ssri  5.2.2 - 6.0.1 || 7.0.0 - 8.0.0
+Severity: moderate
+Regular Expression Denial of Service - https://npmjs.com/advisories/565
+fix available via `npm audit fix`
+node_modules/webpack/node_modules/ssri
+
+2 moderate severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹restaurant*› » npm audit fix
+
+changed 3 packages, and audited 1760 packages in 3s
+
+130 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+
+Looking at [https://reacttraining.com/react-router/web/guides/quick-start](https://reacttraining.com/react-router/web/guides/quick-start). 
