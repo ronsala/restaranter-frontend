@@ -207,3 +207,11 @@ Working around it, at least for now, with:
   );
 ```
 
+## Wed May  5 18:39:25 EDT 2021
+
+How shall I structure the files vis-a-vis slices and container components (the latter of which are in the project requirements)?
+
+Looked at [https://blog.logrocket.com/smarter-redux-with-redux-toolkit/](https://blog.logrocket.com/smarter-redux-with-redux-toolkit/) and the accompanying [https://github.com/zsajjad/rtk-demo](https://github.com/zsajjad/rtk-demo).
+
+## Sat May  8 14:23:40 EDT 2021
+

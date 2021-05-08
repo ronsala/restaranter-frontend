@@ -43,7 +43,7 @@ export const menusSlice = createSlice({
 
 export const {} = menusSlice.actions;
 
-export const selectMenus = state => state.menus;
+// export const selectMenus = state => state.menus;
 
 export const menusSelectors = menusAdapter.getSelectors(
   (state) => state.menus

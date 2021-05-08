@@ -4,7 +4,7 @@ import { Menu } from './features/menus/Menu';
 function App() {
   return (
     <div className="App">
-      <Menu />
+      <RestaurantsContainer />
     </div>
   );
 }
