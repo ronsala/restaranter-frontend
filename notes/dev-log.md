@@ -362,3 +362,6 @@ info All dependencies
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹misc*› » rm package-lock.json
 ```
 
+Decided to switch from rsuitejs to tailwindcss. Not enough documentation or examples for the former.
+
+[https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app) doesn't mention yarn, so following [https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app)
