@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         App component
-        <RestaurantContainer />
+        {/* <RestaurantContainer /> */}
       </div>
     </Router>
   );
