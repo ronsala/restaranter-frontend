@@ -1,20 +1,13 @@
-import { 
+import {
   BrowserRouter as Router,
-  Route,
   Switch,
+  Route,
   Link
 } from "react-router-dom";
-import { RestaurantContainer } from './containers/restaurantContainer/RestaurantContainer';
-// import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        App component
-        <RestaurantContainer />
-      </div>
-    </Router>
+    <h1>FUTURE APP HERE</h1>
   );
 }
 
