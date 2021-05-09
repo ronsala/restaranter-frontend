@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { restaurantsSelectors } from './restaurantsSlice';
 // import { fetchRestaurants } from './RestaurantsContainer';
-// import styles from './Restaurant.module.css';
 
 export const Restaurant = () => {
 

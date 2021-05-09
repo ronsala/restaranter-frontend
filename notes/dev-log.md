@@ -375,3 +375,5 @@ zsh: no matches found: postcss@^7
 
 To address this error, following [https://github.com/tailwindlabs/tailwindcss/discussions/3575](https://github.com/tailwindlabs/tailwindcss/discussions/3575).
 
+I think I followed the above strictly, but my tailwind.css file was blank. I copied and pasted the code from the sandbox into it and it works fine with the sample return JSX.
+

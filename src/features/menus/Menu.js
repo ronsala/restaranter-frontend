@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMenus, menusSelectors } from './menusSlice';
-// import styles from './Menu.module.css';
 
 export const Menu = () => {
 
