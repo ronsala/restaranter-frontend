@@ -377,3 +377,11 @@ To address this error, following [https://github.com/tailwindlabs/tailwindcss/di
 
 I think I followed the above strictly, but my tailwind.css file was blank. I copied and pasted the code from the sandbox into it and it works fine with the sample return JSX.
 
+Removed the copied code from tailwind.css. Found this comment on the blog post:
+
+```
+Also, since @tailwind base; @tailwind components; @tailwind utilities; are being imported on the index.css file, index.js must import index.css instead of tailwind.css for the example to work.
+```
+
+Made that change and the sample code in App.js shows styled in Chrome. Guess I'll rm tailwind.css, since it doesn't seem necessary.
+
