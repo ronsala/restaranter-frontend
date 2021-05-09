@@ -1,11 +1,20 @@
-import { Menu } from './features/menus/Menu';
+import { 
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+} from "react-router-dom";
+import { RestaurantContainer } from './containers/restaurantContainer/RestaurantContainer';
 // import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Menu />
-    </div>
+    <Router>
+      <div className="App">
+        App component
+        <RestaurantContainer />
+      </div>
+    </Router>
   );
 }
 
