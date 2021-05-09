@@ -261,4 +261,29 @@ changed 3 packages, and audited 1760 packages in 3s
 found 0 vulnerabilities
 ```
 
-Looking at [https://reacttraining.com/react-router/web/guides/quick-start](https://reacttraining.com/react-router/web/guides/quick-start). 
+Looking at [https://reacttraining.com/react-router/web/guides/quick-start](https://reacttraining.com/react-router/web/guides/quick-start).
+
+Experimenting with restaurants files. Got this:
+
+```
+Unhandled Rejection (TypeError): Cannot convert undefined or null to object
+setAllMutably
+src/entities/unsorted_state_adapter.ts:42
+  39 | 
+  40 |  function setAllMutably(entities: T[] | Record<EntityId, T>, state: R): void {
+  41 |    if (!Array.isArray(entities)) {
+> 42 |      entities = Object.values(entities)
+     | ^  43 |    }
+  44 | 
+  45 |    state.ids = []
+  ...
+```
+
+until I commented out
+
+```
+import { restaurantsSlice } from './restaurantsSlice';
+```
+
+in RestaurantsContainer. Don't know why, yet.
+

@@ -4,7 +4,7 @@ import {
   Switch,
   Link
 } from "react-router-dom";
-import { Menu } from './features/menus/Menu';
+import { RestaurantContainer } from './containers/restaurantContainer/RestaurantContainer';
 // import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         App component
-        {/* <RestaurantsContainer /> */}
+        <RestaurantContainer />
       </div>
     </Router>
   );
