@@ -364,4 +364,14 @@ RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹misc*› » rm packa
 
 Decided to switch from rsuitejs to tailwindcss. Not enough documentation or examples for the former.
 
-[https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app) doesn't mention yarn, so following [https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app)
+[https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app) doesn't mention yarn, so following [https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app).
+
+```
+✔ belly committed your work with this message: rm rsuite and first installation of tailwindcss
+✔ belly pushed your work to origin
+RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹misc› » yarn add tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 -D
+zsh: no matches found: postcss@^7
+```
+
+To address this error, following [https://github.com/tailwindlabs/tailwindcss/discussions/3575](https://github.com/tailwindlabs/tailwindcss/discussions/3575).
+
