@@ -7,7 +7,7 @@ import {
 
 function App() {
   return (
-    <p>App</p>
+    <h1>FUTURE APP HERE</h1>
   );
 }
 

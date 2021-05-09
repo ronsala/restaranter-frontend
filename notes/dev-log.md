@@ -385,3 +385,9 @@ Also, since @tailwind base; @tailwind components; @tailwind utilities; are being
 
 Made that change and the sample code in App.js shows styled in Chrome. Guess I'll rm tailwind.css, since it doesn't seem necessary.
 
+Following 
+[https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/](https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/) to get started using Tailwind with React. The author's directions differ from the ones I've looked at previously. I'm hesitant to continue lest I break what I have so far. Will continue to assess. I suppose I could make a new branch to experiment safely.
+
+Just found [https://github.com/creativetimofficial/material-tailwind](https://github.com/creativetimofficial/material-tailwind). Woo! It looks like it fits the bill.
+
+Next time, will pick up with [https://material-tailwind.com/documentation/quick-start](https://material-tailwind.com/documentation/quick-start).
