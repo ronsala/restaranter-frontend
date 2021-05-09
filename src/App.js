@@ -4,15 +4,13 @@ import {
   Switch,
   Link
 } from "react-router-dom";
-import { RestaurantContainer } from './containers/restaurantContainer/RestaurantContainer';
-// import './App.css';
+import { NavBarInstance } from './components/NavBarInstance';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        App component
-        {/* <RestaurantContainer /> */}
+        <NavBarInstance />
       </div>
     </Router>
   );
