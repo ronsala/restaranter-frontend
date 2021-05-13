@@ -27,8 +27,8 @@ export default function NB() {
               href="#navbar"
               ripple="light"
             >
-              <Icon name="RESTAURANTS" size="xl" />
-              Discover
+              <Icon name="" size="xl" />
+              RESTAURANTS
             </NavItem>
             <NavItem href="#navbar" ripple="light">
               <Icon name="account_circle" size="xl" />
