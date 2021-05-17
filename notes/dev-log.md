@@ -391,3 +391,12 @@ Following
 Just found [https://github.com/creativetimofficial/material-tailwind](https://github.com/creativetimofficial/material-tailwind). Woo! It looks like it fits the bill.
 
 Next time, will pick up with [https://material-tailwind.com/documentation/quick-start](https://material-tailwind.com/documentation/quick-start).
+
+## Fri May 14 16:01:36 EDT 2021
+
+Previously got the material-tailwind navbar to show in browser and started playing with it. When I started the server now, though, it only says "NAVBAR" without the other headings. Why?
+
+Ah! It was a responsive design issue. I was running Chrome only in the right half of the screen. Once I add the icons to the nav it should be better.
+
+Looking at [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons). In process set up at Google Developer Profile at [https://developers.google.com/profile/u/104833061811146217919](https://developers.google.com/profile/u/104833061811146217919).
+
