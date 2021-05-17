@@ -9,6 +9,12 @@ import Nav from "@material-tailwind/react/Nav";
 import NavItem from "@material-tailwind/react/NavItem";
 import Icon from "@material-tailwind/react/Icon";
 import LeadText from "@material-tailwind/react/LeadText";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { Restaurant } from '../features/restaurants/Restaurant';
 
 export default function NB() {
@@ -19,28 +25,24 @@ export default function NB() {
       <NavbarContainer>
         <NavbarWrapper>
           <NavbarBrand>
-            <LeadText color="">
-              R e s t a u r a n t e r
-            </LeadText>
+            <Link to="/">
+              <LeadText color="">
+                R e s t a u r a n t e r
+              </LeadText>
+            </Link>
           </NavbarBrand>
           {/* <NavbarToggler color="white" onClick={() => setOpenMenu(!openMenu)} ripple="light" /> */}
         </NavbarWrapper>
-
         <NavbarCollapse open={openNavbar}>
           <Nav>
-            <NavItem
-              class="material-icons-round"
-              active="light"
-              href="#navbar"
-              ripple="light"
-            >
-              <Icon 
-                name="restaurant" 
-                size="xl" 
-              />
-              RESTAURANTS
+            <NavItem class="material-icons-round" active="light" ripple="light">
+              <Link to="/restaurants">
+                <Icon name="restaurant" size="xl" />
+                <span> </span>
+                RESTAURANTS
+              </Link>
             </NavItem>
-            <NavItem href="#navbar" ripple="light">
+            <NavItem ripple="light">
               <Icon name="account_circle" size="xl" />
               Sign Up
             </NavItem>

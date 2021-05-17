@@ -400,3 +400,7 @@ Ah! It was a responsive design issue. I was running Chrome only in the right hal
 
 Looking at [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons). In process set up at Google Developer Profile at [https://developers.google.com/profile/u/104833061811146217919](https://developers.google.com/profile/u/104833061811146217919).
 
+## Mon May 17 17:37:21 EDT 2021
+
+Figured out how to customize material-tailwind somewhat. Now, let me set up a 'restaurants' route.
+

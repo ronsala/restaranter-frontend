@@ -12,8 +12,10 @@ import NB from './components/NB';
 function App() {
   return (
     <div>
-      <NB />
-      <h1>FUTURE APP HERE</h1>
+      <Router>
+        <NB />
+        <h1>FUTURE APP HERE</h1>
+      </Router>
     </div>
 
   );
