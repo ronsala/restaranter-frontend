@@ -1,34 +1,44 @@
-import React from "react";
-import Card from "@material-tailwind/react/Card";
-import CardImage from "@material-tailwind/react/CardImage";
-import CardBody from "@material-tailwind/react/CardBody";
-import CardFooter from "@material-tailwind/react/CardFooter";
-import H6 from "@material-tailwind/react/Heading6";
-import Paragraph from "@material-tailwind/react/Paragraph";
-import Button from "@material-tailwind/react/Button";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 
-export default function ProprietorsSelectCard() {
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 1000
+  }
+});
+
+export default function RestaurantsSelectCard() {
+  const classes = useStyles();
+  
   return (
-    <Card>
-      <CardImage
-        src="images/800px-San_marcos_restaurant_row.jpg"
-        alt="Photograph of Restaurant Row parking lot in San Marcos, California"
-      />
-
-      <CardBody>
-        <H6 color="gray">Card Title</H6>
-        <Paragraph color="gray">
-          Don't be scared of the truth because we need to restart the human
-          foundation in truth And I love you like Kanye loves Kanye I love
-          Rick Owens’ bed design but the back is...
-        </Paragraph>
-      </CardBody>
-
-      <CardFooter>
-        <Button color="lightBlue" size="lg" ripple="light">
-          Read More
-        </Button>
-      </CardFooter>
-    </Card>
+    <div>
+      <Card className={classes.root}>
+        <CardContent>
+          <center>
+            <h1>
+              <strong>
+                FOR RESTAURANT PROPRIETORS
+              </strong>
+            </h1>
+          </center>
+        </CardContent>
+        <CardMedia
+            component="img"
+            alt="A roadside restaurateur tends to his meats in Franceville, Gabon, Central Africa"
+            height="140"
+            image="images/31462773907_a089a014d8_c.jpg"
+            title="Select Restaurants"
+          />
+          <CardContent>
+            <center>
+              <Button size="large" variant="contained" color="primary" href="/restauants">I have people to feed: Show me how!</Button>
+            </center>
+          </CardContent>
+      </Card>
+    </div>
   );
-}
+};
