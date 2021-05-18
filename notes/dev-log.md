@@ -412,3 +412,5 @@ Got select cards to appear side-by-side with material-ui. I see they call a navb
 
 Got rid of material-tailwind. Added more from material-ui. What I have so far is presentable enough. Much room for improvement later.
 
+Wrapped PatronsSelectCard in a React Router Link. Next time, will work on debugging and streamlining fetching and displaying restaurant data.
+

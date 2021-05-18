@@ -19,3 +19,5 @@ export const RestaurantContainer = () => {
     </div>
   )
 }
+
+export default RestaurantContainer;

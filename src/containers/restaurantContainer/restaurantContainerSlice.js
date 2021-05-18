@@ -9,7 +9,7 @@ export const fetchRestaurants = createAsyncThunk(
   async () => {
     const restaurants = await fetch('http://localhost:3000/api/v1/restaurants')
     .then((res) => res.json());
-    return restaurants
+     return restaurants
   }
 )
 

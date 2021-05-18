@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { restaurantsSelectors } from './restaurantsSlice';
-// import { fetchRestaurants } from './RestaurantsContainer';
+import { restaurantSelectors, fetchRestaurants } from '../../containers/restaurantContainer/restaurantContainerSlice';
 
 export const Restaurant = () => {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchRestaurants())
-  // }, [dispatch])
+  debugger
 
-  const restaurants = useSelector(restaurantsSelectors.selectAll);
+
+  useEffect(() => {
+    dispatch(fetchRestaurants())
+  }, [dispatch])
+
+  const restaurants = useSelector(restaurantSelectors.selectAll);
 
   return (
     <div>
