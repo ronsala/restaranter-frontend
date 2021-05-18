@@ -404,3 +404,7 @@ Looking at [Material Icons Guide](https://developers.google.com/fonts/docs/mater
 
 Figured out how to customize material-tailwind somewhat. Now, let me set up a 'restaurants' route.
 
+## Tue May 18 09:10:56 EDT 2021
+
+Want to do some layout I don't see available in material-tailwind. Trying out material-ui/core. I think I can mix and match from them. Switched to a new `layout` branch.
+
