@@ -410,3 +410,5 @@ Want to do some layout I don't see available in material-tailwind. Trying out ma
 
 Got select cards to appear side-by-side with material-ui. I see they call a navbar an AppBar. Think I'm going to switch to just using material-ui.
 
+Got rid of material-tailwind. Added more from material-ui. What I have so far is presentable enough. Much room for improvement later.
+
