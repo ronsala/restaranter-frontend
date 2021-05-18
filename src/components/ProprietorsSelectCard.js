@@ -31,7 +31,7 @@ export default function RestaurantsSelectCard() {
             alt="A roadside restaurateur tends to his meats in Franceville, Gabon, Central Africa"
             height="140"
             image="images/31462773907_a089a014d8_c.jpg"
-            title="Select Restaurants"
+            title="Select Proprietors"
           />
           <CardContent>
             <center>

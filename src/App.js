@@ -10,7 +10,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import AppBarMain from './components/AppBarMain';
 import ProprietorsSelectCard from './components/ProprietorsSelectCard'
-import RestaurantsSelectCard from './components/RestaurantsSelectCard'
+import PatronsSelectCard from './components/PatronsSelectCard'
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
                 <ProprietorsSelectCard />
               </Grid>
               <Grid item xl={6} md={6} sm={12} xs={12}> 
-                <RestaurantsSelectCard />
+                <PatronsSelectCard />
               </Grid>
             </Grid>
           </Box>
