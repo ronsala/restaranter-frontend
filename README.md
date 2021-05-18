@@ -42,5 +42,9 @@ This app is available as open source under the terms of the MIT License.
 
 ## Acknowledgments
 
-Flatiron School for instruction and community.
-My spouse for support and cheerleading.
+* Flatiron School for instruction and community.
+* My spouse for support and cheerleading.
+* Image creators:
+  * [Skarg](https://commons.wikimedia.org/wiki/User:Skarg) for "Photograph of Restaurant Row parking lot in San Marcos, California", protected under a Creative Commons Attribution-Share Alike [4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license. The image is unmodified from the original.
+  * [David Stanley](https://www.flickr.com/photos/davidstanleytravel/) for "Roadside Restaurateur", protected under a Creative Commons Attribution [2.0 Generic](https://creativecommons.org/licenses/by/2.0/) license. The image is unmodified from the original.
+  

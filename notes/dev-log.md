@@ -391,3 +391,24 @@ Following
 Just found [https://github.com/creativetimofficial/material-tailwind](https://github.com/creativetimofficial/material-tailwind). Woo! It looks like it fits the bill.
 
 Next time, will pick up with [https://material-tailwind.com/documentation/quick-start](https://material-tailwind.com/documentation/quick-start).
+
+## Fri May 14 16:01:36 EDT 2021
+
+Previously got the material-tailwind navbar to show in browser and started playing with it. When I started the server now, though, it only says "NAVBAR" without the other headings. Why?
+
+Ah! It was a responsive design issue. I was running Chrome only in the right half of the screen. Once I add the icons to the nav it should be better.
+
+Looking at [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons). In process set up at Google Developer Profile at [https://developers.google.com/profile/u/104833061811146217919](https://developers.google.com/profile/u/104833061811146217919).
+
+## Mon May 17 17:37:21 EDT 2021
+
+Figured out how to customize material-tailwind somewhat. Now, let me set up a 'restaurants' route.
+
+## Tue May 18 09:10:56 EDT 2021
+
+Want to do some layout I don't see available in material-tailwind. Trying out material-ui/core. I think I can mix and match from them. Switched to a new `layout` branch.
+
+Got select cards to appear side-by-side with material-ui. I see they call a navbar an AppBar. Think I'm going to switch to just using material-ui.
+
+Got rid of material-tailwind. Added more from material-ui. What I have so far is presentable enough. Much room for improvement later.
+
