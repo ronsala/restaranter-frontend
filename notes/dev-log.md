@@ -408,3 +408,5 @@ Figured out how to customize material-tailwind somewhat. Now, let me set up a 'r
 
 Want to do some layout I don't see available in material-tailwind. Trying out material-ui/core. I think I can mix and match from them. Switched to a new `layout` branch.
 
+Got select cards to appear side-by-side with material-ui. I see they call a navbar an AppBar. Think I'm going to switch to just using material-ui.
+
