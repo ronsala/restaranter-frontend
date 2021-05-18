@@ -8,12 +8,14 @@ import {
 } from "react-router-dom";
 import "@material-tailwind/react/tailwind.css";
 import NB from './components/NB';
+import SelectCardsContainer from './components/SelectCardsContainer'
 
 function App() {
   return (
     <div>
       <Router>
         <NB />
+        <SelectCardsContainer />
         <h1>FUTURE APP HERE</h1>
       </Router>
     </div>
