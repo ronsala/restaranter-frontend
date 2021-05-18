@@ -10,22 +10,37 @@ import {
 // import "@material-tailwind/react/tailwind.css";
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 // import NB from './components/NB';
 import AppBarMain from './components/AppBarMain';
+import RestaurantsSelectCard from './components/RestaurantsSelectCard'
 import SelectCardsContainer from './components/SelectCardsContainer';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  AppBarMain: {
+    marginBottom: 2,
+  },
+}))
 
 function App() {
   return (
     <div>
       <Router>
-        <Box>
-          <Container>
-            {/* <NB /> */}
+        <Container>
+          <Box>
             <AppBarMain />
-            <SelectCardsContainer />
-          </Container>
-        </Box>
+            <Grid container spacing={1}>
+              <Grid item xl={6} md={6} sm={12} xs={12}>
+                <RestaurantsSelectCard />
+              </Grid>
+              <Grid item xl={6} md={6} sm={12} xs={12}> 
+                <RestaurantsSelectCard />
+            </Grid>
+            </Grid>
+          </Box>
+        </Container>
       </Router>
     </div>
 
