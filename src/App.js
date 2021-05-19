@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import AppBarMain from './components/AppBarMain';
 import SelectCardsContainer from "./components/SelectCardsContainer";
-import RestaurantContainer from './containers/restaurantContainer/RestaurantContainer';
+import RestaurantsContainer from './features/restaurants/RestaurantsContainer';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         </Container>
         <Switch>
           <Route path="/restaurants">
-            <RestaurantContainer />
+            <RestaurantsContainer />
           </Route>
           {/* <Route path="/">
             <Home />

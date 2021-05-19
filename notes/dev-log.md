@@ -414,3 +414,6 @@ Got rid of material-tailwind. Added more from material-ui. What I have so far is
 
 Wrapped PatronsSelectCard in a React Router Link. Next time, will work on debugging and streamlining fetching and displaying restaurant data.
 
+## Wed May 19 14:31:43 EDT 2021
+
+Troubleshooting as planned. Found I needed to finish some steps in backend. Now able to console.log restaurant data. Along the way, discovered the PatronsCard was throwing warnings in console, since they were wrapped in links with buttons inside and you can't have an `<a>` in an `<a>`. Will just keep the buttons. 

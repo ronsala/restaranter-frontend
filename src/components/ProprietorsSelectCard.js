@@ -35,7 +35,7 @@ export default function RestaurantsSelectCard() {
           />
           <CardContent>
             <center>
-              <Button size="large" variant="contained" color="primary" href="/restauants">I have people to feed: Show me how!</Button>
+              <Button size="large" variant="contained" color="primary" href="/">I have people to feed: Show me how!</Button>
             </center>
           </CardContent>
       </Card>

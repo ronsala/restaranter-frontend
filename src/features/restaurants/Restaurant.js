@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { restaurantSelectors, fetchRestaurants } from '../../containers/restaurantContainer/restaurantContainerSlice';
+import { setAllRestaurants, restaurantsLoading } from './restaurantsSlice';
 
-export const Restaurant = () => {
+export const Restaurant = (props) => {
 
   const dispatch = useDispatch();
 
-  debugger
-
-
   useEffect(() => {
-    dispatch(fetchRestaurants())
+    dispatch(restaurantsLoading())
   }, [dispatch])
 
-  const restaurants = useSelector(restaurantSelectors.selectAll);
+  // debugger
+
+  // const restaurants = useSelector(restaurantsSelectors.selectAll);
+
+  const restaurants = this.props
 
   return (
     <div>
@@ -23,5 +24,6 @@ export const Restaurant = () => {
         <p>Loading...</p>
       )}
     </div>
+  // null
   );
 }
