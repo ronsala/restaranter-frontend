@@ -416,4 +416,9 @@ Wrapped PatronsSelectCard in a React Router Link. Next time, will work on debugg
 
 ## Wed May 19 14:31:43 EDT 2021
 
-Troubleshooting as planned. Found I needed to finish some steps in backend. Now able to console.log restaurant data. Along the way, discovered the PatronsCard was throwing warnings in console, since they were wrapped in links with buttons inside and you can't have an `<a>` in an `<a>`. Will just keep the buttons. 
+Troubleshooting as planned. Found I needed to finish some steps in backend. Now able to console.log restaurant data. Along the way, discovered the PatronsCard was throwing warnings in console, since they were wrapped in links with buttons inside and you can't have an `<a>` in an `<a>`. Will just keep the buttons.
+
+## Thu May 20 21:08:17 EDT 2021
+
+Was able to construct a restaurantsSlice and RestaurantsContainer based on menusSlice and Menus. Now able to pull fetched data from both models into store and display it in browser. Next time, will clean up the troubleshooting mess.
+

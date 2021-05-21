@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { setAllRestaurants, restaurantsLoading } from './restaurantsSlice';
+// import React, { useEffect } from 'react'
+// import { useSelector, useDispatch } from 'react-redux';
+// import { setAllRestaurants } from './restaurantsSlice';
 
-export const Restaurant = (props) => {
+// export const Restaurant = (props) => {
 
-  const dispatch = useDispatch();
+//   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(restaurantsLoading())
-  }, [dispatch])
+//   useEffect(() => {
+//     dispatch(restaurantsLoading())
+//   }, [dispatch])
 
-  // debugger
+//   // debugger
 
-  // const restaurants = useSelector(restaurantsSelectors.selectAll);
+//   // const restaurants = useSelector(restaurantsSelectors.selectAll);
 
-  const restaurants = this.props
+//   const restaurants = this.props
 
-  return (
-    <div>
-      { (typeof restaurants[0] !== 'undefined') ? (
-        <h1>{ restaurants[0].attributes.name }</h1> 
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  // null
-  );
-}
+//   return (
+//     <div>
+//       { (typeof restaurants[0] !== 'undefined') ? (
+//         <h1>{ restaurants[0].attributes.name }</h1> 
+//       ) : (
+//         <p>Loading...</p>
+//       )}
+//     </div>
+//   // null
+//   );
+// }

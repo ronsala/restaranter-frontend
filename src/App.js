@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
-import SelectCardsContainer from "./components/SelectCardsContainer";
 import RestaurantsContainer from './features/restaurants/RestaurantsContainer';
 
 function App() {
@@ -18,16 +18,15 @@ function App() {
         <Container>
           <Box>
             <AppBarMain />
-            <SelectCardsContainer />
           </Box>
         </Container>
         <Switch>
           <Route path="/restaurants">
             <RestaurantsContainer />
           </Route>
-          {/* <Route path="/">
+          <Route path="/">
             <Home />
-          </Route> */}
+          </Route>
         </Switch>
       </div>
     </Router>
