@@ -412,3 +412,29 @@ Got select cards to appear side-by-side with material-ui. I see they call a navb
 
 Got rid of material-tailwind. Added more from material-ui. What I have so far is presentable enough. Much room for improvement later.
 
+Wrapped PatronsSelectCard in a React Router Link. Next time, will work on debugging and streamlining fetching and displaying restaurant data.
+
+## Wed May 19 14:31:43 EDT 2021
+
+Troubleshooting as planned. Found I needed to finish some steps in backend. Now able to console.log restaurant data. Along the way, discovered the PatronsCard was throwing warnings in console, since they were wrapped in links with buttons inside and you can't have an `<a>` in an `<a>`. Will just keep the buttons.
+
+## Thu May 20 21:08:17 EDT 2021
+
+Was able to construct a restaurantsSlice and RestaurantsContainer based on menusSlice and Menus. Now able to pull fetched data from both models into store and display it in browser. Next time, will clean up the troubleshooting mess.
+
+## Sat May 22 11:46:08 EDT 2021
+
+Fixed Router syntax.
+
+Well, not quite. Tried to combine Material-UI button with Router's Link. Got the `<a>` in an `<a>` issue again. Took advice from (https://stackoverflow.com/questions/38187833/how-to-combine-reactjs-router-link-and-material-ui-components-like-a-button) and did
+
+```
+<Button size="large" variant="contained" color="primary" component={Link} to={"/restauants"}>I'm hungry: Show me restaurants!</Button>
+```
+
+I'm running into the prob described at [https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view](https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view). I just restarted the frontend server and refreshed the browser on '/'. I typed in 'restaurants' and got the proper page. When I click the Link/Button the url changes but not the page. 
+
+Ha! "restaurants" was misspelled!
+
+I find myself baffled with how to add a border or spacing to the restaurant cards. `makeStyles` won't seem to do it. May ask a question at the next study group.
+

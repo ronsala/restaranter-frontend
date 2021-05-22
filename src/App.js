@@ -8,29 +8,38 @@ import {
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
-import ProprietorsSelectCard from './components/ProprietorsSelectCard'
-import RestaurantsSelectCard from './components/RestaurantsSelectCard'
+import RestaurantsContainer from './features/restaurants/RestaurantsContainer';
+import Restaurant from './features/restaurants/Restaurant';
 
 function App() {
   return (
-    <div>
-      <Router>
+    <Router>
+      <div>
         <Container>
           <Box>
-            <AppBarMain />
-            <Grid container spacing={2}>
-              <Grid item xl={6} md={6} sm={12} xs={12}>
-                <ProprietorsSelectCard />
+            <Grid 
+              container 
+              spacing={2}
+              direction="row"
+              justify="space-around"
+              alignItems="center"
+            >
+              <Grid item xs={12}>
+                <AppBarMain />
               </Grid>
-              <Grid item xl={6} md={6} sm={12} xs={12}> 
-                <RestaurantsSelectCard />
-              </Grid>
+              <Switch>
+                <Route path="/restaurants/:restaurantId" component={Restaurant} />
+                <Route path="/restaurants" component={RestaurantsContainer} />
+                <Route path="/" component={Home} />
+              </Switch>
             </Grid>
           </Box>
         </Container>
-      </Router>
-    </div>
+
+      </div>
+    </Router>
   );
 }
 

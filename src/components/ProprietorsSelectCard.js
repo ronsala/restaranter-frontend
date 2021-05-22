@@ -31,11 +31,11 @@ export default function RestaurantsSelectCard() {
             alt="A roadside restaurateur tends to his meats in Franceville, Gabon, Central Africa"
             height="140"
             image="images/31462773907_a089a014d8_c.jpg"
-            title="Select Restaurants"
+            title="Select Proprietors"
           />
           <CardContent>
             <center>
-              <Button size="large" variant="contained" color="primary" href="/restauants">I have people to feed: Show me how!</Button>
+              <Button size="large" variant="contained" color="primary" href="/">I have people to feed: Show me how!</Button>
             </center>
           </CardContent>
       </Card>

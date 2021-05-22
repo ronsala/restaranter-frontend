@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function RestaurantsSelectCard() {
+export default function PatronsSelectCard() {
   const classes = useStyles();
   
   return (
@@ -19,11 +20,7 @@ export default function RestaurantsSelectCard() {
       <Card className={classes.root}>
         <CardContent>
           <center>
-            <h1>
-              <strong>
-                FOR RESTAURANT PATRONS
-              </strong>
-            </h1>
+              <strong>FOR RESTAURANT PATRONS</strong>
           </center>
         </CardContent>
         <CardMedia
@@ -31,11 +28,11 @@ export default function RestaurantsSelectCard() {
             alt="Photograph of Restaurant Row parking lot in San Marcos, California"
             height="140"
             image="images/800px-San_marcos_restaurant_row.jpg"
-            title="Select Restaurants"
+            title="Select Patrons"
         />
         <CardContent>
           <center>
-            <Button size="large" variant="contained" color="primary" href="/restauants">I'm hungry: Show me restaurants!</Button>
+            <Button size="large" variant="contained" color="primary" component={Link} to={"/restaurants"}>I'm hungry: Show me restaurants!</Button>
           </center>
         </CardContent>
       </Card>
