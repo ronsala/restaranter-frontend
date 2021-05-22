@@ -4,14 +4,16 @@ import PatronsSelectCard from './PatronsSelectCard'
 
 function SelectCardsContainer() {
   return(
-    <Grid container spacing={2}>
-      <Grid item xl={6} md={6} sm={12} xs={12}>
+    <div>
+    <Grid container spacing={1}>
+      <Grid item xs={6}>
         <ProprietorsSelectCard />
       </Grid>
-      <Grid item xl={6} md={6} sm={12} xs={12}> 
+      <Grid item xs={6}> 
         <PatronsSelectCard />
       </Grid>
     </Grid>
+    </div>
   )
 }
 
