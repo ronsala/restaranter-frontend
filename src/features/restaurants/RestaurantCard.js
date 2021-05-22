@@ -21,7 +21,7 @@ export default function RestaurantCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} variant="contained" component={Link} to="#">
+    <Card className={classes.root} component={Link} to={`restaurants/${props.id}`}>
       <CardContent>
         <Typography variant="h5" component="h2">
           { props.name }

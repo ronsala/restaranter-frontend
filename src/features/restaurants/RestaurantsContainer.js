@@ -15,8 +15,8 @@ export const RestaurantsContainer = () => {
 
   const restaurants = useSelector(restaurantsSelectors.selectAll);
 
-  const restaurantsList = restaurants.map((restaurant, index) => {
-    return <RestaurantCard key={index} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } />
+  const restaurantsList = restaurants.map((restaurant) => {
+    return <RestaurantCard key={restaurant.id} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } id={restaurant.id} />
   })
 
   return (
