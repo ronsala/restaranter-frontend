@@ -436,3 +436,5 @@ I'm running into the prob described at [https://stackoverflow.com/questions/4335
 
 Ha! "restaurants" was misspelled!
 
+I find myself baffled with how to add a border or spacing to the restaurant cards. `makeStyles` won't seem to do it. May ask a question at the next study group.
+
