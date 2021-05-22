@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRestaurants, restaurantsSelectors } from './restaurantsSlice';
-import { 
-} from '@reduxjs/toolkit';
-// import { Restaurant } from "./Restaurant";
+import RestaurantCard from "./RestaurantCard";
 
 
 
@@ -17,15 +15,13 @@ export const RestaurantsContainer = () => {
 
   const restaurants = useSelector(restaurantsSelectors.selectAll);
 
+  const restaurantsList = restaurants.map((restaurant, index) => {
+    return <RestaurantCard key={index} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } />
+  })
+
   return (
     <div>
-      <p>Restaurants Container</p>
-      {/* <Restaurant restaurants={null}/> */}
-      { (typeof restaurants[0] !== 'undefined') ? (
-        <h1>{ restaurants[0].attributes.name }</h1> 
-      ) : (
-        <p>Loading...</p>
-      )}
+      { restaurantsList }
     </div>
   )
 }
