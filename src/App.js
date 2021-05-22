@@ -21,12 +21,8 @@ function App() {
           </Box>
         </Container>
         <Switch>
-          <Route path="/restaurants">
-            <RestaurantsContainer />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/restaurants" component={RestaurantsContainer} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </Router>

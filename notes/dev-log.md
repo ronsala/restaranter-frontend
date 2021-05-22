@@ -422,3 +422,6 @@ Troubleshooting as planned. Found I needed to finish some steps in backend. Now 
 
 Was able to construct a restaurantsSlice and RestaurantsContainer based on menusSlice and Menus. Now able to pull fetched data from both models into store and display it in browser. Next time, will clean up the troubleshooting mess.
 
+## Sat May 22 11:46:08 EDT 2021
+
+Fixed Router syntax.
