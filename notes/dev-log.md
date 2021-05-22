@@ -425,3 +425,14 @@ Was able to construct a restaurantsSlice and RestaurantsContainer based on menus
 ## Sat May 22 11:46:08 EDT 2021
 
 Fixed Router syntax.
+
+Well, not quite. Tried to combine Material-UI button with Router's Link. Got the `<a>` in an `<a>` issue again. Took advice from (https://stackoverflow.com/questions/38187833/how-to-combine-reactjs-router-link-and-material-ui-components-like-a-button) and did
+
+```
+<Button size="large" variant="contained" color="primary" component={Link} to={"/restauants"}>I'm hungry: Show me restaurants!</Button>
+```
+
+I'm running into the prob described at [https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view](https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view). I just restarted the frontend server and refreshed the browser on '/'. I typed in 'restaurants' and got the proper page. When I click the Link/Button the url changes but not the page. 
+
+Ha! "restaurants" was misspelled!
+

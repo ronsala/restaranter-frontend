@@ -1,4 +1,11 @@
 import React from 'react';
+import {withRouter} from 'react-router';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -30,7 +37,7 @@ export default function PatronsSelectCard() {
             title="Select Patrons"
         />
         <CardContent>
-          <center><Button size="large" variant="contained" color="primary" href="/restauants">I'm hungry: show me restaurants!</Button></center>
+          <Button size="large" variant="contained" color="primary" component={Link} to={"/restaurants"}>I'm hungry: Show me restaurants!</Button>
         </CardContent>
       </Card>
     </div>

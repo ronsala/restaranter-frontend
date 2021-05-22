@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,9 +35,9 @@ export default function AppBarMain() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            R e s t a u r a n t e r
-          </Typography>
+            <Typography variant="h6" className={classes.title} component={Link} to={"/"}>
+              R e s t a u r a n t e r
+            </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
