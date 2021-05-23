@@ -4,7 +4,12 @@ export default function Restaurant(props) {
   return (
     <div>
       { (typeof props.restaurant.attributes.name !== 'undefined') ? 
-        (<h1>{ props.restaurant.attributes.name }</h1>) : 
+        (
+          <div>
+            <h1>{ props.restaurant.attributes.name }</h1>
+            <h2>{ props.restaurant.attributes.street }</h2>
+          </div>
+        ) : 
         (<p>Loading...</p>)
       }
     </div>
