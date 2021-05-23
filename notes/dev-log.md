@@ -438,3 +438,91 @@ Ha! "restaurants" was misspelled!
 
 I find myself baffled with how to add a border or spacing to the restaurant cards. `makeStyles` won't seem to do it. May ask a question at the next study group.
 
+## Sun May 23 06:54:12 EDT 2021
+
+Going in circles trying to get some kind of ById selector working in Restaurants Container. Many syntaxes I tried prevented the store from being populated. Witness the commented out attempts:
+
+```
+// const restaurants = useSelector(restaurantsSelectors.selectAll);
+  const restaurants = useSelector(state => selectAllRestaurants(state));
+
+  // console.log('restaurants[1].attributes.name:', restaurants[1].attributes.name);
+
+  // const restaurant = useSelector(restaurantsSelectors.selectById(state: store.getState(), 1));
+
+  // const restaurant = useSelector(selectRestaurantById);
+  const restaurant = useSelector(state => selectRestaurantById(state, 1))
+  // const restaurant = useSelector(state => restaurantsSelectors.selectById(state, 1))
+
+  console.log('restaurant:', restaurant);
+  // const restaurant = useSelector(state => selectRestaurantById(state, 1));
+
+  // const restaurant = useSelector(selectRestaurantEntities(1));
+
+  // const restaurant = useSelector(selectRestaurantEntities(1));
+
+  // const UserTitle = ({ id }) => {
+  //   const { title } = useSelector(state => selectUser(state, id));
+  // }
+
+  // var rid = 2;
+
+  // const RestaurantBID = (id = 2) => {
+  //   const restaurant = useSelector(state => selectRestaurantById(state, id));
+  //   console.log('restaurant:', restaurant);
+  //   return restaurant
+  // }
+
+```
+
+Now to clean up and attempt to build on what worked.
+
+Now I'm stuck on trying to render props from RestaurantContainer to Restaurant. I'm looking up a restaurant using a hint from [https://flaviocopes.com/react-router-data-from-route/](https://flaviocopes.com/react-router-data-from-route/), like so:
+
+```
+        <Route path="/restaurants/:id" render={({match}) => (
+          <Restaurant restaurant={restaurants.find(r => r.id === match.params.id)} />
+        )} />
+```
+
+Restaurant.js:
+
+```
+import React from 'react'
+
+export default function Restaurant(props) {
+  console.log('Restaurant props:', props);
+
+  return (
+    <div>
+         <p>Restaurant Component</p>
+         { props.restaurant.attributes.name }
+    </div>
+  );
+}
+```
+
+With the line under "Restaurant Component" commented out I get this in console:
+
+```
+Restaurant props: 
+{restaurant: {…}}
+restaurant: {id: "1", type: "restaurant", attributes: {…}}
+__proto__: Object
+```
+
+But with it commented back in, I get `TypeError: Cannot read property 'attributes' of undefined` in the browser and the props are undefined. Perhaps a timing issue.
+
+If I wrap it in a conditional it works:
+
+```
+  return (
+    <div>
+      { (typeof props.restaurant.attributes.name !== 'undefined') ? 
+        (<h1>{ props.restaurant.attributes.name }</h1>) : 
+        (<p>Loading...</p>)
+      }
+    </div>
+  );
+```
+

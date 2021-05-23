@@ -14,7 +14,8 @@ export const fetchRestaurants = createAsyncThunk(
 )
 
 const restaurantsAdapter = createEntityAdapter({
-  selectId: (restaurant) => restaurant.id,
+  // selectId: ({ id }) => id
+  selectId: (restaurant) => restaurant.id
 })
 
 export const restaurantsSlice = createSlice({
@@ -43,8 +44,16 @@ export const restaurantsSlice = createSlice({
 
 // export const {} = restaurantsSlice.actions;
 
-export const restaurantsSelectors = restaurantsAdapter.getSelectors(
-  (state) => state.restaurants
-)
+export const {
+  selectById: selectRestaurantById,
+  selectIds: selectRestaurantIds,
+  selectEntities: selectRestaurantEntities,
+  selectAll: selectAllRestaurants,
+  selectTotal: selectTotalRestaurants,
+} = restaurantsAdapter.getSelectors((state) => state.restaurants)
+
+// export const restaurantsSelectors = restaurantsAdapter.getSelectors(
+//   (state) => state.restaurants
+// )
 
 export default restaurantsSlice.reducer;

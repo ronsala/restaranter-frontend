@@ -30,9 +30,8 @@ function App() {
                 <AppBarMain />
               </Grid>
               <Switch>
-                <Route path="/restaurants/:restaurantId" component={Restaurant} />
                 <Route path="/restaurants" component={RestaurantsContainer} />
-                <Route path="/" component={Home} />
+                <Route exact path="/" component={Home} />
               </Switch>
             </Grid>
           </Box>
