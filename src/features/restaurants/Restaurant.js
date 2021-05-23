@@ -7,7 +7,7 @@ export default function Restaurant(props) {
         (
           <div>
             <h1>{ props.restaurant.attributes.name }</h1>
-            <h2>{ props.restaurant.attributes.street }</h2>
+            <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
           </div>
         ) : 
         (<p>Loading...</p>)
