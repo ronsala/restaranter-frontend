@@ -530,3 +530,4 @@ Since I have that working OK, now trying to select a menu based on the restauran
 
 ## Fri May 28 14:30:01 EDT 2021
 
+Worked on eliminating problem of not being able to display components when store hasn't been hydrated. 

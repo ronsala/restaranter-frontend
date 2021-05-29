@@ -8,16 +8,14 @@ import Restaurant from "./Restaurant";
 
 export const RestaurantContainer = ({match}) => {
   const { restaurantId } = match.params
-
-  let restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
-
   const dispatch = useDispatch();
+  let restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
 
   useEffect(() => {
     if (!restaurant) {
       dispatch(fetchRestaurant(restaurantId))
     }
-  }, [dispatch])
+  }, [dispatch, restaurant, restaurantId])
 
   return (
     <div>
