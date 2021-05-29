@@ -4,7 +4,7 @@ import {
   fetchRestaurant, 
   selectRestaurantById, 
 } from './restaurantsSlice';
-import Restaurant from "./Restaurant";
+import { Restaurant } from "./Restaurant";
 
 export const RestaurantContainer = ({match}) => {
   const { restaurantId } = match.params
@@ -19,10 +19,9 @@ export const RestaurantContainer = ({match}) => {
 
   return (
     <div>
-      <p>RestaurantContainer</p>
-      { restaurant && restaurant.attributes.name }
+      <Restaurant restaurant={restaurant} />
     </div>
   )
-
-
 }
+
+export default RestaurantContainer;
