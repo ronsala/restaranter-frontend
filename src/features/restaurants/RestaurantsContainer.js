@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import {Route, Switch} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchRestaurants, restaurantsSelectors } from './restaurantsSlice';
+import { 
+  fetchRestaurants, 
+  selectAllRestaurants, 
+} from './restaurantsSlice';
+import { fetchMenus } from '../menus/menusSlice'
 import RestaurantCard from "./RestaurantCard";
 
-
-
 export const RestaurantsContainer = () => {
-
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchRestaurants())
   }, [dispatch])
 
-  const restaurants = useSelector(restaurantsSelectors.selectAll);
+  useEffect(() => {
+    dispatch(fetchMenus())
+  }, [dispatch])
+
+  const restaurants = useSelector(state => selectAllRestaurants(state));
 
   const restaurantsList = restaurants.map((restaurant) => {
     return <RestaurantCard key={restaurant.id} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } id={restaurant.id} />
@@ -21,7 +27,16 @@ export const RestaurantsContainer = () => {
 
   return (
     <div>
-      { restaurantsList }
+      {/* {restaurant.attributes.name} */}
+      <Switch>
+        {/* <Route path="/restaurants/:id" render={({match}) => (
+          <Restaurant restaurant={restaurants.find(r => r.id === match.params.id)} />
+        )} /> */}
+
+        <Route path="/restaurants">
+          { restaurantsList }
+        </Route>
+      </Switch>
     </div>
   )
 }

@@ -1,29 +1,29 @@
-// import React, { useEffect } from 'react'
-// import { useSelector, useDispatch } from 'react-redux';
-// import { setAllRestaurants } from './restaurantsSlice';
+import React from 'react';
+import { MenusContainer } from '../menus/MenusContainer';
+import { selectRestaurantMenu } from './restaurantsSlice';
+import { useSelector } from 'react-redux';
 
-// export const Restaurant = (props) => {
+export default function Restaurant(props) {
 
-//   const dispatch = useDispatch();
+  console.log('props in Restaurant:', props);
 
-//   useEffect(() => {
-//     dispatch(restaurantsLoading())
-//   }, [dispatch])
+  // const menu = useSelector(state => selectRestaurantMenu(state, props.restaurant.id))
 
-//   // debugger
-
-//   // const restaurants = useSelector(restaurantsSelectors.selectAll);
-
-//   const restaurants = this.props
-
-//   return (
-//     <div>
-//       { (typeof restaurants[0] !== 'undefined') ? (
-//         <h1>{ restaurants[0].attributes.name }</h1> 
-//       ) : (
-//         <p>Loading...</p>
-//       )}
-//     </div>
-//   // null
-//   );
-// }
+  return (
+    <div>
+      { (typeof props.restaurant.attributes.name !== 'undefined') ? 
+        (
+          <div>
+            <h1>{ props.restaurant.attributes.name }</h1>
+            <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
+            <div>
+              {/* { console.log('menu:', menu) } */}
+              <MenusContainer />
+            </div>
+          </div>
+        ) : 
+        (<p>Loading...</p>)
+      }
+    </div>
+  );
+}

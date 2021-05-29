@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -12,6 +11,7 @@ import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
 import RestaurantsContainer from './features/restaurants/RestaurantsContainer';
 import Restaurant from './features/restaurants/Restaurant';
+import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
 
 function App() {
   return (
@@ -30,9 +30,9 @@ function App() {
                 <AppBarMain />
               </Grid>
               <Switch>
-                <Route path="/restaurants/:restaurantId" component={Restaurant} />
+              <Route exact path="/restaurants/:restaurantId" component={RestaurantContainer} />
                 <Route path="/restaurants" component={RestaurantsContainer} />
-                <Route path="/" component={Home} />
+                <Route exact path="/" component={Home} />
               </Switch>
             </Grid>
           </Box>
