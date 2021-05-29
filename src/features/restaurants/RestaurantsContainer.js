@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import {Route, Switch} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { 
   fetchRestaurants, 
@@ -9,7 +8,7 @@ import { fetchMenus } from '../menus/menusSlice'
 import RestaurantCard from "./RestaurantCard";
 
 export const RestaurantsContainer = () => {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchRestaurants())
@@ -27,16 +26,7 @@ export const RestaurantsContainer = () => {
 
   return (
     <div>
-      {/* {restaurant.attributes.name} */}
-      <Switch>
-        {/* <Route path="/restaurants/:id" render={({match}) => (
-          <Restaurant restaurant={restaurants.find(r => r.id === match.params.id)} />
-        )} /> */}
-
-        <Route path="/restaurants">
-          { restaurantsList }
-        </Route>
-      </Switch>
+      { restaurantsList }
     </div>
   )
 }

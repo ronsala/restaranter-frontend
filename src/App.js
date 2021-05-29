@@ -9,8 +9,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
-import RestaurantsContainer from './features/restaurants/RestaurantsContainer';
-import Restaurant from './features/restaurants/Restaurant';
+import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
 
 function App() {
@@ -30,7 +29,7 @@ function App() {
                 <AppBarMain />
               </Grid>
               <Switch>
-              <Route exact path="/restaurants/:restaurantId" component={RestaurantContainer} />
+                <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                 <Route path="/restaurants" component={RestaurantsContainer} />
                 <Route exact path="/" component={Home} />
               </Switch>

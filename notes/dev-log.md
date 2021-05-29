@@ -532,3 +532,5 @@ Since I have that working OK, now trying to select a menu based on the restauran
 
 Worked on eliminating problem of not being able to display components when store hasn't been hydrated. In RestaurantContainer used a conditional in a useEffect to determine if the entity exists in the store or if it needs to be fetched, i.e. if the user accesses the restaurant show path via the Link in the RestaurantCard or directly by the URL. All systems nominal.
 
+## Sat May 29 18:42:41 EDT 2021
+

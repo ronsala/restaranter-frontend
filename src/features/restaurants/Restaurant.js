@@ -1,9 +1,7 @@
 import React from 'react';
-import { MenusContainer } from '../menus/MenusContainer';
-import { selectRestaurantMenu } from './restaurantsSlice';
-import { useSelector } from 'react-redux';
+// import { MenusContainer } from '../menus/MenusContainer';
 
-export default function Restaurant(props) {
+export const Restaurant = (props) => {
 
   console.log('props in Restaurant:', props);
 
@@ -11,14 +9,14 @@ export default function Restaurant(props) {
 
   return (
     <div>
-      { (typeof props.restaurant.attributes.name !== 'undefined') ? 
+      { (props && props.restaurant.attributes.name) ? 
         (
           <div>
             <h1>{ props.restaurant.attributes.name }</h1>
             <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
             <div>
               {/* { console.log('menu:', menu) } */}
-              <MenusContainer />
+              {/* <MenusContainer /> */}
             </div>
           </div>
         ) : 
