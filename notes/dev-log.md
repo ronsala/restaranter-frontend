@@ -526,3 +526,7 @@ If I wrap it in a conditional it works:
   );
 ```
 
+Since I have that working OK, now trying to select a menu based on the restaurant id.
+
+## Fri May 28 14:30:01 EDT 2021
+

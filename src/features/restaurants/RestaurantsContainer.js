@@ -5,15 +5,18 @@ import {
   fetchRestaurants, 
   selectAllRestaurants, 
 } from './restaurantsSlice';
+import { fetchMenus } from '../menus/menusSlice'
 import RestaurantCard from "./RestaurantCard";
-import Restaurant from "./Restaurant";
 
 export const RestaurantsContainer = () => {
-
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchRestaurants())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(fetchMenus())
   }, [dispatch])
 
   const restaurants = useSelector(state => selectAllRestaurants(state));
@@ -26,9 +29,10 @@ export const RestaurantsContainer = () => {
     <div>
       {/* {restaurant.attributes.name} */}
       <Switch>
-        <Route path="/restaurants/:id" render={({match}) => (
+        {/* <Route path="/restaurants/:id" render={({match}) => (
           <Restaurant restaurant={restaurants.find(r => r.id === match.params.id)} />
-        )} />
+        )} /> */}
+
         <Route path="/restaurants">
           { restaurantsList }
         </Route>

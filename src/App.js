@@ -11,6 +11,7 @@ import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
 import RestaurantsContainer from './features/restaurants/RestaurantsContainer';
 import Restaurant from './features/restaurants/Restaurant';
+import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 <AppBarMain />
               </Grid>
               <Switch>
+              <Route exact path="/restaurants/:restaurantId" component={RestaurantContainer} />
                 <Route path="/restaurants" component={RestaurantsContainer} />
                 <Route exact path="/" component={Home} />
               </Switch>

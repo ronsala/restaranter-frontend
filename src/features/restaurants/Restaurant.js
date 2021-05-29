@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { MenusContainer } from '../menus/MenusContainer';
+import { selectRestaurantMenu } from './restaurantsSlice';
+import { useSelector } from 'react-redux';
 
 export default function Restaurant(props) {
+
+  console.log('props in Restaurant:', props);
+
+  // const menu = useSelector(state => selectRestaurantMenu(state, props.restaurant.id))
+
   return (
     <div>
       { (typeof props.restaurant.attributes.name !== 'undefined') ? 
@@ -8,6 +16,10 @@ export default function Restaurant(props) {
           <div>
             <h1>{ props.restaurant.attributes.name }</h1>
             <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
+            <div>
+              {/* { console.log('menu:', menu) } */}
+              <MenusContainer />
+            </div>
           </div>
         ) : 
         (<p>Loading...</p>)
