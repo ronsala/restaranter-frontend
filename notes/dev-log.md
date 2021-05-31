@@ -10,7 +10,7 @@ Separated the dev log into separate files for frontend and backend.
 
 Consulting [https://medium.com/dev-genius/async-api-fetching-with-redux-toolkit-2020-8623ff9da267](https://medium.com/dev-genius/async-api-fetching-with-redux-toolkit-2020-8623ff9da267) for insight into using redux-toolkit.
 
-```
+```zsh
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹menu*› » yarn start
 ```
 
@@ -18,7 +18,7 @@ After resolving a couple compiler errors, am able to see text at [http://localho
 
 The article has a number of differences in setup from the template code I used when setting up the app, but I don't anticipate it will create any major problems.
 
-```
+```zsh
 Access to fetch at 'http://localhost:3000/api/v1/menus' from origin 'http://localhost:3001' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 VM835:1 GET http://localhost:3000/api/v1/menus net::ERR_FAILED
 (anonymous) @ VM835:1
@@ -47,7 +47,7 @@ Consulting
 
 Decided to primarily follow the example at [https://redux.js.org/tutorials/essentials/part-1-overview-concepts](https://redux.js.org/tutorials/essentials/part-1-overview-concepts) so forked and cloned it. Accessed the `rough-final-version` branch with
 
-```
+```zsh
 RONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹master› » git branch -a                                                    
 RONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹master› » git co origin/rough-final-version
 RONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹b4d68e4› » git co rough-final-version
@@ -55,19 +55,17 @@ RONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹b4d68e4› » git co r
 
 Got
 
-```
+```zsh
 The TypeScript language service died 5 times right after it got started. The service will not be restarted.
 ```
 
 Followed advice at
 
-```
-https://stackoverflow.com/questions/42026496/vscode-typescript-language-service-died-unexpectedly-5-times-in-the-last-5-min
-```
+[stack](https://stackoverflow.com/questions/42026496/vscode-typescript-language-service-died-unexpectedly-5-times-in-the-last-5-min)
 
-```
+```zsh
 RONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹rough-final-version› » sudo npm install -g typescript
-ONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹rough-final-version› » tsc --version
+RONALDs-MacBook-Pro-2 dev/redux-essentials-example-app ‹rough-final-version› » tsc --version
 zsh: correct 'tsc' to 'tac' [nyae]? n
 Version 4.2.4
 ```
@@ -86,7 +84,7 @@ Can pull data from the backend, but am unsure about how to take it from there. A
 
 Getting an action in fetchMenus.fulfilled but without a payload:
 
-```
+```unknown
 action: 
 {type: "menus/fetchMenus/fulfilled", payload: undefined, meta: {…}}
 meta: {arg: undefined, requestId: "qs6CUbfiJt834wurhfPEW", requestStatus: "fulfilled"}
@@ -97,7 +95,7 @@ __proto__: Object
 
 Found that with this function:
 
-```
+```js
 export const fetchMenus = createAsyncThunk(
   'menus/fetchMenus', 
   async () => {
@@ -111,7 +109,7 @@ export const fetchMenus = createAsyncThunk(
 
 Can get this in browser console:
 
-```
+```console
 menus: 
 {data: Array(2)}
 data: Array(2)
@@ -125,7 +123,7 @@ __proto__: Object
 
 After having it return `menus` instead, could see this under State in Redux Dev Tools (RDT):
 
-```
+```RDT
 {
   menus: {
     menus: [
@@ -156,7 +154,7 @@ Watching [01 - CRUD example with create entity adapter and create async thunk - 
 
 Refactored the function to:
 
-```
+```js
 export const fetchMenus = createAsyncThunk(
   'menus/fetchMenus', 
   async () => {
@@ -167,13 +165,13 @@ export const fetchMenus = createAsyncThunk(
 )
 ```
 
-```
+```zsh
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹menu› » bcm "select menus from store"
 ```
 
 I can now display the name of a menu in browser by uncommenting a line of JSX that shows it. When I reload the page, I get an error, presumably since there's not yet data in the store:
 
-```
+```chrome
 ×
 TypeError: Cannot read property 'attributes' of undefined
 Menu
@@ -189,7 +187,7 @@ src/features/menus/Menu.js:17
 
 Working around it, at least for now, with:
 
-```
+```js
   useEffect(() => {
     dispatch(fetchMenus())
   }, [dispatch])
@@ -215,7 +213,7 @@ Looked at [https://blog.logrocket.com/smarter-redux-with-redux-toolkit/](https:/
 
 ## Sat May  8 14:23:40 EDT 2021
 
-```
+```zsh
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹restaurant*› » bcm "experiment with component file structure"
 ✔ belly committed your work with this message: experiment with component file structure
 ✔ belly pushed your work to origin
@@ -265,7 +263,7 @@ Looking at [https://reacttraining.com/react-router/web/guides/quick-start](https
 
 Experimenting with restaurants files. Got this:
 
-```
+```chrome
 Unhandled Rejection (TypeError): Cannot convert undefined or null to object
 setAllMutably
 src/entities/unsorted_state_adapter.ts:42
@@ -281,13 +279,13 @@ src/entities/unsorted_state_adapter.ts:42
 
 until I commented out
 
-```
+```js
 import { restaurantsSlice } from './restaurantsSlice';
 ```
 
 in RestaurantsContainer. Don't know why, yet.
 
-```
+```zsh
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹master› » git co -b misc
 Switched to a new branch 'misc'
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹misc› » npm i rsuite --save
@@ -327,7 +325,8 @@ RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹misc› » yarn add 
 yarn add v1.22.10
 warning package-lock.json found. Your project contains lock files generated by tools other than Yarn. It is advised not to mix package managers in order to avoid resolution inconsistencies caused by unsynchronized lock files. To clear this warning, remove package-lock.json.
 [1/4] 🔍  Resolving packages...
-warning rsuite > recompose > fbjs > core-js@1.2.7: core-js@<3.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
+warning rsuite > recompose > 
+ > core-js@1.2.7: core-js@<3.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
 [2/4] 🚚  Fetching packages...
 [3/4] 🔗  Linking dependencies...
 warning " > @testing-library/user-event@7.2.1" has unmet peer dependency "@testing-library/dom@>=5".
@@ -366,7 +365,7 @@ Decided to switch from rsuitejs to tailwindcss. Not enough documentation or exam
 
 [https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app) doesn't mention yarn, so following [https://tailwindcss.com/docs/guides/create-react-app](https://tailwindcss.com/docs/guides/create-react-app).
 
-```
+```zsh
 ✔ belly committed your work with this message: rm rsuite and first installation of tailwindcss
 ✔ belly pushed your work to origin
 RONALDs-MacBook-Pro-2 restauranter/restauranter-frontend ‹misc› » yarn add tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 -D
@@ -379,14 +378,13 @@ I think I followed the above strictly, but my tailwind.css file was blank. I cop
 
 Removed the copied code from tailwind.css. Found this comment on the blog post:
 
-```
+```html
 Also, since @tailwind base; @tailwind components; @tailwind utilities; are being imported on the index.css file, index.js must import index.css instead of tailwind.css for the example to work.
 ```
 
 Made that change and the sample code in App.js shows styled in Chrome. Guess I'll rm tailwind.css, since it doesn't seem necessary.
 
-Following 
-[https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/](https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/) to get started using Tailwind with React. The author's directions differ from the ones I've looked at previously. I'm hesitant to continue lest I break what I have so far. Will continue to assess. I suppose I could make a new branch to experiment safely.
+Following [https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/](https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/) to get started using Tailwind with React. The author's directions differ from the ones I've looked at previously. I'm hesitant to continue lest I break what I have so far. Will continue to assess. I suppose I could make a new branch to experiment safely.
 
 Just found [https://github.com/creativetimofficial/material-tailwind](https://github.com/creativetimofficial/material-tailwind). Woo! It looks like it fits the bill.
 
@@ -426,13 +424,13 @@ Was able to construct a restaurantsSlice and RestaurantsContainer based on menus
 
 Fixed Router syntax.
 
-Well, not quite. Tried to combine Material-UI button with Router's Link. Got the `<a>` in an `<a>` issue again. Took advice from (https://stackoverflow.com/questions/38187833/how-to-combine-reactjs-router-link-and-material-ui-components-like-a-button) and did
+Well, not quite. Tried to combine Material-UI button with Router's Link. Got the `<a>` in an `<a>` issue again. Took advice from [Stack Overflow](https://stackoverflow.com/questions/38187833/how-to-combine-reactjs-router-link-and-material-ui-components-like-a-button) and did
 
-```
+```jsx
 <Button size="large" variant="contained" color="primary" component={Link} to={"/restauants"}>I'm hungry: Show me restaurants!</Button>
 ```
 
-I'm running into the prob described at [https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view](https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view). I just restarted the frontend server and refreshed the browser on '/'. I typed in 'restaurants' and got the proper page. When I click the Link/Button the url changes but not the page. 
+I'm running into the prob described at [https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view](https://stackoverflow.com/questions/43351752/react-router-changes-url-but-not-view). I just restarted the frontend server and refreshed the browser on '/'. I typed in 'restaurants' and got the proper page. When I click the Link/Button the url changes but not the page.
 
 Ha! "restaurants" was misspelled!
 
@@ -442,7 +440,7 @@ I find myself baffled with how to add a border or spacing to the restaurant card
 
 Going in circles trying to get some kind of ById selector working in Restaurants Container. Many syntaxes I tried prevented the store from being populated. Witness the commented out attempts:
 
-```
+```js
 // const restaurants = useSelector(restaurantsSelectors.selectAll);
   const restaurants = useSelector(state => selectAllRestaurants(state));
 
@@ -479,7 +477,7 @@ Now to clean up and attempt to build on what worked.
 
 Now I'm stuck on trying to render props from RestaurantContainer to Restaurant. I'm looking up a restaurant using a hint from [https://flaviocopes.com/react-router-data-from-route/](https://flaviocopes.com/react-router-data-from-route/), like so:
 
-```
+```js
         <Route path="/restaurants/:id" render={({match}) => (
           <Restaurant restaurant={restaurants.find(r => r.id === match.params.id)} />
         )} />
@@ -487,7 +485,7 @@ Now I'm stuck on trying to render props from RestaurantContainer to Restaurant. 
 
 Restaurant.js:
 
-```
+```js
 import React from 'react'
 
 export default function Restaurant(props) {
@@ -504,7 +502,7 @@ export default function Restaurant(props) {
 
 With the line under "Restaurant Component" commented out I get this in console:
 
-```
+```console
 Restaurant props: 
 {restaurant: {…}}
 restaurant: {id: "1", type: "restaurant", attributes: {…}}
@@ -515,7 +513,7 @@ But with it commented back in, I get `TypeError: Cannot read property 'attribute
 
 If I wrap it in a conditional it works:
 
-```
+```js
   return (
     <div>
       { (typeof props.restaurant.attributes.name !== 'undefined') ? 
@@ -539,4 +537,3 @@ Overall cleanup of restaurant branch.
 ## Mon May 31 11:49:09 EDT 2021
 
 Discovered I still had the problem of getting an undef error when navigating straight to a restaurant's url despite having a conditional fetch in a useEffect in the RestaurantContainer. Fixed it with adding conditional rendering in the same.
-
