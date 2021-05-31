@@ -23,7 +23,6 @@ export const fetchRestaurant = createAsyncThunk(
 )
 
 const restaurantsAdapter = createEntityAdapter({
-  // selectId: ({ id }) => id
   selectId: (restaurant) => restaurant.id
 })
 
@@ -47,7 +46,7 @@ export const restaurantsSlice = createSlice({
     },
     [fetchRestaurants.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.payload
+      state.error = action.error.message
     },
     [fetchRestaurant.pending]: (state) => {
       state.status = 'loading'
@@ -59,11 +58,10 @@ export const restaurantsSlice = createSlice({
     },
     [fetchRestaurant.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.payload
+      state.error = action.error.message
     },
   },
 })
-
 
 export const {
   selectById: selectRestaurantById,
@@ -72,26 +70,5 @@ export const {
   selectAll: selectAllRestaurants,
   selectTotal: selectTotalRestaurants,
 } = restaurantsAdapter.getSelectors((state) => state.restaurants)
-
-export const selectRestaurantMenu = (state, restaurantId) => {
-  
-  console.log('restaurantId in selectRestaurantMenu:', restaurantId);
-
-  console.log('state.menus.entities in selectRestaurantMenu:', state.menus.entities );
-  
-  console.log('typeof state.menus.entities in selectRestaurantMenu:', typeof state.menus.entities );
-  
-  // const menu = state.menus.entities.filter(menu => menu.restaurant_id === restaurantId)
-  
-  // console.log('menu in selectRestaurantMenu:', menu);
-  // return menu
-
-}
-
-// export const restaurantsSelectors = restaurantsAdapter.getSelectors(
-  //   (state) => state.restaurants
-  // )
-  
-// export const { selectRestaurantMenu } = restaurantsSlice.actions;
 
 export default restaurantsSlice.reducer;

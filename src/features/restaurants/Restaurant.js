@@ -3,8 +3,6 @@ import React from 'react';
 
 export const Restaurant = (props) => {
 
-  console.log('props in Restaurant:', props);
-
   // const menu = useSelector(state => selectRestaurantMenu(state, props.restaurant.id))
 
   return (

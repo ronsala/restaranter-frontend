@@ -534,3 +534,9 @@ Worked on eliminating problem of not being able to display components when store
 
 ## Sat May 29 18:42:41 EDT 2021
 
+Overall cleanup of restaurant branch.
+
+## Mon May 31 11:49:09 EDT 2021
+
+Discovered I still had the problem of getting an undef error when navigating straight to a restaurant's url despite having a conditional fetch in a useEffect in the RestaurantContainer. Fixed it with adding conditional rendering in the same.
+
