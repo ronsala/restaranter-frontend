@@ -4,23 +4,12 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 
-// const restaurantId = '1' 
-
-const fetchByRestaurantId = createAsyncThunk(
-  'menus/fetchMenuById', 
+export const fetchMenu = createAsyncThunk(
+  'menus/fetchMenu', 
   async (restaurantId, { dispatch }) => {
     const response = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/menus`)
     console.log('(response) => response.json()):', (response) => response.json())
     return response.data
-  }
-)
-
-export const fetchMenus = createAsyncThunk(
-  'menus/fetchMenus', 
-  async () => {
-    const menus = await fetch('http://localhost:3000/api/v1/menus')
-    .then((res) => res.json());
-    return menus
   }
 )
 
@@ -37,15 +26,15 @@ export const menusSlice = createSlice({
     setAllMenus: menusAdapter.setAll
   },
   extraReducers: {
-    [fetchMenus.pending]: (state) => {
+    [fetchMenu.pending]: (state) => {
       state.status = 'loading'
       state.error = null
     },
-    [fetchMenus.fulfilled]: (state, action) => {
+    [fetchMenu.fulfilled]: (state, action) => {
       state.status = 'succeeded'
       menusAdapter.setAll(state, action.payload.data)
     },
-    [fetchMenus.rejected]: (state, action) => {
+    [fetchMenu.rejected]: (state, action) => {
       state.status = 'failed'
       state.error = action.payload
     },

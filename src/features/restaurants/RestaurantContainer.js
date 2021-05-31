@@ -10,6 +10,7 @@ export const RestaurantContainer = ({match}) => {
   const { restaurantId } = match.params
   const dispatch = useDispatch();
   let restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
+  let { status, error } = useSelector(state => state.restaurants);
 
   useEffect(() => {
     if (!restaurant) {
@@ -17,11 +18,22 @@ export const RestaurantContainer = ({match}) => {
     }
   }, [dispatch, restaurant, restaurantId])
 
-  return (
-    <div>
-      <Restaurant restaurant={restaurant} />
-    </div>
-  )
+  switch (status) {
+    case 'idle':
+      return null;
+    case 'loading':
+      return (<div>Loading...</div>)
+    case 'succeeded':
+      return (
+        <div>
+          <Restaurant restaurant={restaurant} />
+        </div>
+      )
+    case 'failed':
+      return (<div>{error}</div>)
+    default:
+      return (<div>Unknown error</div>)
+  }
 }
 
 export default RestaurantContainer;
