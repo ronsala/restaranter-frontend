@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchMenus,  } from './menusSlice';
-
-export const Menu = () => {
-  
+export const Menu = (props) => {
+  return (
+    <div>
+      {props.menu?.attributes.name}
+    </div>
+  )
 }
+
+export default Menu;
