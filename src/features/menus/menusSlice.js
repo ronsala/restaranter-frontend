@@ -2,16 +2,13 @@ import {
   createAsyncThunk, 
   createSlice,
   createEntityAdapter,
-  createSelector,
 } from '@reduxjs/toolkit';
 
 export const fetchMenu = createAsyncThunk(
   'menus/fetchMenu', 
-  async (restaurantId, { dispatch }) => {
+  async (restaurantId) => {
     const menu = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/menus`)
     .then((res) => res.json());
-    
-   console.log('menu:', menu);
 
     return menu
   }
@@ -45,10 +42,6 @@ export const menusSlice = createSlice({
   },
 })
 
-// export const menusSelectors = menusAdapter.getSelectors((state) => state.restaurants.menus)
-
-// console.log('menusSelectors:', menusSelectors);
-
 export const {
   selectById: selectMenuById,
   selectIds: selectMenuIds,
@@ -56,21 +49,5 @@ export const {
   selectAll: selectAllMenus,
   selectTotal: selectTotalMenus,
 } = menusAdapter.getSelectors((state) => state.menus)
-
-// export const selectMenuByRestaurantId = createSelector(
-//   selectAllMenus,
-//   state => state.menus
-// )
-export const selectMenuByRestaurantId = (state, restaurantId) => {
-  if (state.menus.ids.length !== 0) {
-    console.log('state.menus.ids.length:', state.menus.ids.length);
-    console.log('state.menus.entities:', state.menus.entities);
-    const menusArray = Object.entries(state.menus.entities);
-    console.log('menusArray:', menusArray);
-    const menu = menusArray.filter(menu => menu.attributes.restaurant_id === restaurantId)
-    console.log('menu:', menu);
-    return menu;
-  }
-}
 
 export default menusSlice.reducer;
