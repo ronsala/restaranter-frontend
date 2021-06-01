@@ -546,5 +546,7 @@ Trying to prevent getting undef errors when this code
   let menu = useSelector(state => selectMenuByRestaurantId(state, props.restaurantId))
 ```
 
-Is called in MenuContainer before menu data has been fetched.
+is called in MenuContainer before menu data has been fetched.
+
+Used a different approach, manipulating the store data in MenuContainer to get the props for Menu.
 
