@@ -1,5 +1,5 @@
-import React from 'react';
-// import { MenusContainer } from '../menus/MenusContainer';
+// import React from 'react';
+import MenuContainer from '../menus/MenuContainer';
 
 export const Restaurant = (props) => {
 
@@ -14,7 +14,7 @@ export const Restaurant = (props) => {
             <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
             <div>
               {/* { console.log('menu:', menu) } */}
-              {/* <MenusContainer /> */}
+              <MenuContainer restaurantId={props.restaurant.id}/>
             </div>
           </div>
         ) : 

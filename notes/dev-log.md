@@ -537,3 +537,14 @@ Overall cleanup of restaurant branch.
 ## Mon May 31 11:49:09 EDT 2021
 
 Discovered I still had the problem of getting an undef error when navigating straight to a restaurant's url despite having a conditional fetch in a useEffect in the RestaurantContainer. Fixed it with adding conditional rendering in the same.
+
+## Tue Jun  1 11:22:38 EDT 2021
+
+Trying to prevent getting undef errors when this code
+
+```
+  let menu = useSelector(state => selectMenuByRestaurantId(state, props.restaurantId))
+```
+
+Is called in MenuContainer before menu data has been fetched.
+
