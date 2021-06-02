@@ -542,7 +542,7 @@ Discovered I still had the problem of getting an undef error when navigating str
 
 Trying to prevent getting undef errors when this code
 
-```
+```js
   let menu = useSelector(state => selectMenuByRestaurantId(state, props.restaurantId))
 ```
 
@@ -554,7 +554,7 @@ Used a different approach, manipulating the store data in MenuContainer to get t
 
 Building out the sections feature. Running into problem of the backend receiving an object as the menuId param, even though I can see it's an int from the console.log I put in SectionsContainer. A debugger in sectionsSlice shows this object in its place:
 
-```
+```chrome
 Object
 dispatch: ƒ dispatch()
 extra: undefined
@@ -567,22 +567,26 @@ __proto__: Object
 
 Turns out I had to pass the 2 params in an object:
 
-```
+```js
       dispatch(fetchSections({restaurantId: props.menu.attributes.restaurant_id, menuId: menuId}))
 ```
 
 and receive them in the async function like:
 
-```
+```js
   async ({restaurantId, menuId})
 ```
 
 Still not pulling data, tho.
 
-I found that by changing the params value I'm using in the controller I can see the proper json in chrome. 
+I found that by changing the params value I'm using in the controller I can see the proper json in chrome.
 
+After I removed the `if (!sessions)` condition from the dispatch of fetchSections I could see section data in chrome.
 
+In order to get rid of `==` warnings I had to use a value that had gone thru parseInt() in my comparison in the sections definition in SectionsContainer. Even tho a console log made it look like I was dealing with an int it was a string:
 
-
-
+```console.log
+props.menu.id in SectionsContainer: 9
+typeof props.menu.id in SectionsContainer: string
+```
 
