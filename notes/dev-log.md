@@ -542,11 +542,125 @@ Discovered I still had the problem of getting an undef error when navigating str
 
 Trying to prevent getting undef errors when this code
 
-```
+```js
   let menu = useSelector(state => selectMenuByRestaurantId(state, props.restaurantId))
 ```
 
 is called in MenuContainer before menu data has been fetched.
 
 Used a different approach, manipulating the store data in MenuContainer to get the props for Menu.
+
+## Wed Jun  2 11:16:35 EDT 2021
+
+Building out the sections feature. Running into problem of the backend receiving an object as the menuId param, even though I can see it's an int from the console.log I put in SectionsContainer. A debugger in sectionsSlice shows this object in its place:
+
+```chrome
+Object
+dispatch: ƒ dispatch()
+extra: undefined
+getState: ƒ getState()
+rejectWithValue: ƒ rejectWithValue(value)
+requestId: "-rDsEzs3NEDa8AiJMZT6i"
+signal: AbortSignal {aborted: false, onabort: null}
+__proto__: Object
+```
+
+Turns out I had to pass the 2 params in an object:
+
+```js
+      dispatch(fetchSections({restaurantId: props.menu.attributes.restaurant_id, menuId: menuId}))
+```
+
+and receive them in the async function like:
+
+```js
+  async ({restaurantId, menuId})
+```
+
+Still not pulling data, tho.
+
+I found that by changing the params value I'm using in the controller I can see the proper json in chrome.
+
+After I removed the `if (!sessions)` condition from the dispatch of fetchSections I could see section data in chrome.
+
+In order to get rid of `==` warnings I had to use a value that had gone thru parseInt() in my comparison in the sections definition in SectionsContainer. Even tho a console log made it look like I was dealing with an int it was a string:
+
+```console.log
+props.menu.id in SectionsContainer: 9
+typeof props.menu.id in SectionsContainer: string
+```
+
+Now seeing issue that when user looks at one restaurant and goes to home then tries to look at another restaurant gets:
+
+```chrome
+TypeError: Cannot read property 'attributes' of undefined
+Menu
+src/features/menus/Menu.js:5
+  2 | 
+  3 | export const Menu = (props) => {
+  4 |   return (
+> 5 |     <div>
+  6 |       {props.menu.attributes.name}
+  7 |       <SectionsContainer menu={props.menu} />
+  8 |     </div>
+```
+
+Added `?`s to some of the dot chains. Not getting satisfaction, changed setAll to addMany in fetchSections.fulfilled. Now get the correct section data for the second-accessed menu but then
+
+```chrome
+Unhandled Rejection (TypeError): Cannot convert undefined or null to object
+```
+
+Where's it coming from?
+
+I see all the relevant section data in store.
+
+Further down in browser I have:
+
+```chrome
+addManyMutably
+src/entities/unsorted_state_adapter.ts:32
+  29 | 
+  30 |  function addManyMutably(entities: T[] | Record<EntityId, T>, state: R): void {
+  31 |    if (!Array.isArray(entities)) {
+> 32 |      entities = Object.values(entities)
+     | ^  33 |    }
+  34 | 
+  35 |    for (const entity of entities) {
+```
+
+Put a console.log in fetchSections.fulfilled. Got this with the first menu:
+
+```chrome
+action.payload.data: 
+(4) [{…}, {…}, {…}, {…}]
+0: {id: "25", type: "section", attributes: {…}}
+1: {id: "26", type: "section", attributes: {…}}
+2: {id: "27", type: "section", attributes: {…}}
+3: {id: "28", type: "section", attributes: {…}}
+length: 4
+__proto__: Array(0)
+```
+
+Then in console I see what's happening when I try to set the second menu's sections:
+
+```chrome
+menuId in SectionsContainer: 8
+main.chunk.js:2690 menuId in SectionsContainer: NaN
+VM15639:1 GET http://localhost:3000/api/v1/restaurants/undefined/menus/NaN/sections 404 (Not Found)
+```
+
+I see that when I try to get the second menu's sections, props is undef.
+
+Fixed it by adding a condition to useEffect in SectionsContainer:
+
+```js
+  useEffect(() => {
+    if (props && props.menu) {
+      dispatch(fetchSections({restaurantId: props.menu?.attributes.restaurant_id, menuId: props.menu?.id}))
+    }
+  }, [dispatch, props])
+```
+
+Now that I can reliably show the sections, I want to experiment with using a Accordion components from material-ui to display the items.
 
