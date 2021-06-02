@@ -18,6 +18,7 @@ const useStyles = makeStyles({
 });
 
 export default function RestaurantCard(props) {
+  console.log('props in RestaurantCard:', props);
   const classes = useStyles();
 
   return (

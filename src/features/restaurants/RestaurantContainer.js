@@ -13,9 +13,9 @@ export const RestaurantContainer = ({match}) => {
   let { status, error } = useSelector(state => state.restaurants);
 
   useEffect(() => {
-    if (!restaurant) {
+    // if (!restaurant) {
       dispatch(fetchRestaurant(restaurantId))
-    }
+    // }
   }, [dispatch, restaurant, restaurantId])
 
   switch (status) {

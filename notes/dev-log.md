@@ -590,3 +590,75 @@ props.menu.id in SectionsContainer: 9
 typeof props.menu.id in SectionsContainer: string
 ```
 
+Now seeing issue that when user looks at one restaurant and goes to home then tries to look at another restaurant gets:
+
+```chrome
+TypeError: Cannot read property 'attributes' of undefined
+Menu
+src/features/menus/Menu.js:5
+  2 | 
+  3 | export const Menu = (props) => {
+  4 |   return (
+> 5 |     <div>
+  6 |       {props.menu.attributes.name}
+  7 |       <SectionsContainer menu={props.menu} />
+  8 |     </div>
+```
+
+Added `?`s to some of the dot chains. Not getting satisfaction, changed setAll to addMany in fetchSections.fulfilled. Now get the correct section data for the second-accessed menu but then
+
+```chrome
+Unhandled Rejection (TypeError): Cannot convert undefined or null to object
+```
+
+Where's it coming from?
+
+I see all the relevant section data in store.
+
+Further down in browser I have:
+
+```
+addManyMutably
+src/entities/unsorted_state_adapter.ts:32
+  29 | 
+  30 |  function addManyMutably(entities: T[] | Record<EntityId, T>, state: R): void {
+  31 |    if (!Array.isArray(entities)) {
+> 32 |      entities = Object.values(entities)
+     | ^  33 |    }
+  34 | 
+  35 |    for (const entity of entities) {
+```
+
+Put a console.log in fetchSections.fulfilled. Got this with the first menu:
+
+```
+action.payload.data: 
+(4) [{…}, {…}, {…}, {…}]
+0: {id: "25", type: "section", attributes: {…}}
+1: {id: "26", type: "section", attributes: {…}}
+2: {id: "27", type: "section", attributes: {…}}
+3: {id: "28", type: "section", attributes: {…}}
+length: 4
+__proto__: Array(0)
+```
+
+Then in console I see what's happening when I try to set the second menu's sections:
+
+```
+menuId in SectionsContainer: 8
+main.chunk.js:2690 menuId in SectionsContainer: NaN
+VM15639:1 GET http://localhost:3000/api/v1/restaurants/undefined/menus/NaN/sections 404 (Not Found)
+```
+
+I see that when I try to get the second menu's sections, props is undef.
+
+Fixed it by adding a condition to useEffect in SectionsContainer:
+
+```
+  useEffect(() => {
+    if (props && props.menu) {
+      dispatch(fetchSections({restaurantId: props.menu?.attributes.restaurant_id, menuId: props.menu?.id}))
+    }
+  }, [dispatch, props])
+```
+

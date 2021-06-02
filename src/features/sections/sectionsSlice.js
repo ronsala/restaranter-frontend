@@ -24,7 +24,7 @@ export const sectionsSlice = createSlice({
     status: 'idle'
   }),
   reducers: {
-    addOneSection: sectionsAdapter.addOne
+    addManySections: sectionsAdapter.addMany
   },
   extraReducers: {
     [fetchSections.pending]: (state) => {
@@ -33,7 +33,8 @@ export const sectionsSlice = createSlice({
     },
     [fetchSections.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      sectionsAdapter.setAll(state, action.payload.data)
+      console.log('action.payload.data:', action.payload.data);
+      sectionsAdapter.addMany(state, action.payload.data)
     },
     [fetchSections.rejected]: (state, action) => {
       state.status = 'failed'

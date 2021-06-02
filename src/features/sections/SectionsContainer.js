@@ -4,30 +4,23 @@ import { fetchSections } from './sectionsSlice';
 import SectionCard from "./SectionCard";
 
 export const SectionsContainer = (props) => {
+  console.log('props in SectionsContainer:', props);
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.sections);
-  const menuId = parseInt(props.menu.id);
-  console.log('menuId in SectionsContainer:', menuId);
 
-  // useEffect(() => {
-  //   if (!sections) {
-  //     dispatch(fetchSections({restaurantId: props.menu.attributes.restaurant_id, menuId: menuId}))
-  //   }
-  // }, [dispatch, props.menu.attributes.restaurant_id, menuId])
   useEffect(() => {
-    // if (!sections) {
-      dispatch(fetchSections({restaurantId: props.menu.attributes.restaurant_id, menuId: menuId}))
-    // }
-  }, [])
+    if (props && props.menu) {
+      dispatch(fetchSections({restaurantId: props.menu?.attributes.restaurant_id, menuId: props.menu?.id}))
+    }
+  }, [dispatch, props])
 
   const sections = Object
   .entries(useSelector((state) => state.sections.entities))
   .flat()
   .filter(element => typeof element === 'object')
-  .filter(section => section.attributes.menu_id == props.menu.id);
+  .filter(section => section?.attributes.menu_id == props.menu?.id);
 
   const sectionsList = sections?.map((section) => {
-    // debugger
     return <SectionCard key={section.id} name={section.attributes.name} id={section.id} />
   })
 
@@ -39,6 +32,7 @@ export const SectionsContainer = (props) => {
     case 'succeeded':
       return (
         <div>
+          <p>SectionsContainer</p>
           { sectionsList }
         </div>
       )
