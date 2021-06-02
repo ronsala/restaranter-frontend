@@ -550,3 +550,39 @@ is called in MenuContainer before menu data has been fetched.
 
 Used a different approach, manipulating the store data in MenuContainer to get the props for Menu.
 
+## Wed Jun  2 11:16:35 EDT 2021
+
+Building out the sections feature. Running into problem of the backend receiving an object as the menuId param, even though I can see it's an int from the console.log I put in SectionsContainer. A debugger in sectionsSlice shows this object in its place:
+
+```
+Object
+dispatch: ƒ dispatch()
+extra: undefined
+getState: ƒ getState()
+rejectWithValue: ƒ rejectWithValue(value)
+requestId: "-rDsEzs3NEDa8AiJMZT6i"
+signal: AbortSignal {aborted: false, onabort: null}
+__proto__: Object
+```
+
+Turns out I had to pass the 2 params in an object:
+
+```
+      dispatch(fetchSections({restaurantId: props.menu.attributes.restaurant_id, menuId: menuId}))
+```
+
+and receive them in the async function like:
+
+```
+  async ({restaurantId, menuId})
+```
+
+Still not pulling data, tho.
+
+I found that by changing the params value I'm using in the controller I can see the proper json in chrome. 
+
+
+
+
+
+
