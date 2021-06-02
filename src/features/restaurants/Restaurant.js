@@ -13,7 +13,6 @@ export const Restaurant = (props) => {
             <h1>{ props.restaurant.attributes.name }</h1>
             <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
             <div>
-              {/* { console.log('menu:', menu) } */}
               <MenuContainer restaurantId={props.restaurant.id}/>
             </div>
           </div>

@@ -7,7 +7,6 @@ import {
 export const fetchSections = createAsyncThunk(
   'sections/fetchSections', 
   async ({restaurantId, menuId}) => {
-    // debugger
     const sections = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/menus/${menuId}/sections`)
     .then((res) => res.json());
     return sections
@@ -33,7 +32,6 @@ export const sectionsSlice = createSlice({
     },
     [fetchSections.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      console.log('action.payload.data:', action.payload.data);
       sectionsAdapter.addMany(state, action.payload.data)
     },
     [fetchSections.rejected]: (state, action) => {

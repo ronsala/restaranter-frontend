@@ -6,18 +6,20 @@ import { Menu } from "./Menu";
 export const MenuContainer = (props) => {
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.menus)
+  const restaurantId = parseInt(props.restaurantId)
+  let restaurantMenu;
 
   useEffect(() => {
     if (!restaurantMenu) {
       dispatch(fetchMenu(props.restaurantId))
     }
-  }, [dispatch, props.restaurantId])
+  }, [dispatch, props.restaurantId, restaurantMenu])
 
-  const restaurantMenu = Object
+  restaurantMenu = Object
     .entries(useSelector((state) => state.menus.entities))
     .flat()
     .filter(element => typeof element === 'object')
-    .find(menu => menu.attributes.restaurant_id == props.restaurantId);
+    .find(menu => menu.attributes.restaurant_id === restaurantId);
 
   switch (status) {
     case 'idle':

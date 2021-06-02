@@ -32,7 +32,6 @@ export const SectionsContainer = (props) => {
     case 'succeeded':
       return (
         <div>
-          <p>SectionsContainer</p>
           { sectionsList }
         </div>
       )

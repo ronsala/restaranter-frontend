@@ -23,7 +23,6 @@ export default function SectionCard(props) {
   return (
     <Card className={classes.root} component={Link} to={`restaurants/${props.id}`}>
       <CardContent>
-        <p>SectionCard</p>
         <Typography variant="h5" component="h2">
           { props.name }
         </Typography>
