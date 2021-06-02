@@ -617,7 +617,7 @@ I see all the relevant section data in store.
 
 Further down in browser I have:
 
-```
+```chrome
 addManyMutably
 src/entities/unsorted_state_adapter.ts:32
   29 | 
@@ -631,7 +631,7 @@ src/entities/unsorted_state_adapter.ts:32
 
 Put a console.log in fetchSections.fulfilled. Got this with the first menu:
 
-```
+```chrome
 action.payload.data: 
 (4) [{…}, {…}, {…}, {…}]
 0: {id: "25", type: "section", attributes: {…}}
@@ -644,7 +644,7 @@ __proto__: Array(0)
 
 Then in console I see what's happening when I try to set the second menu's sections:
 
-```
+```chrome
 menuId in SectionsContainer: 8
 main.chunk.js:2690 menuId in SectionsContainer: NaN
 VM15639:1 GET http://localhost:3000/api/v1/restaurants/undefined/menus/NaN/sections 404 (Not Found)
@@ -654,11 +654,13 @@ I see that when I try to get the second menu's sections, props is undef.
 
 Fixed it by adding a condition to useEffect in SectionsContainer:
 
-```
+```js
   useEffect(() => {
     if (props && props.menu) {
       dispatch(fetchSections({restaurantId: props.menu?.attributes.restaurant_id, menuId: props.menu?.id}))
     }
   }, [dispatch, props])
 ```
+
+Now that I can reliably show the sections, I want to experiment with using a Accordion components from material-ui to display the items.
 
