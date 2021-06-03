@@ -5,6 +5,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ItemsContainer from '../items/ItemsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SectionAccordion(props) {
   const classes = useStyles();
+  console.log('props in SectionAccordion:', props);
 
   return (
     <div className={classes.root}>
@@ -28,14 +30,11 @@ export default function SectionAccordion(props) {
           id="panel1a-header"
         >
           <Typography className={classes.heading}>
-            { props.name }
+            { props.section.attributes.name }
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
+          <ItemsContainer section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
         </AccordionDetails>
       </Accordion>
     </div>

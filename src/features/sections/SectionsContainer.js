@@ -4,8 +4,10 @@ import { fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
 
 export const SectionsContainer = (props) => {
+  console.log('props in SectionsContainer:', props);
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.sections);
+  const restaurantId = parseInt(props.menu?.attributes.restaurant_id)
   const menuId = parseInt(props.menu?.id)
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export const SectionsContainer = (props) => {
   .filter(section => section.attributes.menu_id === menuId);
 
   const sectionsList = sections.map((section) => {
-    return <SectionAccordion key={section.id} name={section.attributes.name} id={section.id} />
+    return <SectionAccordion key={section.id} restaurant_id={restaurantId} menuId={menuId}section={section} />
   })
 
   switch (status) {
