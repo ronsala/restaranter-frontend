@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSections } from './sectionsSlice';
-import SectionCard from "./SectionCard";
+import SectionAccordion from "./SectionAccordion";
 
 export const SectionsContainer = (props) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const SectionsContainer = (props) => {
   .filter(section => section.attributes.menu_id === menuId);
 
   const sectionsList = sections.map((section) => {
-    return <SectionCard key={section.id} name={section.attributes.name} id={section.id} />
+    return <SectionAccordion key={section.id} name={section.attributes.name} id={section.id} />
   })
 
   switch (status) {
