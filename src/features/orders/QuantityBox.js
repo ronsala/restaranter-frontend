@@ -17,17 +17,10 @@ const useStyles = makeStyles((theme) => ({
 const QuantityBox = () => {
   const [count, setCount] = useState(0)
   const classes = useStyles();
-
-  const handleDecrementClick = () => {
-    if (count >= 1) {
-      setCount(count - 1)
-    }
-    
-  }
   
   return (
     <div>
-      <Icon className={classes.icon} onClick={handleDecrementClick} color="primary">remove_circle</Icon>
+      <Icon className={classes.icon} onClick={() => setCount(count - 1)} color="primary">remove_circle</Icon>
       <Typography variant="srOnly">Remove one</Typography>
       <TextField className={classes.quantity} id="outlined-basic" variant="outlined" name="quantity_box" value={count}/>
       <Icon className={classes.icon} onClick={() => setCount(count + 1)} color="primary">add_circle</Icon>
