@@ -17,7 +17,7 @@ function App() {
     <Router>
       <div>
         <Container>
-          <Box>
+          <Box color="secondary.main">
             <Grid 
               container 
               spacing={2}
@@ -27,16 +27,15 @@ function App() {
             >
               <Grid item xs={12}>
                 <AppBarMain />
+                 <Switch>
+                  <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
+                  <Route path="/restaurants" component={RestaurantsContainer} />
+                  <Route exact path="/" component={Home} />
+                </Switch>
               </Grid>
-              <Switch>
-                <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
-                <Route path="/restaurants" component={RestaurantsContainer} />
-                <Route exact path="/" component={Home} />
-              </Switch>
             </Grid>
           </Box>
         </Container>
-
       </div>
     </Router>
   );

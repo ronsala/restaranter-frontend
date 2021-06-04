@@ -12,17 +12,17 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(20),
     fontWeight: theme.typography.fontWeightRegular,
   },
 }));
 
 export default function SectionAccordion(props) {
   const classes = useStyles();
-  console.log('props in SectionAccordion:', props);
 
   return (
     <div className={classes.root}>
+      <br></br>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

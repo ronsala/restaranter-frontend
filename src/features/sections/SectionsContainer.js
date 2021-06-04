@@ -4,7 +4,6 @@ import { fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
 
 export const SectionsContainer = (props) => {
-  console.log('props in SectionsContainer:', props);
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.sections);
   const restaurantId = parseInt(props.menu?.attributes.restaurant_id)

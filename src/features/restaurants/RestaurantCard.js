@@ -7,7 +7,10 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    minWidth: 200,
+    maxWidth: '100%',
+    background: '#fff',
+    paddingBottom: 20
   },
   title: {
     fontSize: 10,
@@ -15,14 +18,19 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 2
   },
+  background: {
+    background: '#fff'
+  }
 });
 
 export default function RestaurantCard(props) {
   const classes = useStyles();
 
   return (
+    <div>
+      <br></br>
     <Card className={classes.root} component={Link} to={`restaurants/${props.id}`}>
-      <CardContent>
+      <CardContent className={classes.background}>
         <Typography variant="h5" component="h2">
           { props.name }
         </Typography>
@@ -37,5 +45,6 @@ export default function RestaurantCard(props) {
         </Typography>
       </CardContent>
     </Card>
+    </div>
   );
 }

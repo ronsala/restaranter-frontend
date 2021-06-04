@@ -662,5 +662,9 @@ Fixed it by adding a condition to useEffect in SectionsContainer:
   }, [dispatch, props])
 ```
 
-Now that I can reliably show the sections, I want to experiment with using a Accordion components from material-ui to display the items.
+Now that I can reliably show the sections, I want to experiment with using Accordion components from material-ui to display the items.
+
+## Thu Jun  3 14:48:00 EDT 2021
+
+The accordions work. I'm sending a lot of props down to ItemsContainer to go its fetch, but it does work. Could find a way to get the necessary ids from the store later.
 

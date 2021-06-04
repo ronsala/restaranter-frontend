@@ -4,7 +4,6 @@ import { fetchItems } from './itemsSlice';
 import ItemCard from "./ItemCard";
 
 export const ItemsContainer = (props) => {
-  console.log('props in ItemsContainer:', props);
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.items);
   const sectionId = parseInt(props.section?.id)
@@ -22,7 +21,7 @@ export const ItemsContainer = (props) => {
   .filter(item => item.attributes.section_id === sectionId);
 
   const itemsList = items.map((item) => {
-    return <ItemCard key={item.id} name={item.attributes.name} id={item.id} />
+    return <ItemCard key={item.id} name={item.attributes.name} price={item.attributes.price} desc={item.attributes.desc} id={item.id} />
   })
 
   switch (status) {
