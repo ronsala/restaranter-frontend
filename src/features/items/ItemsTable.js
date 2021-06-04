@@ -6,25 +6,16 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import QuantityBox from './QuantityBox'
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    fontSize: theme.typography.pxToRem(50),
-  },
   itemname: {
     fontSize: theme.typography.pxToRem(20),
     fontWeight: theme.typography.fontWeightRegular,
   },
-  quantity: {
-    margin: theme.spacing(1),
-    width: '8ch',
-  },
 }));
 
-export default function BasicTable(props) {
+export default function ItemsTable(props) {
   const classes = useStyles();
 
   return (
@@ -39,11 +30,7 @@ export default function BasicTable(props) {
               <TableCell align="center">{item.attributes.desc}</TableCell>
               <TableCell align="right">${item.attributes.price}</TableCell>
               <TableCell align="right">
-                <Icon className={classes.icon} color="primary">remove_circle</Icon>
-                <Typography variant="srOnly">Remove one</Typography>
-                <TextField className={classes.quantity} id="outlined-basic" variant="outlined" />
-                <Icon className={classes.icon} color="primary">add_circle</Icon>
-                <Typography variant="srOnly">Add one</Typography>
+                <QuantityBox />
               </TableCell>
             </TableRow>
           ))}
