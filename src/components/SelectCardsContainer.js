@@ -4,8 +4,8 @@ import PatronsSelectCard from './PatronsSelectCard'
 
 function SelectCardsContainer() {
   return(
-    <div>
-    <Grid container spacing={1}>
+    <div style={{ padding: 3 }}>
+    <Grid container spacing={2}>
       <Grid item xs={6}>
         <ProprietorsSelectCard />
       </Grid>

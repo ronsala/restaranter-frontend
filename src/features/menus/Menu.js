@@ -1,11 +1,14 @@
+import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
 import SectionsContainer from '../sections/SectionsContainer'
 
 export const Menu = (props) => {
   return (
-    <div>
-      {props.menu?.attributes.name}
+    <form>
       <SectionsContainer menu={props.menu} />
-    </div>
+      <br></br>
+      <Button size="large" variant="contained" color="primary" component={Link} to={"/order"}>Review Order</Button>
+     </form>
   )
 }
 
