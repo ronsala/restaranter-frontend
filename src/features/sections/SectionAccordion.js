@@ -9,10 +9,10 @@ import ItemsContainer from '../items/ItemsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: 'auto',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(20),
+    fontSize: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightRegular,
   },
 }));
@@ -33,8 +33,8 @@ export default function SectionAccordion(props) {
             { props.section.attributes.name }
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <ItemsContainer section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
+        <AccordionDetails className={classes.root}>
+          <ItemsContainer className={classes.root} section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
         </AccordionDetails>
       </Accordion>
     </div>

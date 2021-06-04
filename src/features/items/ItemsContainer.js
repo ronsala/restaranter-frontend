@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItems } from './itemsSlice';
-import ItemCard from "./ItemCard";
+import ItemsTable from "./ItemsTable";
 
 export const ItemsContainer = (props) => {
   const dispatch = useDispatch();
@@ -20,9 +20,9 @@ export const ItemsContainer = (props) => {
   .filter(element => typeof element === 'object')
   .filter(item => item.attributes.section_id === sectionId);
 
-  const itemsList = items.map((item) => {
-    return <ItemCard key={item.id} name={item.attributes.name} price={item.attributes.price} desc={item.attributes.desc} id={item.id} />
-  })
+  // const itemsList = items.map((item) => {
+  //   return <ItemCard key={item.id} name={item.attributes.name} price={item.attributes.price} desc={item.attributes.desc} id={item.id} />
+  // })
 
   switch (status) {
     case 'idle':
@@ -31,9 +31,7 @@ export const ItemsContainer = (props) => {
       return (<div>Loading...</div>)
     case 'succeeded':
       return (
-        <div>
-          { itemsList }
-        </div>
+          <ItemsTable items={items}/>
       )
     case 'failed':
       return (<div>{error}</div>)
