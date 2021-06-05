@@ -674,5 +674,53 @@ When I click on an accordion, get in console
 
 ```chrome
 vendors~main.chunk.js:83807 Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node
+    at div
+    at Transition (http://localhost:3001/static/js/vendors~main.chunk.js:89444:30)
+    at Collapse (http://localhost:3001/static/js/vendors~main.chunk.js:6990:24)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at div
+    at Paper (http://localhost:3001/static/js/vendors~main.chunk.js:20009:23)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at Accordion (http://localhost:3001/static/js/vendors~main.chunk.js:797:28)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at div
+    at SectionAccordion (http://localhost:3001/static/js/main.chunk.js:3473:19)
+    at div
+    at SectionsContainer (http://localhost:3001/static/js/main.chunk.js:3650:83)
+    at form
+    at Menu (http://localhost:3001/static/js/main.chunk.js:1933:19)
+    at div
+    at MenuContainer (http://localhost:3001/static/js/main.chunk.js:2075:83)
+    at div
+    at div
+    at div
+    at Restaurant (http://localhost:3001/static/js/main.chunk.js:2553:19)
+    at div
+    at RestaurantContainer (http://localhost:3001/static/js/main.chunk.js:2925:3)
+    at Route (http://localhost:3001/static/js/vendors~main.chunk.js:87998:29)
+    at Switch (http://localhost:3001/static/js/vendors~main.chunk.js:88200:29)
+    at div
+    at Grid (http://localhost:3001/static/js/vendors~main.chunk.js:11964:35)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at div
+    at Grid (http://localhost:3001/static/js/vendors~main.chunk.js:11964:35)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at div
+    at StyledComponent (http://localhost:3001/static/js/vendors~main.chunk.js:39475:28)
+    at div
+    at Container (http://localhost:3001/static/js/vendors~main.chunk.js:7363:23)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at div
+    at Router (http://localhost:3001/static/js/vendors~main.chunk.js:87633:30)
+    at BrowserRouter (http://localhost:3001/static/js/vendors~main.chunk.js:87155:35)
+    at App
+    at Provider (http://localhost:3001/static/js/vendors~main.chunk.js:84708:20)
+    at CssBaseline (http://localhost:3001/static/js/vendors~main.chunk.js:7526:31)
+    at WithStyles (http://localhost:3001/static/js/vendors~main.chunk.js:39704:31)
+    at ThemeProvider (http://localhost:3001/static/js/vendors~main.chunk.js:38406:24)
 ```
+
+I get the error only the first time I click an accordion.
+
+After clicking the url in the warning, and trying to fix the issue with passing refs, I searched for the warning along with 'material-ui' and followed the advice at [https://stackoverflow.com/questions/61220424/material-ui-drawer-finddomnode-is-deprecated-in-strictmode](https://stackoverflow.com/questions/61220424/material-ui-drawer-finddomnode-is-deprecated-in-strictmode). Solved.
 

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SectionAccordion(props) {
+export const SectionAccordion = (props) => {
   const classes = useStyles();
 
   return (
@@ -40,3 +40,5 @@ export default function SectionAccordion(props) {
     </div>
   );
 }
+
+export default SectionAccordion;
