@@ -668,3 +668,11 @@ Now that I can reliably show the sections, I want to experiment with using Accor
 
 The accordions work. I'm sending a lot of props down to ItemsContainer to go its fetch, but it does work. Could find a way to get the necessary ids from the store later.
 
+## Sat Jun  5 13:33:45 EDT 2021
+
+When I click on an accordion, get in console
+
+```chrome
+vendors~main.chunk.js:83807 Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node
+```
+

@@ -36,8 +36,8 @@ export const Restaurant = (props) => {
             <Typography className={classes.title} variant="h5" component="h2">
               { props.restaurant.attributes.name }
             </Typography>
-            <Typography className={classes.subtitle}>
-              <h2>{ props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }</h2>
+            <Typography className={classes.subtitle} variant="h5" component="h2">
+              { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
             </Typography>
             <div>
               <MenuContainer restaurantId={props.restaurant.id}/>
