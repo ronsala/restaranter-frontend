@@ -723,4 +723,9 @@ vendors~main.chunk.js:83807 Warning: findDOMNode is deprecated in StrictMode. fi
 I get the error only the first time I click an accordion.
 
 After clicking the url in the warning, and trying to fix the issue with passing refs, I searched for the warning along with 'material-ui' and followed the advice at [https://stackoverflow.com/questions/61220424/material-ui-drawer-finddomnode-is-deprecated-in-strictmode](https://stackoverflow.com/questions/61220424/material-ui-drawer-finddomnode-is-deprecated-in-strictmode). Solved.
+## Sun Jun  6 12:11:07 EDT 2021
+
+Working on adding items to an orderpad (`orderitems` array). Trying to deal with multiple quantities.
+
+After many attempts, now have a "count" key in each item in the `orderitems` array. Dispatches in a useEffect in QuantityBox remove any previous version of the item in the store and add the new one.
 

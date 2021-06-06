@@ -37,7 +37,7 @@ export default function ItemsTable(props) {
               </TableCell>
               <TableCell align="right">${item.attributes.price}</TableCell>
               <TableCell align="right">
-                <QuantityBox />
+                <QuantityBox item={item} />
               </TableCell>
             </TableRow>
           ))}
