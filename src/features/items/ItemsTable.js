@@ -7,11 +7,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import QuantityBox from './QuantityBox';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  itemname: {
-    fontSize: theme.typography.pxToRem(20),
-    fontWeight: theme.typography.fontWeightRegular,
+  name: {
+    fontSize: theme.typography.pxToRem(16),
+    fontWeight: "bold"
   },
 }));
 
@@ -19,18 +20,24 @@ export default function ItemsTable(props) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="items table">
+    <TableContainer className={classes.container} component={Paper}>
+      <Table className={classes.container} aria-label="items table">
         <TableBody>
           {props.items.map((item) => (
             <TableRow key={item.attributes.name}>
-              <TableCell className={classes.itemname} component="th" scope="row">
-                {item.attributes.name}
+              <TableCell>
+                <Typography className={classes.name} variant="subtitle2" >
+                  {item.attributes.name}
+                </Typography>
               </TableCell>
-              <TableCell align="center">{item.attributes.desc}</TableCell>
+              <TableCell align="center">
+                <Typography variant="body2">
+                  {item.attributes.desc}
+                </Typography>
+              </TableCell>
               <TableCell align="right">${item.attributes.price}</TableCell>
               <TableCell align="right">
-                <QuantityBox />
+                <QuantityBox item={item} />
               </TableCell>
             </TableRow>
           ))}

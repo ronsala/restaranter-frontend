@@ -9,15 +9,14 @@ import ItemsContainer from '../items/ItemsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 'auto',
+    width: '100%',
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
+  branch: {
+    width: '75%'
+  }
 }));
 
-export default function SectionAccordion(props) {
+export const SectionAccordion = (props) => {
   const classes = useStyles();
 
   return (
@@ -28,15 +27,18 @@ export default function SectionAccordion(props) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          className={classes.root}
         >
-          <Typography className={classes.heading}>
+          <Typography variant="h2">
             { props.section.attributes.name }
           </Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.root}>
-          <ItemsContainer className={classes.root} section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
+          <ItemsContainer className={classes.branch} section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
         </AccordionDetails>
       </Accordion>
     </div>
   );
 }
+
+export default SectionAccordion;
