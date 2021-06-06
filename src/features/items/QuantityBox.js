@@ -7,10 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   icon: {
-    fontSize: theme.typography.pxToRem(30),
+    fontSize: theme.typography.pxToRem(60),
   },
   quantity: {
     margin: theme.spacing(1),

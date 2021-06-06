@@ -1,14 +1,12 @@
 import { red } from '@material-ui/core/colors';
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
+import { responsiveFontSizes } from '@material-ui/core/styles';
 
 // A custom theme for this app
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       main: '#ff0000',
-    },
-    secondary: {
-      main: '#ffff00',
     },
     error: {
       main: red.A400,
@@ -18,7 +16,19 @@ const theme = createMuiTheme({
     },
   },
   spacing: 4,
-  margin: 10,
+  margin: 1,
 });
+
+theme = responsiveFontSizes(theme);
+
+theme.typography.subtitle2 = {
+  fontSize: '0.1rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2.4rem',
+  },
+};
 
 export default theme;
