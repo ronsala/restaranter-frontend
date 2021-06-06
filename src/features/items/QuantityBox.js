@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: theme.typography.pxToRem(60),
+    cursor: 'pointer'
   },
   quantity: {
     margin: theme.spacing(1),
