@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMenu } from './menusSlice';
 import { Menu } from "./Menu";
@@ -37,6 +38,10 @@ export const MenuContainer = (props) => {
     default:
       return (<div>Unknown error</div>)
   }
+}
+
+MenuContainer.propTypes = {
+  restaurantId: PropTypes.string.isRequired,
 }
 
 export default MenuContainer;

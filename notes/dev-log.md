@@ -729,3 +729,53 @@ Working on adding items to an orderpad (`orderitems` array). Trying to deal with
 
 After many attempts, now have a "count" key in each item in the `orderitems` array. Dispatches in a useEffect in QuantityBox remove any previous version of the item in the store and add the new one.
 
+Now trying to have an OrderItemsTable similar to the ItemsTable. It works fine up until I add `<OrderItemQuantityBox />` to it. Then, the table doesn't render and there's this disappearing act of the props in OrderItemsTable:
+
+```chrome
+props in OrderItemsTable: 
+{orderitems: Array(1)}
+orderitems: Array(1)
+0: {id: "116", type: "item", attributes: {…}, count: 1}
+length: 1
+__proto__: Array(0)
+__proto__: Object
+main.chunk.js:2473 props in OrderItemQuantityBox: 
+{orderitem: {…}}
+orderitem: {id: "116", type: "item", attributes: {…}, count: 1}
+__proto__: Object
+main.chunk.js:2813 props in OrderItemsTable: 
+{orderitems: Array(0)}
+orderitems: []
+__proto__: Object
+props in OrderItemQuantityBox: 
+{orderitem: {…}}
+orderitem: {id: "116", type: "item", attributes: {…}, count: 1}
+__proto__: Object
+main.chunk.js:2813 props in OrderItemsTable: 
+{orderitems: Array(0)}
+orderitems: []
+__proto__: Object
+```
+
+The last action run is `orderitem/addItemToOrderitems` that adds an orderitem with count 0.
+
+Got it working, partly by having OrderItemsTable get its data from a selector, not props. I was getting caught in some kind of loop.
+
+## Mon Jun  7 08:02:56 EDT 2021
+
+Working on removing warnings from console, added the eslint react plugin and prop-types and refactored accordingly. In the process, found a bug where, after incrementing or decrementing any orderitem not at the bottom the table, it jumps to the bottom.
+
+Solved it with altering an assignment with a custom sort:
+
+```js
+  const orderitems = useSelector((state) => state.orderitems)
+  .filter(orderitem => orderitem.count > 0)
+  .sort((a, b) => {
+    if (Object.values(a.attributes)[0] < Object.values(b.attributes)[0]) {
+      return -1;
+    } else {
+      return 1;
+    }
+  })
+```
+

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchItems } from './itemsSlice';
 import ItemsTable from "./ItemsTable";
 
@@ -35,5 +36,11 @@ export const ItemsContainer = (props) => {
       return (<div>Unknown error</div>)
   }
 }
+
+ItemsContainer.propTypes = {
+  section: PropTypes.object.isRequired,
+  restaurant_id: PropTypes.number.isRequired,
+  menu_id: PropTypes.number.isRequired,
+};
 
 export default ItemsContainer;

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
   fetchRestaurant, 
@@ -34,6 +35,10 @@ export const RestaurantContainer = ({match}) => {
     default:
       return (<div>Unknown error</div>)
   }
+}
+
+RestaurantContainer.propTypes = {
+  match: PropTypes.object.isRequired,
 }
 
 export default RestaurantContainer;

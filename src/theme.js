@@ -1,4 +1,3 @@
-import { red } from '@material-ui/core/colors';
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 import { responsiveFontSizes } from '@material-ui/core/styles';
 
@@ -6,10 +5,13 @@ import { responsiveFontSizes } from '@material-ui/core/styles';
 let theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#ff0000',
+      main: '#ff0000'
+    },
+    secondary: {
+      main: '#000'
     },
     error: {
-      main: red.A400,
+      main: '#ff0000',
     },
     background: {
       default: '#F0E68C',

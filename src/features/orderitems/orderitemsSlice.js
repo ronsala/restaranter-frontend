@@ -1,21 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { 
-  createSlice,
-  createEntityAdapter,
-} from '@reduxjs/toolkit';
-
-const orderitemsAdapter = createEntityAdapter({
-  selectId: (orderitem) => orderitem.id
-})
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = []
 
 export const orderitemsSlice = createSlice({
   name: 'orderitem',
-  // initialState: orderitemsAdapter.getInitialState(),
   initialState: initialState,
   reducers: {
-    //  addItemToOrderitems: orderitemsAdapter.addOne
     deleteItemFromOrderitems: {
       reducer(state, { payload }) {
         return state.filter(item => item.id !== payload.id)
@@ -26,7 +16,6 @@ export const orderitemsSlice = createSlice({
         state.push(payload)
       }
     },
-
   },
 })
 
