@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,8 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import OrderItemQuantityBox from './OrderItemQuantityBox';
 import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
-import { deleteItemFromOrderitems } from '../orderitems/orderitemsSlice'
 
 const useStyles = makeStyles((theme) => ({
   name: {
@@ -19,37 +17,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const OrderItemsTable= () => {
+export const OrderItemsTable= (props) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const initialOrderitems = useSelector((state) => state.orderitems)
-
-  initialOrderitems.forEach(orderitem => {
-    if (orderitem.count === 0) {
-      dispatch(deleteItemFromOrderitems(orderitem))
-    }
-  })
-
-  const orderitems = useSelector((state) => state.orderitems)
-  .filter(orderitem => orderitem.count > 0)
-  .sort((a, b) => {
-    if (Object.values(a.attributes)[0] < Object.values(b.attributes)[0]) {
-      return -1;
-    } else {
-      return 1;
-    }
-  })
 
   return (
     <div>
-      <Typography variant="h1">
-        Review Your Order
-      </Typography>
+      <br></br>
+      <br></br>
+      <center>
+        <Typography variant="h2">
+          Review Your Order:
+        </Typography>
+      </center>
+      <br></br>
       <TableContainer className={classes.container} component={Paper}>
         <Table className={classes.container} aria-label="order items table">
           <TableBody>
-            {orderitems.map((orderitem) => (
+            {props.orderitems.map((orderitem) => (
               <TableRow key={orderitem.attributes.name}>
                 <TableCell>
                   <Typography className={classes.name} variant="subtitle2" >
@@ -72,6 +56,11 @@ export const OrderItemsTable= () => {
       </TableContainer>
     </div>
   );
+}
+
+OrderItemsTable.propTypes = {
+  orderitems: PropTypes.array,
+  restaurant: PropTypes.array,
 }
 
 export default OrderItemsTable;

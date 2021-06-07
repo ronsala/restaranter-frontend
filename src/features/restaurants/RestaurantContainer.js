@@ -8,9 +8,14 @@ import {
 import { Restaurant } from "./Restaurant";
 
 export const RestaurantContainer = ({match}) => {
-  const { restaurantId } = match.params
+  let { restaurantId, page } = match.params
+
+  page = (typeof page === 'undefined') ? 'menu' : page;
+
   const dispatch = useDispatch();
+
   let restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
+  
   let { status, error } = useSelector(state => state.restaurants);
 
   useEffect(() => {
@@ -27,7 +32,7 @@ export const RestaurantContainer = ({match}) => {
     case 'succeeded':
       return (
         <div>
-          <Restaurant restaurant={restaurant} />
+          <Restaurant restaurant={restaurant} page={page} />
         </div>
       )
     case 'failed':
