@@ -729,3 +729,35 @@ Working on adding items to an orderpad (`orderitems` array). Trying to deal with
 
 After many attempts, now have a "count" key in each item in the `orderitems` array. Dispatches in a useEffect in QuantityBox remove any previous version of the item in the store and add the new one.
 
+Now trying to have an OrderItemsTable similar to the ItemsTable. It works fine up until I add `<OrderItemQuantityBox />` to it. Then, the table doesn't render and there's this disappearing act of the props in OrderItemsTable:
+
+```
+props in OrderItemsTable: 
+{orderitems: Array(1)}
+orderitems: Array(1)
+0: {id: "116", type: "item", attributes: {…}, count: 1}
+length: 1
+__proto__: Array(0)
+__proto__: Object
+main.chunk.js:2473 props in OrderItemQuantityBox: 
+{orderitem: {…}}
+orderitem: {id: "116", type: "item", attributes: {…}, count: 1}
+__proto__: Object
+main.chunk.js:2813 props in OrderItemsTable: 
+{orderitems: Array(0)}
+orderitems: []
+__proto__: Object
+props in OrderItemQuantityBox: 
+{orderitem: {…}}
+orderitem: {id: "116", type: "item", attributes: {…}, count: 1}
+__proto__: Object
+main.chunk.js:2813 props in OrderItemsTable: 
+{orderitems: Array(0)}
+orderitems: []
+__proto__: Object
+```
+
+The last action run is `orderitem/addItemToOrderitems` that adds an orderitem with count 0.
+
+Got it working, partly by having OrderItemsTable get its data from a selector, not props. I was getting caught in some kind of loop.
+

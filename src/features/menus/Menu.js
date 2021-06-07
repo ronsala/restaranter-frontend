@@ -7,7 +7,7 @@ export const Menu = (props) => {
     <form>
       <SectionsContainer menu={props.menu} />
       <br></br>
-      <Button size="large" variant="contained" color="primary" component={Link} to={"/order"}>Review Order</Button>
+      <Button size="large" variant="contained" color="primary" component={Link} to={"/orderitems"}>Review Order</Button>
      </form>
   )
 }
