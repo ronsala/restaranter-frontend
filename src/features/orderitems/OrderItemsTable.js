@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import OrderItemQuantityBox from './OrderItemQuantityBox';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
+import { deleteItemFromOrderitems } from '../orderitems/orderitemsSlice'
 
 const useStyles = makeStyles((theme) => ({
   name: {
@@ -19,6 +21,15 @@ const useStyles = makeStyles((theme) => ({
 
 export const OrderItemsTable= () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const initialOrderitems = useSelector((state) => state.orderitems)
+
+  initialOrderitems.forEach(orderitem => {
+    if (orderitem.count === 0) {
+      dispatch(deleteItemFromOrderitems(orderitem))
+    }
+  })
 
   const orderitems = useSelector((state) => state.orderitems)
   .filter(orderitem => orderitem.count > 0)

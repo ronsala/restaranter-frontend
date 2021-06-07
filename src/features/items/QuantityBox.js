@@ -42,11 +42,17 @@ const QuantityBox = (props) => {
     const orderitem = JSON.parse(JSON.stringify(props.item))
     orderitem["count"] = count
 
-    // Remove item with old count.
-    dispatch(deleteItemFromOrderitems(orderitem))
+    if (count === 0) {
+      dispatch(deleteItemFromOrderitems(orderitem))
+    }
 
-    // Add item with new count.
-    dispatch(addItemToOrderitems(orderitem))
+    if (count > 0) {
+      // Remove item with old count.
+      dispatch(deleteItemFromOrderitems(orderitem))
+  
+      // Add item with new count.
+      dispatch(addItemToOrderitems(orderitem))
+    }
   }, [count, dispatch, props.item])
   
   return (
