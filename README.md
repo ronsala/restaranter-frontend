@@ -1,8 +1,18 @@
-# Restauranter
+# Restauranter [Work In Progress]
 
 An open source restaurant management web app. A corresponding Rails API can be found at [https://github.com/ronsala/restaranter-backend](https://github.com/ronsala/restaranter-backend).
 
-A user is able to order dishes from a menu, arrange delivery, and check out.
+A user is able to
+
+* as patron
+  * order dishes from a menu
+  * arrange to pick up or dine in
+  * check out
+  * see their own orders
+  
+* as proprietor
+  * set up a restaurant and menu
+  * see their restaurant's orders
 
 You can watch a video demo 
 <!-- TODO: -->
