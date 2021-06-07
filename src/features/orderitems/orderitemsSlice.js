@@ -16,7 +16,6 @@ export const orderitemsSlice = createSlice({
         state.push(payload)
       }
     },
-
   },
 })
 
