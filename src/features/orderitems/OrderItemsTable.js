@@ -24,30 +24,35 @@ export const OrderItemsTable= () => {
   .filter(orderitem => orderitem.count > 0);
 
   return (
-    <TableContainer className={classes.container} component={Paper}>
-      <Table className={classes.container} aria-label="order items table">
-        <TableBody>
-          {orderitems.map((orderitem) => (
-            <TableRow key={orderitem.attributes.name}>
-              <TableCell>
-                <Typography className={classes.name} variant="subtitle2" >
-                  {orderitem.attributes.name}
-                </Typography>
-              </TableCell>
-              <TableCell align="center">
-                <Typography variant="body2">
-                  {orderitem.attributes.desc}
-                </Typography>
-              </TableCell>
-              <TableCell align="right">${orderitem.attributes.price}</TableCell>
-              <TableCell align="right">
-                <OrderItemQuantityBox orderitem={orderitem} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div>
+      <Typography variant="h1">
+        Review Your Order
+      </Typography>
+      <TableContainer className={classes.container} component={Paper}>
+        <Table className={classes.container} aria-label="order items table">
+          <TableBody>
+            {orderitems.map((orderitem) => (
+              <TableRow key={orderitem.attributes.name}>
+                <TableCell>
+                  <Typography className={classes.name} variant="subtitle2" >
+                    {orderitem.attributes.name}
+                  </Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography variant="body2">
+                    {orderitem.attributes.desc}
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">${orderitem.attributes.price}</TableCell>
+                <TableCell align="right">
+                  <OrderItemQuantityBox orderitem={orderitem} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
 
