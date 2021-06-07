@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -60,5 +61,9 @@ const QuantityBox = (props) => {
     </div>
   )
 }
+
+QuantityBox.propTypes = {
+  item: PropTypes.object.isRequired,
+};
 
 export default QuantityBox;

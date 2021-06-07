@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -39,6 +40,12 @@ export const SectionAccordion = (props) => {
       </Accordion>
     </div>
   );
+}
+
+SectionAccordion.propTypes = {
+  section: PropTypes.object.isRequired,
+  restaurant_id: PropTypes.number.isRequired,
+  menuId: PropTypes.number.isRequired,
 }
 
 export default SectionAccordion;

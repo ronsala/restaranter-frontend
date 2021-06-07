@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function RestaurantCard(props) {
+export const RestaurantCard = (props) => {
   const classes = useStyles();
 
   return (
@@ -48,3 +49,14 @@ export default function RestaurantCard(props) {
     </div>
   );
 }
+
+RestaurantCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  street: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+}
+
+export default RestaurantCard;

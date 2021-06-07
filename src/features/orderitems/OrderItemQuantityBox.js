@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -22,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OrderItemQuantityBox = (props) => {
-  console.log('props in OrderItemQuantityBox:', props);
   const [reviewCount, setCount] = useState(props.orderitem.count)
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -42,13 +42,15 @@ const OrderItemQuantityBox = (props) => {
     const orderitem = JSON.parse(JSON.stringify(props.orderitem))
     
     orderitem["count"] = reviewCount
-    console.log('orderitem:', orderitem);
 
     // Remove item with old count.
     dispatch(deleteItemFromOrderitems(orderitem))
 
     // Add item with new count.
     dispatch(addItemToOrderitems(orderitem))
+
+    // `props.orderitem` is not included in dependency array because doing so would set up an infinite loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reviewCount, dispatch])
   
   return (
@@ -56,12 +58,16 @@ const OrderItemQuantityBox = (props) => {
       <RemoveCircleIcon className={classes.icon} onClick={handleDecrementClick} color="primary">
         <Typography variant="srOnly">Remove one</Typography>
       </RemoveCircleIcon>
-      <TextField className={classes.quantity} id="outlined-basic" variant="outlined" name="order_items_quantity_box" value={reviewCount}/>
+      <TextField className={classes.quantity} variant="outlined" name="order_items_quantity_box" value={reviewCount}/>
       <AddCircleIcon className={classes.icon} onClick={handleIncrementClick} color="primary">
         <Typography variant="srOnly">Add one</Typography>
       </AddCircleIcon>
     </div>
   )
+}
+
+OrderItemQuantityBox.propTypes = {
+  orderitem: PropTypes.object.isRequired,
 }
 
 export default OrderItemQuantityBox;

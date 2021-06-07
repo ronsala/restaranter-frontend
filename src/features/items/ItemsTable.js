@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ItemsTable(props) {
+export const ItemsTable = (props) => {
   const classes = useStyles();
 
   return (
@@ -46,3 +47,9 @@ export default function ItemsTable(props) {
     </TableContainer>
   );
 }
+
+ItemsTable.propTypes = {
+  items: PropTypes.array.isRequired,
+};
+
+export default ItemsTable;

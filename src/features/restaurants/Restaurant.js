@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import MenuContainer from '../menus/MenuContainer';
@@ -35,3 +36,9 @@ export const Restaurant = (props) => {
     </div>
   );
 }
+
+Restaurant.propTypes = {
+  restaurant: PropTypes.object.isRequired,
+}
+
+export default Restaurant;

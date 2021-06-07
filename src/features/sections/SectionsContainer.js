@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
@@ -41,6 +42,10 @@ export const SectionsContainer = (props) => {
     default:
       return (<div>Unknown error</div>)
   }
+}
+
+SectionsContainer.propTypes = {
+  menu: PropTypes.object,
 }
 
 export default SectionsContainer;
