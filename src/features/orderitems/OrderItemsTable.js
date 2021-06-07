@@ -21,7 +21,14 @@ export const OrderItemsTable= () => {
   const classes = useStyles();
 
   const orderitems = useSelector((state) => state.orderitems)
-  .filter(orderitem => orderitem.count > 0);
+  .filter(orderitem => orderitem.count > 0)
+  .sort((a, b) => {
+    if (Object.values(a.attributes)[0] < Object.values(b.attributes)[0]) {
+      return -1;
+    } else {
+      return 1;
+    }
+  })
 
   return (
     <div>

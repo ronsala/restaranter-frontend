@@ -731,7 +731,7 @@ After many attempts, now have a "count" key in each item in the `orderitems` arr
 
 Now trying to have an OrderItemsTable similar to the ItemsTable. It works fine up until I add `<OrderItemQuantityBox />` to it. Then, the table doesn't render and there's this disappearing act of the props in OrderItemsTable:
 
-```
+```chrome
 props in OrderItemsTable: 
 {orderitems: Array(1)}
 orderitems: Array(1)
@@ -762,4 +762,20 @@ The last action run is `orderitem/addItemToOrderitems` that adds an orderitem wi
 Got it working, partly by having OrderItemsTable get its data from a selector, not props. I was getting caught in some kind of loop.
 
 ## Mon Jun  7 08:02:56 EDT 2021
+
+Working on removing warnings from console, added the eslint react plugin and prop-types and refactored accordingly. In the process, found a bug where, after incrementing or decrementing any orderitem not at the bottom the table, it jumps to the bottom.
+
+Solved it with altering an assignment with a custom sort:
+
+```js
+  const orderitems = useSelector((state) => state.orderitems)
+  .filter(orderitem => orderitem.count > 0)
+  .sort((a, b) => {
+    if (Object.values(a.attributes)[0] < Object.values(b.attributes)[0]) {
+      return -1;
+    } else {
+      return 1;
+    }
+  })
+```
 
