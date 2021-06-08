@@ -31,16 +31,14 @@ export const MenuContainer = (props) => {
       return (<div>Loading...</div>)
     case 'succeeded':
       return (
-        <div style={{ padding: 10 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={9}>
-              <Menu menu={restaurantMenu} />
-            </Grid>
-            <Grid item xs={3}> 
-              <OrderItemsContainer />
-            </Grid>
+        <Grid style={{ padding: 10 }} container spacing={5}>
+          <Grid item xs={9}>
+            <Menu menu={restaurantMenu} />
           </Grid>
-        </div>
+          <Grid item xs={3}> 
+            <OrderItemsContainer />
+          </Grid>
+        </Grid>
       )
     case 'failed':
       return (<div>{error}</div>)

@@ -9,9 +9,22 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import { formatCurrency } from '../../helpers'
+import { formatCurrency } from '../../helpers';
+
+const date = new Date();
+const mm = date.getMonth();
+const dd = date.getDate();
+const yyyy = date.getFullYear();
+const hh = date.getHours();
+const mn = date.getMinutes();
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    minHeight: '9rem'
+  },
+  date: {
+    margin: '1rem',
+  },
   total: {
     margin: '1rem',
   },
@@ -25,9 +38,16 @@ export const OrderItemsTable= (props) => {
   return (
     <div>
       <TableContainer className={classes.container} component={Paper}>
+        <br></br>
+        <br></br>
+        <hr></hr>
+        <Typography className={classes.date}>
+          Date: {mm}/{dd}/{yyyy} {hh}:{mn}
+        </Typography>
+        <Divider orientation="vertical"></Divider>
       <center>
         <Typography variant="h4">
-          Your Order:
+          Your Check
         </Typography>
         <Divider></Divider>
       </center>
