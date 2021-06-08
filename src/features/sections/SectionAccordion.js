@@ -29,17 +29,17 @@ export const SectionAccordion = (props) => {
     if (props && props.section) {
       dispatch(fetchItems({restaurantId: props.restaurant_id, menuId: props.menuId, sectionId: props.section.id}))
     }
+    // `props` is not included in dependency array because doing so would set up an infinite loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
   return (
     <div>
-      {/* <br></br> */}
-      <Accordion square="props.square"className={classes.root}>
+      <Accordion square={props.square} className={classes.root}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-          square="props.square"
         >
           <Typography variant="h2">
             { props.section.attributes.name }
@@ -57,7 +57,8 @@ SectionAccordion.propTypes = {
   section: PropTypes.object.isRequired,
   restaurant_id: PropTypes.number.isRequired,
   menuId: PropTypes.number.isRequired,
-  menu_id: PropTypes.object
+  menu_id: PropTypes.object,
+  square: PropTypes.bool
 }
 
 export default SectionAccordion;

@@ -54,6 +54,8 @@ export const QuantityBox = (props) => {
       // Add item with new count.
       dispatch(addItemToOrderitems(orderitem))
     }
+      // `props.item` is not included in dependency array because doing so would set up an infinite loop.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count])
   
   return (
@@ -61,7 +63,7 @@ export const QuantityBox = (props) => {
       <RemoveCircleIcon className={classes.icon} onClick={handleDecrementClick} color="primary">
         <Typography variant="srOnly">Remove one</Typography>
       </RemoveCircleIcon>
-      <TextField className={classes.quantity} id="outlined-basic" variant="outlined" name="quantity_box" value={count}/>
+      <TextField className={classes.quantity} id={props.item.id} variant="outlined" name="quantity_box" value={count}/>
       <AddCircleIcon className={classes.icon} onClick={handleIncrementClick} color="primary">
         <Typography variant="srOnly">Add one</Typography>
       </AddCircleIcon>

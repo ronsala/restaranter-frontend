@@ -20,14 +20,11 @@ const useStyles = makeStyles((theme) => ({
 export const OrderItemsTable= (props) => {
   const classes = useStyles();
 
-  // const orderitems = useSelector((state) => state.orderitems)
-  console.log('props:', props);
-
   return (
     <div>
       <TableContainer className={classes.container} component={Paper}>
       <center>
-        <Typography variant="overline">
+        <Typography variant="h6">
           Your Order:
         </Typography>
         <Divider></Divider>
@@ -42,11 +39,11 @@ export const OrderItemsTable= (props) => {
                 <TableCell align="right">${orderitem.attributes.price} X {orderitem.count} </TableCell>
               </TableRow>
             ))}
-            <TableRow>
-              Total: 
-            </TableRow>
           </TableBody>
         </Table>
+        <Typography variant="subtitle1">
+          Total: 
+        </Typography>
       </TableContainer>
     </div>
   );
