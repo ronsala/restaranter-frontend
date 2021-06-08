@@ -10,12 +10,15 @@ export const OrderItemsContainer = (props) => {
 
   const initialOrderitems = useSelector((state) => state.orderitems)
 
-  initialOrderitems.forEach(orderitem => {
-    if (orderitem.count === 0) {
-      dispatch(deleteItemFromOrderitems(orderitem))
-    }
-  })
+  if (initialOrderitems.length > 0) {
+    initialOrderitems.forEach(orderitem => {
+      if (orderitem.count === 0) {
+        dispatch(deleteItemFromOrderitems(orderitem))
+      }
+    })
+  }
 
+  // Sort the items by name.
   const orderitems = useSelector((state) => state.orderitems)
   .filter(orderitem => orderitem.count > 0)
   .sort((a, b) => {

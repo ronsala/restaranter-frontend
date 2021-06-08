@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -7,6 +8,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ItemsContainer from '../items/ItemsContainer';
+import { fetchItems } from '../items/itemsSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +21,15 @@ const useStyles = makeStyles((theme) => ({
 
 export const SectionAccordion = (props) => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (props && props.section) {
+      dispatch(fetchItems({restaurantId: props.restaurant_id, menuId: props.menuId, sectionId: props.section.id}))
+    }
+  // }, [dispatch, props])
+  }, [dispatch])
 
   return (
     <div className={classes.root}>
@@ -46,6 +57,7 @@ SectionAccordion.propTypes = {
   section: PropTypes.object.isRequired,
   restaurant_id: PropTypes.number.isRequired,
   menuId: PropTypes.number.isRequired,
+  menu_id: PropTypes.object
 }
 
 export default SectionAccordion;

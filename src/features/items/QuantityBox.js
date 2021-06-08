@@ -22,14 +22,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const QuantityBox = (props) => {
+export const QuantityBox = (props) => {
   const [count, setCount] = useState(0)
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleDecrementClick = () => {
-    if (count >= 1) {
+    if (count >= 2) {
       setCount(count - 1)
+    }
+
+    if (count === 1) {
+       setCount(count - 1)
+       dispatch(deleteItemFromOrderitems(props.item)) 
     }
   }
 
@@ -42,10 +47,6 @@ const QuantityBox = (props) => {
     const orderitem = JSON.parse(JSON.stringify(props.item))
     orderitem["count"] = count
 
-    if (count === 0) {
-      dispatch(deleteItemFromOrderitems(orderitem))
-    }
-
     if (count > 0) {
       // Remove item with old count.
       dispatch(deleteItemFromOrderitems(orderitem))
@@ -53,7 +54,7 @@ const QuantityBox = (props) => {
       // Add item with new count.
       dispatch(addItemToOrderitems(orderitem))
     }
-  }, [count, dispatch, props.item])
+  }, [count])
   
   return (
     <div className={classes.root}>

@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const Restaurant = (props) => {
   const classes = useStyles();
-  const page = props.page || '';
   
+  const page = props.page || '';
 
   const setPage = (page) => {
     switch (page) {
