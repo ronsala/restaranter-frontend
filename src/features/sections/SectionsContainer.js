@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
+import { Divider } from '@material-ui/core';
 
 export const SectionsContainer = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +24,12 @@ export const SectionsContainer = (props) => {
   .filter(section => section.attributes.menu_id === menuId);
 
   const sectionsList = sections.map((section) => {
-    return <SectionAccordion key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
+    return (
+      <div key={section.id}>
+        <SectionAccordion square={true} key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
+        <Divider></Divider>
+      </div>
+    )
   })
 
   switch (status) {

@@ -33,12 +33,13 @@ export const SectionAccordion = (props) => {
 
   return (
     <div>
-      <br></br>
-      <Accordion className={classes.root}>
+      {/* <br></br> */}
+      <Accordion square="props.square"className={classes.root}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          square="props.square"
         >
           <Typography variant="h2">
             { props.section.attributes.name }

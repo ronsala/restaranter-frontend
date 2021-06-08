@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
 import { fetchMenu } from './menusSlice';
 import { Menu } from "./Menu";
+import OrderItemsContainer from '../orderitems/OrderItemsContainer';
 
 export const MenuContainer = (props) => {
   const dispatch = useDispatch();
@@ -29,8 +31,15 @@ export const MenuContainer = (props) => {
       return (<div>Loading...</div>)
     case 'succeeded':
       return (
-        <div>
-          <Menu menu={restaurantMenu} />
+        <div style={{ padding: 10 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={9}>
+              <Menu menu={restaurantMenu} />
+            </Grid>
+            <Grid item xs={3}> 
+              <OrderItemsContainer />
+            </Grid>
+          </Grid>
         </div>
       )
     case 'failed':

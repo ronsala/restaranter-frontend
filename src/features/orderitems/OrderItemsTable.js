@@ -7,50 +7,44 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import OrderItemQuantityBox from './OrderItemQuantityBox';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
-  name: {
-    fontSize: theme.typography.pxToRem(16),
-    fontWeight: "bold"
-  },
+  // name: {
+  //   fontSize: theme.typography.pxToRem(16),
+  //   fontWeight: "bold"
+  // },
 }));
 
 export const OrderItemsTable= (props) => {
   const classes = useStyles();
 
+  // const orderitems = useSelector((state) => state.orderitems)
+  console.log('props:', props);
+
   return (
     <div>
-      <br></br>
-      <br></br>
-      <center>
-        <Typography variant="h2">
-          Review Your Order:
-        </Typography>
-      </center>
-      <br></br>
       <TableContainer className={classes.container} component={Paper}>
+      <center>
+        <Typography variant="overline">
+          Your Order:
+        </Typography>
+        <Divider></Divider>
+      </center>
         <Table className={classes.container} aria-label="order items table">
           <TableBody>
             {props.orderitems.map((orderitem) => (
               <TableRow key={orderitem.attributes.name}>
                 <TableCell>
-                  <Typography className={classes.name} variant="subtitle2" >
-                    {orderitem.attributes.name}
-                  </Typography>
+                  {orderitem.attributes.name}
                 </TableCell>
-                <TableCell align="center">
-                  <Typography variant="body2">
-                    {orderitem.attributes.desc}
-                  </Typography>
-                </TableCell>
-                <TableCell align="right">${orderitem.attributes.price}</TableCell>
-                <TableCell align="right">
-                  <OrderItemQuantityBox orderitem={orderitem} />
-                </TableCell>
+                <TableCell align="right">${orderitem.attributes.price} X {orderitem.count} </TableCell>
               </TableRow>
             ))}
+            <TableRow>
+              Total: 
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
@@ -61,6 +55,7 @@ export const OrderItemsTable= (props) => {
 OrderItemsTable.propTypes = {
   orderitems: PropTypes.array,
   restaurant: PropTypes.array,
+  orderitem: PropTypes.object,
 }
 
 export default OrderItemsTable;

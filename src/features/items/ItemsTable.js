@@ -6,14 +6,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import QuantityBox from './QuantityBox';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    width: '150%'
-  },
   name: {
     fontWeight: "bold",
   },
@@ -23,7 +19,7 @@ export const ItemsTable = (props) => {
   const classes = useStyles();
 
   return (
-    <TableContainer className={classes.container} component={Paper}>
+    <TableContainer>
       <Table aria-label="items table">
         <TableBody>
           {props.items.map((item) => (
