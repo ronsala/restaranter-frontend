@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
-import { Divider } from '@material-ui/core';
 
 export const SectionsContainer = (props) => {
   const dispatch = useDispatch();
@@ -27,7 +26,6 @@ export const SectionsContainer = (props) => {
     return (
       <div key={section.id}>
         <SectionAccordion square={true} key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
-        <Divider></Divider>
       </div>
     )
   })

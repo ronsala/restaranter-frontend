@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ItemsContainer from '../items/ItemsContainer';
 import { fetchItems } from '../items/itemsSlice';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,7 @@ export const SectionAccordion = (props) => {
           <ItemsContainer className={classes.branch} section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
         </AccordionDetails>
       </Accordion>
+      <Divider className={classes.root}></Divider>
     </div>
   );
 }
