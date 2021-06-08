@@ -13,11 +13,10 @@ import { fetchItems } from '../items/itemsSlice';
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 375,
-    // width: '100%',
+    width: '66vw',
   },
   branch: {
     minWidth: 375,
-    // width: '75%'
   }
 }));
 
@@ -30,18 +29,16 @@ export const SectionAccordion = (props) => {
     if (props && props.section) {
       dispatch(fetchItems({restaurantId: props.restaurant_id, menuId: props.menuId, sectionId: props.section.id}))
     }
-  // }, [dispatch, props])
   }, [dispatch])
 
   return (
-    <div className={classes.root}>
+    <div>
       <br></br>
-      <Accordion>
+      <Accordion className={classes.root}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-          className={classes.root}
         >
           <Typography variant="h2">
             { props.section.attributes.name }

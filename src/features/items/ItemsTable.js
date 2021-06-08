@@ -11,6 +11,9 @@ import QuantityBox from './QuantityBox';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    width: '150%'
+  },
   name: {
     fontWeight: "bold",
   },
@@ -20,7 +23,7 @@ export const ItemsTable = (props) => {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer className={classes.container} component={Paper}>
       <Table aria-label="items table">
         <TableBody>
           {props.items.map((item) => (
