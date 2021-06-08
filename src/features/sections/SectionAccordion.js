@@ -12,10 +12,12 @@ import { fetchItems } from '../items/itemsSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    minWidth: 375,
+    // width: '100%',
   },
   branch: {
-    width: '75%'
+    minWidth: 375,
+    // width: '75%'
   }
 }));
 

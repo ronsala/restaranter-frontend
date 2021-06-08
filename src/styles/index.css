@@ -59,3 +59,14 @@
   * @import "utilities/background-patterns";
   * @import "utilities/skew-transforms";
   */
+  html {
+    font-size: 100%;
+    box-sizing: border-box;
+  }
+  body,
+  #root {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    min-width: 375;
+  }

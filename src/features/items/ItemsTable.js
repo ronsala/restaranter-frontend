@@ -12,8 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   name: {
-    fontSize: theme.typography.pxToRem(16),
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 }));
 
@@ -21,8 +20,8 @@ export const ItemsTable = (props) => {
   const classes = useStyles();
 
   return (
-    <TableContainer className={classes.container} component={Paper}>
-      <Table className={classes.container} aria-label="items table">
+    <TableContainer component={Paper}>
+      <Table aria-label="items table">
         <TableBody>
           {props.items.map((item) => (
             <TableRow key={item.attributes.name}>
