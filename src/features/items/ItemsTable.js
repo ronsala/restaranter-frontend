@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import QuantityBox from './QuantityBox';
 import Typography from '@material-ui/core/Typography';
+import { formatCurrency } from '../../helpers'
 
 const useStyles = makeStyles((theme) => ({
   name: {
@@ -34,7 +35,7 @@ export const ItemsTable = (props) => {
                   {item.attributes.desc}
                 </Typography>
               </TableCell>
-              <TableCell align="right">${item.attributes.price}</TableCell>
+              <TableCell align="right">{formatCurrency(item.attributes.price)}</TableCell>
               <TableCell align="right">
                 <QuantityBox item={item} />
               </TableCell>
