@@ -11,32 +11,27 @@ import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
 import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
+import Footer from './components/Footer'
 
-function App() {
+export const App = () => {
   return (
     <Router>
-      <div>
-        <Container maxWidth="xl">
-          <Box color="secondary.main">
-            <Grid 
-              container 
-              spacing={2}
-              direction="row"
-              justify="space-around"
-              alignItems="center"
-            >
+        <Container maxWidth="xl"> <Box color="secondary.main" display="flex">
+            <Grid container>
               <Grid item xs={12}>
                 <AppBarMain />
+                <div className="main">
                 <Switch>
                   <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                   <Route path="/restaurants" component={RestaurantsContainer} />
                   <Route exact path="/" component={Home} />
                  </Switch>
+                </div>
+                 <Footer />
               </Grid>
             </Grid>
           </Box>
         </Container>
-      </div>
     </Router>
   );
 }

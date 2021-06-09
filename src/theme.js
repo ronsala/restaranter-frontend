@@ -35,14 +35,4 @@ let theme = createMuiTheme({
 
 theme = responsiveFontSizes(theme, 100);
 
-// theme.typography.subtitle2 = {
-//   fontSize: '0.1rem',
-//   '@media (min-width:600px)': {
-//     fontSize: '1.5rem',
-//   },
-//   [theme.breakpoints.up('md')]: {
-//     fontSize: '2.4rem',
-//   },
-// };
-
 export default theme;

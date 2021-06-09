@@ -60,8 +60,7 @@
   * @import "utilities/skew-transforms";
   */
   html {
-    font-size: 100%;
-    box-sizing: border-box;
+    font-size: '100%';
   }
   body,
   #root {
@@ -72,4 +71,14 @@
   }
   #add-circle-icon {
     vertical-align: middle;
+  }
+  .footer {
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    /* width: 100%; */
+    flexGrow: 1;
+    margin: '1rem';
   }

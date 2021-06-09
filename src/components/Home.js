@@ -1,10 +1,11 @@
 import React from 'react';
 import SelectCardsContainer from './SelectCardsContainer';
 
-export default function Home() {
+export const Home = () => {
+
   return (
-    <div>
-      <SelectCardsContainer />
-    </div>
+    <SelectCardsContainer />
   )
 }
+
+export default Home;
