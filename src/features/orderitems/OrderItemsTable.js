@@ -20,7 +20,7 @@ const mn = date.getMinutes();
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    minHeight: '9rem'
+    minHeight: '12rem'
   },
   header: {
     color: '#fff',
@@ -45,7 +45,7 @@ export const OrderItemsTable= (props) => {
       <TableContainer className={classes.container} component={Paper}>
       <center>
         <Typography className={classes.header} variant="h3">
-          YOUR CHECK
+          CHECK
         </Typography>
         <Typography className={classes.date}>
           {mm}/{dd}/{yyyy} {hh}:{mn}
