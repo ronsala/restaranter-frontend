@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
   },
   icon: {
-    fontSize: theme.typography.pxToRem(60),
-    cursor: 'pointer'
+    fontSize: theme.typography.pxToRem(30),
+    cursor: 'pointer',
+    margin: theme.spacing(0),
   },
   quantity: {
     margin: theme.spacing(1),
@@ -64,7 +65,7 @@ export const QuantityBox = (props) => {
         <Typography variant="srOnly">Remove one</Typography>
       </RemoveCircleIcon>
       <TextField className={classes.quantity} id={props.item.id} variant="outlined" name="quantity_box" value={count}/>
-      <AddCircleIcon className={classes.icon} onClick={handleIncrementClick} color="primary">
+      <AddCircleIcon className={classes.icon} id='add-circle-icon' onClick={handleIncrementClick} color="primary">
         <Typography variant="srOnly">Add one</Typography>
       </AddCircleIcon>
     </div>

@@ -30,13 +30,13 @@ export const ItemsTable = (props) => {
                   {item.attributes.name}
                 </Typography>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="left">
                 <Typography variant="body2">
                   {item.attributes.desc}
                 </Typography>
               </TableCell>
               <TableCell align="right">{formatCurrency(item.attributes.price)}</TableCell>
-              <TableCell align="right">
+              <TableCell align="left">
                 <QuantityBox item={item} />
               </TableCell>
             </TableRow>

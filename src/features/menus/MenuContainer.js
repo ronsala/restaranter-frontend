@@ -32,10 +32,10 @@ export const MenuContainer = (props) => {
     case 'succeeded':
       return (
         <Grid style={{ padding: 10 }} container spacing={5}>
-          <Grid item xs={9}>
+          <Grid item xs={8}>
             <Menu menu={restaurantMenu} />
           </Grid>
-          <Grid item xs={3}> 
+          <Grid item xs={4}> 
             <OrderItemsContainer />
           </Grid>
         </Grid>

@@ -42,7 +42,7 @@ export const SectionAccordion = (props) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography variant="h2">
+          <Typography variant="h3">
             { props.section.attributes.name }
           </Typography>
         </AccordionSummary>

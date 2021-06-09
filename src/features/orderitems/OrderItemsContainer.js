@@ -35,6 +35,8 @@ export const OrderItemsContainer = (props) => {
   .filter(element => typeof element === 'object')
   .filter(restaurant => restaurant.id === props.restaurantId)
 
+  console.log('restaurant in OrderItemsContainer:', restaurant);
+
   return (
     <OrderItemsTable restaurant={restaurant} orderitems={orderitems} />
   )

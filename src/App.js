@@ -11,13 +11,12 @@ import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
 import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
-// import { OrderItemsContainer } from './features/orderitems/OrderItemsContainer';
 
 function App() {
   return (
     <Router>
       <div>
-        <Container>
+        <Container maxWidth="xl">
           <Box color="secondary.main">
             <Grid 
               container 
@@ -28,12 +27,11 @@ function App() {
             >
               <Grid item xs={12}>
                 <AppBarMain />
-                 <Switch>
-                  <Route path="/restaurants/:restaurantId/:page" component={RestaurantContainer} />
+                <Switch>
                   <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                   <Route path="/restaurants" component={RestaurantsContainer} />
                   <Route exact path="/" component={Home} />
-                </Switch>
+                 </Switch>
               </Grid>
             </Grid>
           </Box>

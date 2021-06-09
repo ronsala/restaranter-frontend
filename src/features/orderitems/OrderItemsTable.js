@@ -22,11 +22,16 @@ const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '9rem'
   },
+  header: {
+    color: '#fff',
+    backgroundColor: '#000',
+  },
   date: {
     margin: '1rem',
   },
   total: {
     margin: '1rem',
+    textAlign: 'right',
   },
 }));
 
@@ -38,16 +43,12 @@ export const OrderItemsTable= (props) => {
   return (
     <div>
       <TableContainer className={classes.container} component={Paper}>
-        <br></br>
-        <br></br>
-        <hr></hr>
-        <Typography className={classes.date}>
-          Date: {mm}/{dd}/{yyyy} {hh}:{mn}
-        </Typography>
-        <Divider orientation="vertical"></Divider>
       <center>
-        <Typography variant="h4">
-          Your Check
+        <Typography className={classes.header} variant="h3">
+          YOUR CHECK
+        </Typography>
+        <Typography className={classes.date}>
+          {mm}/{dd}/{yyyy} {hh}:{mn}
         </Typography>
         <Divider></Divider>
       </center>
@@ -56,10 +57,14 @@ export const OrderItemsTable= (props) => {
             {props.orderitems.map((orderitem) => (
               <TableRow key={orderitem.attributes.name}>
                 <TableCell>
-                  {orderitem.attributes.name}
+                  <Typography variant="body2">
+                    {orderitem.attributes.name}
+                  </Typography>
                 </TableCell>
                 <TableCell align="right">
-                  {formatCurrency(orderitem.attributes.price)} X {orderitem.count} 
+                  <Typography variant="body2">
+                    {formatCurrency(orderitem.attributes.price)} X {orderitem.count} 
+                  </Typography>
                 </TableCell>
               </TableRow>
             ))}
