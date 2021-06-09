@@ -17,9 +17,8 @@ import Footer from './components/Footer';
 const useStyles = makeStyles((theme) => ({
   main: {
     flexGrow: 1,
-    margin: '1rem',
+    top: '1.5rem',
     position: 'relative',
-    bottom: 0,
   },
 }));
 

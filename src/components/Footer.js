@@ -5,11 +5,10 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '1rem',
     position: 'fixed',
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: '0.75rem',
+    right: '0.75rem',
     flexGrow: 1,
   },
   copyright: {
