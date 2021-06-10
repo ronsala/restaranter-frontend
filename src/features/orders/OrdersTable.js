@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OrdersTable(props) {
+export const OrdersTable = (props) => {
   const classes = useStyles();
 
   return (
@@ -39,3 +39,5 @@ export default function OrdersTable(props) {
     </TableContainer>
     );
 }
+
+export default OrdersTable;
