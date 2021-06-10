@@ -787,4 +787,6 @@ Decided to try a new strategy and have the order items appear in a component on 
 
 ## Thu Jun 10 13:49:43 EDT 2021
 
-Trying to decide if I want to keep normalized data in the store, and if so, how I can best access it and access it. Reading [Advanced Redux Patterns: Normalisation](https://brainsandbeards.com/blog/advanced-redux-patterns-normalisation). 
+Trying to decide if I want to keep normalized data in the store, and if so, how I can best access it and access it. Reading [Advanced Redux Patterns: Normalisation](https://brainsandbeards.com/blog/advanced-redux-patterns-normalisation).
+
+Remove RestaurantCard, &c: 
