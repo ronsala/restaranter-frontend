@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
 import { 
   fetchRestaurants, 
   selectAllRestaurants, 
@@ -28,6 +29,9 @@ export const RestaurantsContainer = () => {
     case 'succeeded':
       return (
         <div>
+          <Typography variant="h1" style={{textAlign: 'center'}}>
+            Restaurants
+          </Typography>
           { restaurantsList }
         </div>
       )
