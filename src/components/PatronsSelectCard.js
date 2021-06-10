@@ -40,7 +40,7 @@ export const PatronsSelectCard = () => {
           <center>
             <Button size="large" variant="contained" color="primary" component={Link} to={"/restaurants"}>
               I&apos;m hungry: Show me restaurants!
-          </Button>
+            </Button>
           </center>
         </CardContent>
       </Card>

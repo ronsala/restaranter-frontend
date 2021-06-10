@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import { 
   fetchRestaurants, 
   selectAllRestaurants, 
 } from './restaurantsSlice';
-import RestaurantCard from "./RestaurantCard";
+// import RestaurantCard from './RestaurantCard';
+import RestaurantsTable from './RestaurantsTable';
 
 export const RestaurantsContainer = () => {
   const dispatch = useDispatch();
@@ -17,9 +19,9 @@ export const RestaurantsContainer = () => {
   const restaurants = useSelector(state => selectAllRestaurants(state));
   let { status, error } = useSelector(state => state.restaurants);
 
-  const restaurantsList = restaurants.map((restaurant) => {
-    return <RestaurantCard key={restaurant.id} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } id={restaurant.id} />
-  })
+  // const restaurantsList = restaurants.map((restaurant) => {
+  //   return <RestaurantCard key={restaurant.id} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } id={restaurant.id} />
+  // })
 
   switch (status) {
     case 'idle':
@@ -32,7 +34,8 @@ export const RestaurantsContainer = () => {
           <Typography variant="h1" style={{textAlign: 'center'}}>
             Restaurants
           </Typography>
-          { restaurantsList }
+          <Divider></Divider>
+          <RestaurantsTable restaurants={restaurants} />
         </div>
       )
     case 'failed':
