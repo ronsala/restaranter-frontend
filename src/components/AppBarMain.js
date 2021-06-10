@@ -5,16 +5,23 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import RestaurantMenuIconRounded from '@material-ui/icons/RestaurantMenuRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-//     left: '2rem',
+  },
+  button: {
+    marginLeft: '11%',
+    whiteSpace: 'nowrap',
+  },
+  toolbar: {
+    justifyContent: 'space-evenly',
   },
   title: {
     flexGrow: 1,
+    fontSize: '2.5rem',
+    marginLeft: '5%',
   },
 }));
 
@@ -25,15 +32,16 @@ export const AppBarMain = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Button color="inherit" component={Link} to={"/"}>
-            <Typography variant="h6" className={classes.title}>
-              R e s t a u r a n t e r
+          <RestaurantMenuIconRounded className={classes.title} color="secondary" fontsize="large"></RestaurantMenuIconRounded>
+            <Typography variant="h6" className={classes.title} color="secondary">
+              Restauranter
             </Typography>
           </Button>
-          <Button  color="inherit">Login</Button>
+          <Button className={classes.button} color="inherit"component={Link} to={"/about"}>A b o u t</Button>
+          <Button className={classes.button} color="inherit"component={Link} to={"/proprietors"}>P r o p r i e t o r s</Button>
+          <Button className={classes.button} color="inherit"component={Link} to={"/restaurants"}>P a t r o n s</Button>
+          <Button className={classes.button} color="inherit"component={Link} to={"/login"}>L o g i n</Button>
         </Toolbar>
       </AppBar>
     </div>
