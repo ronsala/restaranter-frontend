@@ -33,7 +33,7 @@ export const AppBarMain = () => {
       <AppBar position="static">
         <Toolbar>
           <Button color="inherit" component={Link} to={"/"}>
-          <RestaurantMenuIconRounded className={classes.title} color="secondary" fontsize="large"></RestaurantMenuIconRounded>
+          <RestaurantMenuIconRounded className={classes.title} color="secondary" fontSize="large"></RestaurantMenuIconRounded>
             <Typography variant="h6" className={classes.title} color="secondary">
               Restauranter
             </Typography>

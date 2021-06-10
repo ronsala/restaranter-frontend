@@ -20,7 +20,7 @@ let theme = createMuiTheme({
   spacing: 4,
   margin: 1,
   typography: {
-    fontsize: 16
+    fontSize: 16
   },
   breakpoints: {
     values: {
