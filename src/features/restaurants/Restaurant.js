@@ -2,7 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import MenuContainer from '../menus/MenuContainer';
+import OrderItemsContainer from '../orderitems/OrderItemsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +16,19 @@ const useStyles = makeStyles((theme) => ({
 
 export const Restaurant = (props) => {
   const classes = useStyles();
+  
+  const page = props.page || '';
+
+  const setPage = (page) => {
+    switch (page) {
+      case 'menu':
+        return <MenuContainer restaurantId={props.restaurant.id}/>
+      case 'orderitems':
+        return <OrderItemsContainer restaurantId={props.restaurant.id}/>
+      default:
+        return <MenuContainer restaurantId={props.restaurant.id}/>
+    }
+  }
 
   return (
     <div>
@@ -26,9 +41,8 @@ export const Restaurant = (props) => {
             <Typography className={classes.root} variant="subtitle1">
               { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
             </Typography>
-            <div>
-              <MenuContainer restaurantId={props.restaurant.id}/>
-            </div>
+            <Divider></Divider>
+            {setPage(page)}
           </div>
         ) : 
         (<p>Loading...</p>)
@@ -39,6 +53,7 @@ export const Restaurant = (props) => {
 
 Restaurant.propTypes = {
   restaurant: PropTypes.object.isRequired,
+  page: PropTypes.string
 }
 
 export default Restaurant;

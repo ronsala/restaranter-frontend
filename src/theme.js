@@ -19,18 +19,20 @@ let theme = createMuiTheme({
   },
   spacing: 4,
   margin: 1,
+  typography: {
+    fontsize: 16
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 375,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
-theme = responsiveFontSizes(theme);
-
-theme.typography.subtitle2 = {
-  fontSize: '0.1rem',
-  '@media (min-width:600px)': {
-    fontSize: '1.5rem',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.4rem',
-  },
-};
+theme = responsiveFontSizes(theme, 100);
 
 export default theme;

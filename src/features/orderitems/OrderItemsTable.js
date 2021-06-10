@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,71 +7,81 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import OrderItemQuantityBox from './OrderItemQuantityBox';
 import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
-import { deleteItemFromOrderitems } from '../orderitems/orderitemsSlice'
+import Divider from '@material-ui/core/Divider';
+import { formatCurrency } from '../../helpers';
+
+const date = new Date();
+const mm = date.getMonth();
+const dd = date.getDate();
+const yyyy = date.getFullYear();
+const hh = date.getHours();
+const mn = date.getMinutes();
 
 const useStyles = makeStyles((theme) => ({
-  name: {
-    fontSize: theme.typography.pxToRem(16),
-    fontWeight: "bold"
+  container: {
+    minHeight: '12rem'
+  },
+  header: {
+    color: '#fff',
+    backgroundColor: '#000',
+  },
+  date: {
+    margin: '1rem',
+  },
+  total: {
+    margin: '1rem',
+    textAlign: 'right',
   },
 }));
 
-export const OrderItemsTable= () => {
+export const OrderItemsTable= (props) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  const initialOrderitems = useSelector((state) => state.orderitems)
-
-  initialOrderitems.forEach(orderitem => {
-    if (orderitem.count === 0) {
-      dispatch(deleteItemFromOrderitems(orderitem))
-    }
-  })
-
-  const orderitems = useSelector((state) => state.orderitems)
-  .filter(orderitem => orderitem.count > 0)
-  .sort((a, b) => {
-    if (Object.values(a.attributes)[0] < Object.values(b.attributes)[0]) {
-      return -1;
-    } else {
-      return 1;
-    }
-  })
+  const total = props.orderitems.reduce((acc, orderitem) => acc + orderitem.attributes.price * orderitem.count, 0)
 
   return (
     <div>
-      <Typography variant="h1">
-        Review Your Order
-      </Typography>
       <TableContainer className={classes.container} component={Paper}>
+      <center>
+        <Typography className={classes.header} variant="h3">
+          CHECK
+        </Typography>
+        <Typography className={classes.date}>
+          {mm}/{dd}/{yyyy} {hh}:{mn}
+        </Typography>
+        <Divider></Divider>
+      </center>
         <Table className={classes.container} aria-label="order items table">
           <TableBody>
-            {orderitems.map((orderitem) => (
+            {props.orderitems.map((orderitem) => (
               <TableRow key={orderitem.attributes.name}>
                 <TableCell>
-                  <Typography className={classes.name} variant="subtitle2" >
+                  <Typography variant="body2">
                     {orderitem.attributes.name}
                   </Typography>
                 </TableCell>
-                <TableCell align="center">
-                  <Typography variant="body2">
-                    {orderitem.attributes.desc}
-                  </Typography>
-                </TableCell>
-                <TableCell align="right">${orderitem.attributes.price}</TableCell>
                 <TableCell align="right">
-                  <OrderItemQuantityBox orderitem={orderitem} />
+                  <Typography variant="body2">
+                    {formatCurrency(orderitem.attributes.price)} X {orderitem.count} 
+                  </Typography>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+        <Typography className={classes.total} variant="h6">
+          Total: {formatCurrency(total)}
+        </Typography>
       </TableContainer>
     </div>
   );
+}
+
+OrderItemsTable.propTypes = {
+  orderitems: PropTypes.array,
+  restaurant: PropTypes.array,
+  orderitem: PropTypes.object,
 }
 
 export default OrderItemsTable;

@@ -779,3 +779,8 @@ Solved it with altering an assignment with a custom sort:
   })
 ```
 
+Reorganizing the data flow among components to eliminate glitching and incorrect values when accessing and using the ItemsTable. Want to find a way to preserve the user's order-in-progress if they return to the menu.
+
+## Tue Jun  8 10:55:33 EDT 2021
+
+Decided to try a new strategy and have the order items appear in a component on the same page as the menu. 

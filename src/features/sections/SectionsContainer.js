@@ -23,7 +23,11 @@ export const SectionsContainer = (props) => {
   .filter(section => section.attributes.menu_id === menuId);
 
   const sectionsList = sections.map((section) => {
-    return <SectionAccordion key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
+    return (
+      <div key={section.id}>
+        <SectionAccordion square={true} key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
+      </div>
+    )
   })
 
   switch (status) {

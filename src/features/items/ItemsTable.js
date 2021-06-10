@@ -6,14 +6,13 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import QuantityBox from './QuantityBox';
 import Typography from '@material-ui/core/Typography';
+import { formatCurrency } from '../../helpers'
 
 const useStyles = makeStyles((theme) => ({
   name: {
-    fontSize: theme.typography.pxToRem(16),
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 }));
 
@@ -21,8 +20,8 @@ export const ItemsTable = (props) => {
   const classes = useStyles();
 
   return (
-    <TableContainer className={classes.container} component={Paper}>
-      <Table className={classes.container} aria-label="items table">
+    <TableContainer>
+      <Table aria-label="items table">
         <TableBody>
           {props.items.map((item) => (
             <TableRow key={item.attributes.name}>
@@ -31,13 +30,13 @@ export const ItemsTable = (props) => {
                   {item.attributes.name}
                 </Typography>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="left">
                 <Typography variant="body2">
                   {item.attributes.desc}
                 </Typography>
               </TableCell>
-              <TableCell align="right">${item.attributes.price}</TableCell>
-              <TableCell align="right">
+              <TableCell align="right">{formatCurrency(item.attributes.price)}</TableCell>
+              <TableCell align="left">
                 <QuantityBox item={item} />
               </TableCell>
             </TableRow>

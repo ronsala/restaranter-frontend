@@ -6,36 +6,46 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 1000
-  }
-});
+const useStyles = makeStyles((theme) => ({
+  media: {
+    display: 'flex',
+    width: 'auto',
+    height: 'auto',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    backgroundSize: 'contain',
+  },
+}));
 
-export default function PatronsSelectCard() {
+export const PatronsSelectCard = () => {
   const classes = useStyles();
   
   return (
     <div>
-      <Card className={classes.root}>
-        <CardContent>
+      <Card>
+        <CardContent component={Link} to={"/restaurants"}>
           <center>
-              <strong>FOR RESTAURANT PATRONS</strong>
+            <strong>FOR RESTAURANT PATRONS</strong>
           </center>
         </CardContent>
         <CardMedia
-            component="img"
-            alt="Photograph of Restaurant Row parking lot in San Marcos, California"
-            height="140"
-            image="images/800px-San_marcos_restaurant_row.jpg"
-            title="Select Patrons"
+          className={classes.media} 
+          component={Link} to={"/restaurants"}
+          alt="Photograph of Restaurant Row parking lot in San Marcos, California"
+          style={{ height: "64vh" }}
+          image="images/640px-San_marcos_restaurant_row.jpg"
+          title="Select Patrons"
         />
         <CardContent>
           <center>
-            <Button size="large" variant="contained" color="primary" component={Link} to={"/restaurants"}>I&apos;m hungry: Show me restaurants!</Button>
+            <Button size="large" variant="contained" color="primary" component={Link} to={"/restaurants"}>
+              I&apos;m hungry: Show me restaurants!
+          </Button>
           </center>
         </CardContent>
       </Card>
     </div>
   );
 }
+
+export default PatronsSelectCard;
