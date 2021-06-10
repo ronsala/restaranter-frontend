@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import SectionsContainer from '../sections/SectionsContainer';
-import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   menuheader: {
@@ -23,8 +22,6 @@ export const Menu = (props) => {
       <Typography className={classes.menuheader} variant="h3" align="center" >
         MENU
       </Typography>
-      <Divider></Divider>
-      <Divider></Divider>
       <SectionsContainer menu={props.menu} />
     </div>
   )

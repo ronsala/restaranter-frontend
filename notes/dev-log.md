@@ -783,4 +783,7 @@ Reorganizing the data flow among components to eliminate glitching and incorrect
 
 ## Tue Jun  8 10:55:33 EDT 2021
 
-Decided to try a new strategy and have the order items appear in a component on the same page as the menu. 
+Decided to try a new strategy and have the order items appear in a component on the same page as the menu.
+
+## Wed Jun  9 23:50:28 EDT 2021
+
