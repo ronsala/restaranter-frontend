@@ -32,7 +32,7 @@ export const PatronsSelectCard = () => {
           className={classes.media} 
           component={Link} to={"/restaurants"}
           alt="Photograph of Restaurant Row parking lot in San Marcos, California"
-          style={{ height: "64vh" }}
+          style={{ height: "62.5vh" }}
           image="images/640px-San_marcos_restaurant_row.jpg"
           title="Select Patrons"
         />

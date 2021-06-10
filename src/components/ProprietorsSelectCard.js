@@ -36,7 +36,7 @@ export const ProprietorsSelectCard = () => {
           className={classes.media} 
           component={Link} to={"/proprietors"} 
           alt="A roadside restaurateur tends to his meats in Franceville, Gabon, Central Africa"
-          style={{ height: "64vh" }} 
+          style={{ height: "62.5vh" }} 
           image="images/31462773907_a089a014d8_c.jpg"
           title="Select Proprietors"
           />
