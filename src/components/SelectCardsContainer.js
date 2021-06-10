@@ -6,7 +6,7 @@ import PatronsSelectCard from './PatronsSelectCard';
 export const SelectCardsContainer = () => {
 
   return( 
-    <div style={{ padding: 1 }}className="select-cards-container">
+    <div>
       <Grid container spacing={8}>
         <Grid item xs={6}>
           <ProprietorsSelectCard />
