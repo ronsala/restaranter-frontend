@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   list: {
-    marginLeft: '17%',
+    marginLeft: '12.5%',
   },
 }));
 
@@ -35,7 +35,7 @@ export const About = () => {
       <div className="row">
         <div className="column">
           <List className={classes.list}>
-            <Typography variant="h3">
+            <Typography variant="h2">
                 Patrons can ...
             </Typography>
             <br></br>
@@ -67,7 +67,7 @@ export const About = () => {
         </div>
         <div className="column">
           <List className={classes.list}>
-            <Typography variant="h3">
+            <Typography variant="h2">
                 Proprietors can ...
             </Typography>
             <br></br>
