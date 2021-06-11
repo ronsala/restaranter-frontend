@@ -785,5 +785,11 @@ Reorganizing the data flow among components to eliminate glitching and incorrect
 
 Decided to try a new strategy and have the order items appear in a component on the same page as the menu.
 
-## Wed Jun  9 23:50:28 EDT 2021
+## Thu Jun 10 13:49:43 EDT 2021
+
+Trying to decide if I want to keep normalized data in the store, and if so, how I can best access it and access it. Reading [Advanced Redux Patterns: Normalisation](https://brainsandbeards.com/blog/advanced-redux-patterns-normalisation).
+
+Remove RestaurantCard, &c: Done.
+
+## Fri Jun 11 11:15:02 EDT 2021
 

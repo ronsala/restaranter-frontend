@@ -9,30 +9,31 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button'
 import { formatCurrency } from '../../helpers';
 
-const date = new Date();
-const mm = date.getMonth();
-const dd = date.getDate();
-const yyyy = date.getFullYear();
-const hh = date.getHours();
-const mn = date.getMinutes();
+// const date = new Date();
+// const mm = date.getMonth();
+// const dd = date.getDate();
+// const yyyy = date.getFullYear();
+// const hh = date.getHours();
+// const mn = date.getMinutes();
 
 const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '12rem'
   },
+  checkoutButton: {
+    margin: '0.5rem',
+    width: '80%',
+  },
   header: {
     color: '#fff',
     backgroundColor: '#000',
   },
-  date: {
-    margin: '1rem',
-  },
-  total: {
-    margin: '1rem',
-    textAlign: 'right',
-  },
+  // date: {
+  //   margin: '1rem',
+  // },
 }));
 
 export const OrderItemsTable= (props) => {
@@ -47,9 +48,15 @@ export const OrderItemsTable= (props) => {
         <Typography className={classes.header} variant="h3">
           CHECK
         </Typography>
-        <Typography className={classes.date}>
+          <Typography className={classes.total} variant="h6">
+            Total: {formatCurrency(total)}
+          </Typography>
+          <Button className={classes.checkoutButton} size="small"  variant="contained" color="primary">
+            checkout
+          </Button>
+        {/* <Typography className={classes.date}>
           {mm}/{dd}/{yyyy} {hh}:{mn}
-        </Typography>
+        </Typography> */}
         <Divider></Divider>
       </center>
         <Table className={classes.container} aria-label="order items table">
@@ -70,9 +77,6 @@ export const OrderItemsTable= (props) => {
             ))}
           </TableBody>
         </Table>
-        <Typography className={classes.total} variant="h6">
-          Total: {formatCurrency(total)}
-        </Typography>
       </TableContainer>
     </div>
   );

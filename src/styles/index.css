@@ -69,3 +69,15 @@
     margin: 0;
     min-width: 375;
   }
+  h1 {
+    text-align: center;
+  }
+  li{
+    margin: -0.8rem 0 0 0;
+  }
+  .row {
+    display: flex;
+  }
+  .column {
+    flex: 50%;
+  }

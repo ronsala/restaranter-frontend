@@ -8,7 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +44,7 @@ export const RestaurantsTable = (props) => {
                 </Typography>
               </TableCell>
               <TableCell className={classes.root}>
-                <Button size="large" fullWidth="true" variant="contained" color="secondary" href={`restaurants/${restaurant.id}`}>
+                <Button size="large" fullWidth={true} variant="contained" color="secondary" href={`restaurants/${restaurant.id}`}>
                   menu
                 </Button>
               </TableCell>
