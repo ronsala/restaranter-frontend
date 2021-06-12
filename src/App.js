@@ -13,6 +13,7 @@ import AppBarMain from './components/AppBarMain';
 import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
 import About from './components/About';
+import SignupLogin from './components/SignupLogin'
 import Footer from './components/Footer';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ export const App = () => {
                       <Route path="/about" component={About} />
                       <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                       <Route path="/restaurants" component={RestaurantsContainer} />
+                      <Route path="/signuplogin" component={SignupLogin} />
                       <Route exact path="/" component={Home} />
                     </Switch>
                   </div>
