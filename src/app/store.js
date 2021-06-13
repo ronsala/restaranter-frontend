@@ -1,18 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
-import restaurantsReducer from '../features/restaurants/restaurantsSlice';
-import menusReducer from '../features/menus/menusSlice';
-import sectionsReducer from '../features/sections/sectionsSlice';
 import itemsReducer from '../features/items/itemsSlice';
-import ordersReducer from '../features/orders/ordersSlice';
+import menusReducer from '../features/menus/menusSlice';
 import orderitemsReducer from '../features/orderitems/orderitemsSlice';
+import ordersReducer from '../features/orders/ordersSlice';
+import restaurantsReducer from '../features/restaurants/restaurantsSlice';
+import sectionsReducer from '../features/sections/sectionsSlice';
+import usersReducer from '../features/users/usersSlice';
 
 export const store = configureStore({
   reducer: {
-    restaurants: restaurantsReducer,
-    menus: menusReducer,
-    sections: sectionsReducer,
     items: itemsReducer,
-    orders: ordersReducer,
+    menus: menusReducer,
     orderitems: orderitemsReducer,
+    orders: ordersReducer,
+    restaurants: restaurantsReducer,
+    sections: sectionsReducer,
+    users: usersReducer,
   },
 });

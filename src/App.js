@@ -15,6 +15,7 @@ import { RestaurantContainer } from './features/restaurants/RestaurantContainer'
 import About from './components/About';
 import SignupLogin from './components/SignupLogin'
 import Footer from './components/Footer';
+import { UserContainer } from './features/users/UserContainer';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -39,6 +40,7 @@ export const App = () => {
                       <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                       <Route path="/restaurants" component={RestaurantsContainer} />
                       <Route path="/signuplogin" component={SignupLogin} />
+                      <Route path="/users/:userId" component={UserContainer} />
                       <Route exact path="/" component={Home} />
                     </Switch>
                   </div>

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -12,13 +14,20 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { signupUser } from '../features/users/usersSlice';
 
 export const SignupForm = (props) => {
   const classes = props.classes;
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  let { status } = useSelector(state => state.users);
+
+  const userId = parseInt(useSelector(state => state.users.ids));
 
   const [state, setState] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     street: '',
     city: '',
@@ -27,8 +36,6 @@ export const SignupForm = (props) => {
     password_confirm: '',
     showPassword: false,
   });
-
-  console.log('state:', state);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -48,7 +55,15 @@ export const SignupForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(signupUser(state))
   };
+
+  useEffect(() => {
+    if (status === 'succeeded') {
+      history.push(`/users/${userId}`);
+    }
+
+  }, [history, status, userId]);
 
   return (
     <div>
@@ -59,22 +74,22 @@ export const SignupForm = (props) => {
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField 
             className={classes.field} 
-            id="firstname" 
+            id="first_name" 
             label="First Name" 
-            name="firstName" 
+            name="first_name" 
             onChange={handleChange} 
-            required="true" 
+            required={true} 
             style = {{width: '42.5%'}}
             value={state.firstName}
             variant="filled" 
           />
           <TextField 
             className={classes.field} 
-            id="lastname" 
+            id="last_name" 
             label="Last Name" 
-            name="lastName"
+            name="last_name"
             onChange={handleChange} 
-            required="true" 
+            required={true} 
             style = {{width: '42.5%'}} 
             value={state.lastName} 
             variant="filled" 
@@ -85,7 +100,7 @@ export const SignupForm = (props) => {
             label="Email" 
             name="email"
             onChange={handleChange} 
-            required="true" 
+            required={true} 
             style = {{width: '90%'}} 
             value={state.email} 
             variant="filled" 
@@ -96,7 +111,7 @@ export const SignupForm = (props) => {
             label="Street" 
             name="street"
             onChange={handleChange} 
-            required="true" 
+            required={true} 
             style = {{width: '90%'}} 
             value={state.street}
             variant="filled" 
@@ -107,7 +122,7 @@ export const SignupForm = (props) => {
             label="City" 
             name="city"
             onChange={handleChange} 
-            required="true" 
+            required={true} 
             style = {{width: '60%'}} 
             value={state.city}
             variant="filled" 
@@ -118,8 +133,8 @@ export const SignupForm = (props) => {
             label="State" 
             name="state"
             onChange={handleChange} 
-            required="true" 
-            select="true" 
+            required={true} 
+            select={true} 
             style = {{width: '25%'}} 
             value={state.state}
             variant="filled" 
@@ -183,6 +198,7 @@ export const SignupForm = (props) => {
           >
             <InputLabel htmlFor="filled-adornment-password"> Password</InputLabel>
             <FilledInput 
+              autoComplete="on"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -197,7 +213,7 @@ export const SignupForm = (props) => {
               id="password" 
               name="password"
               onChange={handleChange} 
-              required="true" 
+              required={true} 
               type={state.showPassword ? 'text' : 'password'}
               value={state.password}
             />
@@ -209,6 +225,7 @@ export const SignupForm = (props) => {
           >
             <InputLabel htmlFor="filled-adornment-password">Confirm Password</InputLabel>
             <FilledInput 
+              autoComplete="on"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -223,7 +240,7 @@ export const SignupForm = (props) => {
               id="password_confirm" 
               name="password_confirm"
               onChange={handleChange} 
-              required="true" 
+              required={true} 
               type={state.showPassword ? 'text' : 'password'}
               value={state.password_confirm}
             />

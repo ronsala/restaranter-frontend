@@ -28,7 +28,7 @@ export const RestaurantContainer = ({match}) => {
     case 'idle':
       return null;
     case 'loading':
-      return (<div>Loading...</div>)
+      return (<div>Still Loading...</div>)
     case 'succeeded':
       return (
         <div>

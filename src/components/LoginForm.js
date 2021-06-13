@@ -21,8 +21,6 @@ export const LoginForm = (props) => {
     showPassword: false,
   });
 
-  console.log('state:', state);
-
   const handleChange = (e) => {
     const value = e.target.value;
     setState({
@@ -52,11 +50,11 @@ export const LoginForm = (props) => {
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField 
             className={classes.field} 
-            id="email" 
+            id="login_email" 
             label="Email" 
             name="email"
             onChange={handleChange} 
-            required="true" 
+            required={true} 
             style = {{width: '90%'}} 
             value={state.email} 
             variant="filled" 
@@ -68,6 +66,7 @@ export const LoginForm = (props) => {
           >
             <InputLabel htmlFor="filled-adornment-password"> Password</InputLabel>
             <FilledInput 
+              autoComplete="on"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -79,10 +78,10 @@ export const LoginForm = (props) => {
                   </IconButton>
                 </InputAdornment>
               }
-              id="password" 
+              id="login_password" 
               name="password"
               onChange={handleChange} 
-              required="true" 
+              required={true} 
               type={state.showPassword ? 'text' : 'password'}
               value={state.password}
             />
