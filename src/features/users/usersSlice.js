@@ -102,15 +102,22 @@ const usersAdapter = createEntityAdapter({
   selectId: (user) => user.id
 })
 
+// const removeCurrentUserId = (state, action) => {
+//   if (action === 'logout') {
+//     state = undefined
+//   }
+// }
+
 export const usersSlice = createSlice({
   name: 'user',
   initialState: usersAdapter.getInitialState({
     status: 'idle'
   }),
   reducers: {
-    addOneUser: usersAdapter.addOne,
-    upsertOneUser: usersAdapter.upsertOne,
-    removeOneUser: usersAdapter.removeOne
+    addOneUser: usersAdapter.addOne, 
+    upsertOneUser: usersAdapter.upsertOne, 
+    removeOneUser: usersAdapter.removeOne, 
+    removeAllUsers: usersAdapter.removeAll, 
   },
   extraReducers: {
     [deleteUser.pending]: (state) => {
@@ -155,6 +162,7 @@ export const usersSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       state.status = 'succeeded'
+      state.currentUserId = action.payload.data.id
       usersAdapter.addOne(state, action.payload.data)
     },
     [loginUser.rejected]: (state, action) => {
@@ -175,6 +183,11 @@ export const usersSlice = createSlice({
     },
   },
 })
+
+export const {
+  deleteCurrentUserId,
+  removeAllUsers,
+} = usersSlice.actions;
 
 export const {
   selectById: selectUserById,
