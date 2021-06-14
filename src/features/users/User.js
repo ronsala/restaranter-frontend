@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails'
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -16,7 +17,8 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { editUser } from './usersSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   field: {
     marginLeft: '5%',
-    // marginTop: '1%',
     marginBottom: '1%',
     width: '200%',
   },
@@ -60,64 +61,73 @@ const useStyles = makeStyles((theme) => ({
 
 export const User = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-let buttonText;
-let displayMode;
-let selectOn;
+  let buttonMethod;
+  let buttonText;
+  let displayMode;
+  let selectOn;
 
-const [state, setState] = useState({
-  first_name: props.user.attributes.first_name,
-  last_name: props.user.attributes.last_name,
-  email: props.user.attributes.email,
-  street: props.user.attributes.street,
-  city: props.user.attributes.city,
-  state: props.user.attributes.state,
-  new_password: '',
-  new_password_confirm: '',
-  showPassword: false,
-  editMode: false,
-});
+  const [state, setState] = useState({
+    id: parseInt(props.user.id),
+    first_name: props.user.attributes.first_name,
+    last_name: props.user.attributes.last_name,
+    email: props.user.attributes.email,
+    street: props.user.attributes.street,
+    city: props.user.attributes.city,
+    state: props.user.attributes.state,
+    password: '',
+    password_confirm: '',
+    showPassword: false,
+    editMode: false,
+  });
 
-const handleChange = (e) => {
-  const value = e.target.value;
-  if (state.editMode === true) {
-    setState({
-      ...state,
-      [e.target.name]: value
-    })
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (state.editMode === true) {
+      setState(state => ({
+        ...state,
+        [e.target.name]: value
+      }))
+    }
   }
-}
 
-const handleClickShowPassword = () => {
-  // setState({ ...state, showPassword: !props.user.attributes.showPassword });
-};
+  const handleClickShowPassword = () => {
+    setState(state => ({
+      ...state, 
+      showPassword: !state.showPassword }));
+  };
 
-const handleEditButtonClick = (e) => {
-  buttonText = 'Submit'
-  displayMode = { display: 'inline' }
-  selectOn = true
-  setState({
-    editMode: true
-  })
-}
+  const handleEditButtonClick = () => {
+    buttonText = 'Submit'
+    displayMode = { display: 'inline' }
+    selectOn = true
+    setState(state => ({
+      ...state,
+      editMode: true
+    }))
+  }
 
-const handleMouseDownPassword = (e) => {
-  e.preventDefault();
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setState(state => ({
+      ...state,
+      editMode: false
+    })) 
+    dispatch(editUser(state))
+  };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-};
-
-if (state.editMode === false) {
-  buttonText = 'Edit'
-  displayMode = { display: 'none' }
-  selectOn = false
-} else {
-  buttonText = 'Submit'
-  displayMode = { display: 'inline' }
-  selectOn = true
-}
+  if (state.editMode === false) {
+    buttonMethod = handleEditButtonClick
+    buttonText = 'Edit'
+    displayMode = { display: 'none' }
+    selectOn = false
+    } else {
+    buttonMethod = handleSubmit
+    buttonText = 'Submit'
+    displayMode = { display: 'inline' }
+    selectOn = true
+  }
 
   return (
     <div>
@@ -136,7 +146,9 @@ if (state.editMode === false) {
               </AccordionSummary>
               <AccordionDetails>
                 <Paper className={classes.paper}>
-                  <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                  <form 
+                    autoComplete="off" 
+                  >
                     <div className="row">
                       <div className="column">
                         <div className={classes.topInset}>
@@ -182,7 +194,8 @@ if (state.editMode === false) {
                     </InputLabel>
                     <TextField 
                       className={classes.field} 
-                      id="email" 
+                      id="email"
+                      name="email"
                       onChange={handleChange} 
                       required={state.editMode} 
                       style = {{width: '90%'}} 
@@ -210,7 +223,7 @@ if (state.editMode === false) {
                           <InputLabel 
                             className={classes.inputLabel} 
                             htmlFor="street">
-                             City 
+                              City 
                           </InputLabel>
                           <TextField 
                             className={classes.field} 
@@ -302,7 +315,7 @@ if (state.editMode === false) {
                           className={classes.field} 
                           variant="filled"
                         >
-                          <InputLabel htmlFor="new_password">Set New Password</InputLabel>
+                          <InputLabel htmlFor="password">Set New Password</InputLabel>
                           <FilledInput 
                             autoComplete="on"
                             endAdornment={
@@ -310,27 +323,25 @@ if (state.editMode === false) {
                                 <IconButton
                                   aria-label="toggle password visibility"
                                   onClick={handleClickShowPassword}
-                                  onMouseDown={handleMouseDownPassword}
                                 >
-                                  {props.user.attributes.showPassword ? <Visibility /> : <VisibilityOff />}
+                                  {state.showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                               </InputAdornment>
                             }
-                            id="new_password" 
-                            name="new_password"
+                            id="password" 
+                            name="password"
                             onChange={handleChange} 
                             required={state.editMode} 
                             style = {{width: '40%'}} 
                             type={state.showPassword ? 'text' : 'password'}
-                            value={state.new_password}
+                            value={state.password}
                           />
                         </FormControl>
                         <FormControl 
                           className={classes.field} 
-                          // style = {{width: '90%'}} 
                           variant="filled"
                         >
-                          <InputLabel htmlFor="filled-adornment-password">Confirm New Password</InputLabel>
+                          <InputLabel htmlFor="password_confirm">Confirm New Password</InputLabel>
                           <FilledInput 
                             autoComplete="on"
                             endAdornment={
@@ -338,7 +349,6 @@ if (state.editMode === false) {
                                 <IconButton
                                   aria-label="toggle password visibility"
                                   onClick={handleClickShowPassword}
-                                  onMouseDown={handleMouseDownPassword}
                                 >
                                   {props.user.attributes.showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
@@ -349,8 +359,8 @@ if (state.editMode === false) {
                             onChange={handleChange} 
                             required={state.editMode} 
                             style = {{width: '40%'}} 
-                            type={props.user.attributes.showPassword ? 'text' : 'password'}
-                            value={state.new_password_confirm}
+                            type={state.showPassword ? 'text' : 'password'}
+                            value={state.password_confirm}
                           />
                         </FormControl>
                       </div>
@@ -359,7 +369,7 @@ if (state.editMode === false) {
                           <Button 
                             className={classes.button} 
                             color="secondary" 
-                            onClick={handleEditButtonClick}
+                            onClick={buttonMethod}
                             size="large" 
                             variant="contained" 
                           >

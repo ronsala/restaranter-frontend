@@ -817,3 +817,20 @@ to
 
 Working on user show/edit form. Found that with the labels in the text field, like in SignupForm, they obscure the editable text when in editMode. Switching to InputLabel's.
 
+## Mon Jun 14 11:30:56 EDT 2021
+
+Working on updating a user. Discovered that when I update any part of the state created by useState() the rest disappear. Reading about it at [Hooks FAQ](https://reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables).
+
+I needed to change my syntax. Something like this works:
+
+```javascript
+    setState(state => ({
+      ...state,
+      [e.target.name]: value
+    }))
+```
+
+Now that I'm sending the correct data to the backend, I find I don't have an edit path to send to. Checking [Why does rails resource not generate edit and new paths?](https://stackoverflow.com/questions/53554460/why-does-rails-resource-not-generate-edit-and-new-paths).
+
+I'm rusty on my routing. In a regular Rails app, edit is used to show an edit form. In API-only, I should be able to hit `/api/v1/users/:id` with a PATCH.
+

@@ -4,6 +4,33 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 
+export const editUser = createAsyncThunk(
+	'users/editUser',
+	async (payload) => {
+    console.log('payload:', payload);
+		const user = await fetch(`http://localhost:3000/api/v1/users/${payload.id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ 
+        user: {
+          first_name: payload.first_name, 
+          last_name: payload.last_name, 
+          email: payload.email, 
+          street: payload.street, 
+          city: payload.city,  
+          state: payload.state,  
+          password: payload.password, 
+        }
+      }),
+		})
+    .then((res) => res.json());
+    console.log('user:', user);
+    return user
+  }
+);
+
 export const fetchUser = createAsyncThunk(
   'users/fetchUser', 
   async (userId, { dispatch }) => {
