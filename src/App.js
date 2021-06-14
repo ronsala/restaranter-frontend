@@ -12,6 +12,7 @@ import Home from './components/Home'
 import AppBarMain from './components/AppBarMain';
 import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
+import { NewRestaurant } from './features/restaurants/NewRestaurant';
 import About from './components/About';
 import Proprietors from './components/Proprietors';
 import SignupLogin from './components/SignupLogin'
@@ -38,6 +39,7 @@ export const App = () => {
                   <div className={classes.main}>
                     <Switch>
                       <Route path="/about" component={About} />
+                      <Route path="/newrestaurant" component={NewRestaurant} />
                       <Route path="/proprietors" component={Proprietors} />
                       <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                       <Route path="/restaurants" component={RestaurantsContainer} />

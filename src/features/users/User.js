@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#000',
     textAlign: 'center',
   },
+  addRestaurantButton: {
+    marginTop: '1%',
+    marginBottom: '1%',
+  },
   bottomInset: {
     marginLeft: '10%',
     marginBottom: '1%',
@@ -35,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '6%',
     marginRight: '5%',
     marginBottom: '3%',
+  },
+  desc: {
+    textAlign: 'center',
   },
   field: {
     marginLeft: '5%',
@@ -83,6 +90,10 @@ export const User = (props) => {
     showPassword: false,
     editMode: false,
   });
+
+  const handleAddRestaurantButtonClick = () => {
+    history.push(`/newrestaurant`)
+  }
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -401,6 +412,17 @@ export const User = (props) => {
                 </Paper>
               </AccordionDetails>
             </Accordion>
+            <center>
+              <Button 
+                className={classes.addRestaurantButton} 
+                color="secondary" 
+                onClick={handleAddRestaurantButtonClick}
+                size="large" 
+                variant="contained" 
+              >
+                Run a restaurant? Add it!
+              </Button> 
+            </center>
           </div>
         ) :
         (<div>Loading...</div>)
