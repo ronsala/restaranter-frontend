@@ -13,6 +13,7 @@ import AppBarMain from './components/AppBarMain';
 import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
 import About from './components/About';
+import Proprietors from './components/Proprietors';
 import SignupLogin from './components/SignupLogin'
 import Footer from './components/Footer';
 import { UserContainer } from './features/users/UserContainer';
@@ -37,6 +38,7 @@ export const App = () => {
                   <div className={classes.main}>
                     <Switch>
                       <Route path="/about" component={About} />
+                      <Route path="/proprietors" component={Proprietors} />
                       <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                       <Route path="/restaurants" component={RestaurantsContainer} />
                       <Route path="/signuplogin" component={SignupLogin} />
@@ -44,7 +46,7 @@ export const App = () => {
                       <Route exact path="/" component={Home} />
                     </Switch>
                   </div>
-                 <Footer />
+                <Footer />
               </Grid>
             </Grid>
           </Box>
