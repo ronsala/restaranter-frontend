@@ -69,15 +69,15 @@
     margin: 0;
     min-width: 375;
   }
-  h1 {
+  h1, h2, h3, h4, h5, h6 {
     text-align: center;
   }
   li{
     margin: -0.8rem 0 0 0;
   }
-  .row {
-    display: flex;
-  }
   .column {
     flex: 50%;
+  }
+  .row {
+    display: flex;
   }

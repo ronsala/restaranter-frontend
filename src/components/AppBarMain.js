@@ -41,7 +41,7 @@ export const AppBarMain = () => {
           <Button className={classes.button} color="inherit"component={Link} to={"/about"}>A b o u t</Button>
           <Button className={classes.button} color="inherit"component={Link} to={"/proprietors"}>P r o p r i e t o r s</Button>
           <Button className={classes.button} color="inherit"component={Link} to={"/restaurants"}>P a t r o n s</Button>
-          <Button className={classes.button} color="inherit"component={Link} to={"/login"}>L o g i n</Button>
+          <Button className={classes.button} color="inherit"component={Link} to={"/signuplogin"}>S i g n u p / L o g i n</Button>
         </Toolbar>
       </AppBar>
     </div>

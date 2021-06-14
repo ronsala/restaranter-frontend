@@ -793,3 +793,27 @@ Remove RestaurantCard, &c: Done.
 
 ## Fri Jun 11 11:15:02 EDT 2021
 
+rm OrderItemQuantityBox: Done.
+
+## Sun Jun 13 09:20:46 EDT 2021
+
+Trying the signup form. Getting
+
+``` chrome
+Access to fetch at 'http://localhost:3000/api/v1/users' from origin 'http://localhost:3001' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+```
+
+In the backend, in cors.rb, changed
+
+```ruby
+    # origins 'localhost:3000'
+```
+
+to
+
+```ruby
+    # origins '*'
+```
+
+Working on user show/edit form. Found that with the labels in the text field, like in SignupForm, they obscure the editable text when in editMode. Switching to InputLabel's.
+
