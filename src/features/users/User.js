@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -18,7 +19,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { editUser } from './usersSlice';
+import { deleteUser, editUser } from './usersSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 export const User = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   let buttonMethod;
   let buttonText;
@@ -97,6 +99,12 @@ export const User = (props) => {
       ...state, 
       showPassword: !state.showPassword }));
   };
+
+  const handleDeleteButtonClick = () => {
+    history.push(`/`);
+    alert('User Deleted')
+    dispatch(deleteUser(state))
+  }
 
   const handleEditButtonClick = () => {
     buttonText = 'Submit'
@@ -381,7 +389,7 @@ export const User = (props) => {
                               className={classes.button} 
                               color="primary" 
                               size="large" 
-                              type="submit" 
+                              onClick={handleDeleteButtonClick}
                               variant="contained" 
                             >
                               DELETE
