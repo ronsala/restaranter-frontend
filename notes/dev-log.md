@@ -815,3 +815,5 @@ to
     # origins '*'
 ```
 
+Working on user show/edit form. Found that with the labels in the text field, like in SignupForm, they obscure the editable text when in editMode. Switching to InputLabel's.
+
