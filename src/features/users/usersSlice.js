@@ -4,31 +4,6 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 
-export const signupUser = createAsyncThunk(
-	'users/signupUser',
-	async (payload) => {
-		const user = await fetch(`http://localhost:3000/api/v1/users`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-        user: {
-          first_name: payload.first_name, 
-          last_name: payload.last_name, 
-          email: payload.email, 
-          street: payload.street, 
-          city: payload.city,  
-          state: payload.state,  
-          password: payload.password, 
-        }
-      }),
-		})
-    .then((res) => res.json());
-    return user
-  }
-);
-
 export const deleteUser = createAsyncThunk(
 	'users/deleteUser',
 	async (payload) => {
@@ -75,7 +50,53 @@ export const fetchUser = createAsyncThunk(
     .then((res) => res.json());
     return user
   }
-)
+);
+
+export const loginUser = createAsyncThunk(
+  'users/loginUser',
+  async (payload) => {
+    const user = await fetch(`http://localhost:3000/api/v1/login`, {
+      method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ 
+        user: {
+          email: payload.email, 
+          password: payload.password, 
+        }
+      }),
+    })
+    .then((res) => res.json());
+    console.log('user:', user);
+    return user
+  }
+);
+
+export const signupUser = createAsyncThunk(
+	'users/signupUser',
+	async (payload) => {
+		const user = await fetch(`http://localhost:3000/api/v1/users`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ 
+        user: {
+          first_name: payload.first_name, 
+          last_name: payload.last_name, 
+          email: payload.email, 
+          street: payload.street, 
+          city: payload.city,  
+          state: payload.state,  
+          password: payload.password, 
+        }
+      }),
+		})
+    .then((res) => res.json());
+    return user
+  }
+);
 
 const usersAdapter = createEntityAdapter({
   selectId: (user) => user.id
@@ -125,6 +146,18 @@ export const usersSlice = createSlice({
       usersAdapter.addOne(state, action.payload.data)
     },
     [fetchUser.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    [loginUser.pending]: (state) => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [loginUser.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      usersAdapter.addOne(state, action.payload.data)
+    },
+    [loginUser.rejected]: (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
     },

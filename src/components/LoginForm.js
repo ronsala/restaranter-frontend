@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -11,9 +12,11 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { loginUser } from '../features/users/usersSlice';
 
 export const LoginForm = (props) => {
   const classes = props.classes;
+  const dispatch = useDispatch();
 
   const [state, setState] = useState({
     email: '',
@@ -33,12 +36,9 @@ export const LoginForm = (props) => {
     setState({ ...state, showPassword: !state.showPassword });
   };
 
-  const handleMouseDownPassword = (e) => {
-    e.preventDefault();
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(loginUser(state))
   };
 
   return (
@@ -64,7 +64,7 @@ export const LoginForm = (props) => {
             style = {{width: '90%'}} 
             variant="filled"
           >
-            <InputLabel htmlFor="filled-adornment-password"> Password</InputLabel>
+            <InputLabel htmlFor="login_password"> Password</InputLabel>
             <FilledInput 
               autoComplete="on"
               endAdornment={
@@ -72,7 +72,6 @@ export const LoginForm = (props) => {
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
                   >
                     {state.showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
