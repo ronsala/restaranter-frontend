@@ -834,3 +834,11 @@ Now that I'm sending the correct data to the backend, I find I don't have an edi
 
 I'm rusty on my routing. In a regular Rails app, edit is used to show an edit form. In API-only, I should be able to hit `/api/v1/users/:id` with a PATCH.
 
+## Tue Jun 15 21:20:12 EDT 2021
+
+Setting up /newrestaurant. I can create a new restaurant in the backend and in the store. Next time, will work on setting up where to take the user next, probably to a review page before they take the restaurant live. This will ensure menu, section, item info is in place.
+
+## Wed Jun 16 19:49:03 EDT 2021
+
+Set up routing user to a restaurants/:restaurantId/review page. Next time, will build it out.
+
