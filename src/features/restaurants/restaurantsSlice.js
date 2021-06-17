@@ -22,9 +22,35 @@ export const fetchRestaurant = createAsyncThunk(
   }
 )
 
+export const postRestaurant = createAsyncThunk(
+	'restaurants/postRestaurant',
+	async (payload) => {
+		const restaurant = await fetch(`http://localhost:3000/api/v1/restaurants`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ 
+        restaurant: {
+          name: payload.name, 
+          street: payload.street, 
+          city: payload.city, 
+          state: payload.state,
+          desc: payload.desc, 
+          user_id: payload.user_id, 
+        }
+      }),
+		})
+    .then((res) => res.json());
+console.log('restaurant in postRestaurant:', restaurant);
+    return restaurant
+  }
+);
+
 const restaurantsAdapter = createEntityAdapter({
-  selectId: (restaurant) => restaurant.id
-})
+    selectId: (restaurant) => restaurant.id
+  }
+)
 
 export const restaurantsSlice = createSlice({
   name: 'restaurant',
@@ -57,6 +83,18 @@ export const restaurantsSlice = createSlice({
       restaurantsAdapter.addOne(state, action.payload.data)
     },
     [fetchRestaurant.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    [postRestaurant.pending]: (state) => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [postRestaurant.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      restaurantsAdapter.addOne(state, action.payload.data)
+    },
+    [postRestaurant.rejected]: (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
     },

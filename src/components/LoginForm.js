@@ -47,7 +47,7 @@ export const LoginForm = (props) => {
         <Typography className={classes.header} variant="h2">
           LOG IN
         </Typography>
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <form noValidate autoComplete="on" onSubmit={handleSubmit}>
           <TextField 
             className={classes.field} 
             id="login_email" 

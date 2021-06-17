@@ -52,7 +52,7 @@ export const Restaurant = (props) => {
 }
 
 Restaurant.propTypes = {
-  restaurant: PropTypes.object.isRequired,
+  restaurant: PropTypes.object,
   page: PropTypes.string
 }
 
