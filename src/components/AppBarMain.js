@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import RestaurantMenuIconRounded from '@material-ui/icons/RestaurantMenuRounded';
-import { removeAllUsers } from '../features/users/usersSlice';
+import { deleteCurrentUserId, removeAllUsers, setStatusIdle } from '../features/users/usersSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +37,8 @@ export const AppBarMain = () => {
   const handleLogout = () => {
     history.push(`/`)
     dispatch(removeAllUsers(users))
+    dispatch(deleteCurrentUserId())
+    dispatch(setStatusIdle('idle'))
   }
 
   let button;
@@ -76,7 +78,6 @@ export const AppBarMain = () => {
           <Button className={classes.button} color="inherit"component={Link} to={"/about"}>A b o u t</Button>
           <Button className={classes.button} color="inherit"component={Link} to={"/proprietors"}>P r o p r i e t o r s</Button>
           <Button className={classes.button} color="inherit"component={Link} to={"/restaurants"}>P a t r o n s</Button>
-          {/* <Button className={classes.button} color="inherit"component={Link} to={"/signuplogin"}>S i g n u p / L o g i n</Button> */}
           { button }
         </Toolbar>
       </AppBar>

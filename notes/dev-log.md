@@ -842,3 +842,29 @@ Setting up /newrestaurant. I can create a new restaurant in the backend and in t
 
 Set up routing user to a restaurants/:restaurantId/review page. Next time, will build it out.
 
+## Thu Jun 17 18:56:43 EDT 2021
+
+An interlude before going further. Want to resolve bug where under some condition the AppBarMain Signup/Login button being clicked lands on a faulty URL.
+
+To reproduce:
+
+Log in, log out, click Signup/Login. Path in browser: `http://localhost:3001/users/NaN`. Get
+
+```chrome
+×
+TypeError: Cannot read property 'id' of undefined
+User
+src/features/users/User.js:81
+  78 | let selectOn;
+  79 | 
+  80 | const [state, setState] = useState({
+> 81 |   id: parseInt(props.user.id),
+     | ^  82 |   first_name: props.user.attributes.first_name,
+  83 |   last_name: props.user.attributes.last_name,
+  84 |   email: props.user.attributes.email,
+```
+
+Think it has to do with the useEffect in SignupForm that pushes that path into history. See that when I manually refresh the page the store is set to defaults. After logout, the users status is still 'succeeded'.
+
+To solve it, wrote a reducer to set the status to 'idle' on logout. Wrote another one to get the currentUserId to ''.
+
