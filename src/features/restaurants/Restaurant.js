@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import MenuContainer from '../menus/MenuContainer';
-import OrderItemsContainer from '../orderitems/OrderItemsContainer';
+// import OrderItemsContainer from '../orderitems/OrderItemsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,18 +17,18 @@ const useStyles = makeStyles((theme) => ({
 export const Restaurant = (props) => {
   const classes = useStyles();
   
-  const page = props.page || '';
+  // const menu = (page) => {
+  //   switch (page) {
+  //     case 'menu':
+  //       return <MenuContainer restaurantId={props.restaurant.id}/>
+      // case 'orderitems':
+        // return <OrderItemsContainer restaurantId={props.restaurant.id}/>
+  //     default:
+  //       return <MenuContainer restaurantId={props.restaurant.id}/>
+  //   }
+  // }
 
-  const setPage = (page) => {
-    switch (page) {
-      case 'menu':
-        return <MenuContainer restaurantId={props.restaurant.id}/>
-      case 'orderitems':
-        return <OrderItemsContainer restaurantId={props.restaurant.id}/>
-      default:
-        return <MenuContainer restaurantId={props.restaurant.id}/>
-    }
-  }
+console.log('props in Restaurant:', props);
 
   return (
     <div>
@@ -42,7 +42,7 @@ export const Restaurant = (props) => {
               { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
             </Typography>
             <Divider></Divider>
-            {setPage(page)}
+            <MenuContainer restaurantId={props.restaurant.id} showOrderItems={props.restaurant.attributes.live} />
           </div>
         ) : 
         (<p>Loading...</p>)

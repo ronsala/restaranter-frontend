@@ -723,6 +723,7 @@ vendors~main.chunk.js:83807 Warning: findDOMNode is deprecated in StrictMode. fi
 I get the error only the first time I click an accordion.
 
 After clicking the url in the warning, and trying to fix the issue with passing refs, I searched for the warning along with 'material-ui' and followed the advice at [https://stackoverflow.com/questions/61220424/material-ui-drawer-finddomnode-is-deprecated-in-strictmode](https://stackoverflow.com/questions/61220424/material-ui-drawer-finddomnode-is-deprecated-in-strictmode). Solved.
+
 ## Sun Jun  6 12:11:07 EDT 2021
 
 Working on adding items to an orderpad (`orderitems` array). Trying to deal with multiple quantities.
@@ -867,4 +868,16 @@ src/features/users/User.js:81
 Think it has to do with the useEffect in SignupForm that pushes that path into history. See that when I manually refresh the page the store is set to defaults. After logout, the users status is still 'succeeded'.
 
 To solve it, wrote a reducer to set the status to 'idle' on logout. Wrote another one to get the currentUserId to ''.
+
+## Sat Jun 19 07:32:19 EDT 2021
+
+Trying to decide how the user/component flow should be for restaurant CRUD.
+
+Possibilities:
+
+* NewRestaurant creates, RestaurantReview reads, EditRestaurant updates.
+* One component does all, based on switch/state/props/variables.
+* RestaurantForm creates and updates, Restaurant reads.
+
+Think I'll go with the last. It should look better and be less complex than combining all and without the redundancy of the first.
 

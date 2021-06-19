@@ -9,6 +9,7 @@ export const fetchMenu = createAsyncThunk(
   async (restaurantId) => {
     const menu = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/menus`)
     .then((res) => res.json());
+console.log('menu in menusSlice:', menu);
     return menu
   }
 )
@@ -32,7 +33,11 @@ export const menusSlice = createSlice({
     },
     [fetchMenu.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      menusAdapter.addOne(state, action.payload.data)
+
+      // Avoid an error when restaurant does not yet have a menu.
+      if (action.payload.data) {
+        menusAdapter.addOne(state, action.payload.data)
+      }
     },
     [fetchMenu.rejected]: (state, action) => {
       state.status = 'failed'
