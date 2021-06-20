@@ -881,3 +881,14 @@ Possibilities:
 
 Think I'll go with the last. It should look better and be less complex than combining all and without the redundancy of the first.
 
+## Sun Jun 20 09:14:58 EDT 2021
+
+Yesterday's work on restaurant CRUD continues. Will start today with adding an account button to AppBarMain to facilitate going directly to an account to see user's restaurants.
+
+Have an account button on the app bar that works, except when it's clicked when the user is already on their account page, where I get a doubled path like `users/users/42` instead of `users/42`.
+
+Switched the button to have a `component={Link} to={`users/${currentUserId}`}` instead of a click handler. Giving same behavior on account page.
+
+Ah, needed an initial `/` in `to`. Now works fine.
+
+Want to separate read and update for users like for restaurants. Will develop and manually test restaurants first to make sure everything works.
