@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { postRestaurant } from './restaurantsSlice';
+import { patchRestaurant, postRestaurant } from './restaurantsSlice';
 import { 
   fetchRestaurant, 
   selectRestaurantById, 
@@ -57,15 +57,8 @@ export const RestaurantForm = ({match}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  let { status } = useSelector(state => state.restaurants);
-
-  let restaurantToEdit = useSelector(state => selectRestaurantById(state, restaurantId));
-
-  let newRestaurantIdString = useSelector(state => state.restaurants.ids[state.restaurants.ids.length -1])
-
-  let newRestaurantId = parseInt(newRestaurantIdString)
-
   const userId = parseInt(useSelector(state => state.users.currentUserId));
+  let restaurantToEdit = useSelector(state => selectRestaurantById(state, restaurantId));
 
   useEffect(() => {
     if (!restaurantToEdit && restaurantId) {
@@ -90,16 +83,18 @@ export const RestaurantForm = ({match}) => {
     })
   }
 
+  // setTimeout allows store to be updated before RouteNewRestaurant selects the newRestaurantId to route to.
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postRestaurant(state))
+    if (restaurantToEdit) {
+      dispatch(patchRestaurant(state)) 
+    } else {
+      dispatch(postRestaurant(state))
+      .then(setTimeout(() => {
+        history.push(`/restaurants/route_new`)
+      }, 1000))
+     }
   };
-
-  useEffect(() => {
-    if (status === 'succeeded' && page !== 'edit') {
-      history.push(`/restaurants/${newRestaurantId}`);
-    }
-  }, [history, newRestaurantId, page, status]);
 
   return (
     <div>
