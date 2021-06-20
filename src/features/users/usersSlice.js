@@ -181,6 +181,7 @@ export const usersSlice = createSlice({
     },
     [signupUser.fulfilled]: (state, action) => {
       state.status = 'succeeded'
+      state.currentUserId = action.payload.data.id
       usersAdapter.addOne(state, action.payload.data)
     },
     [signupUser.rejected]: (state, action) => {

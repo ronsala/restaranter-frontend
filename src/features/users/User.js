@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable no-debugger */
+import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -19,7 +20,12 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import UserRestaurantsTable from './UserRestaurantsTable';
 import { deleteUser, editUser } from './usersSlice';
+import { 
+  fetchRestaurants, 
+  selectAllRestaurants, 
+} from '../restaurants/restaurantsSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,6 +82,17 @@ export const User = (props) => {
   let buttonText;
   let displayMode;
   let selectOn;
+
+  let currentUserId = useSelector(state => state.users.currentUserId);
+
+  useEffect(() => {
+    dispatch(fetchRestaurants())
+  }, [dispatch])
+
+  let allRestaurants = useSelector(state => selectAllRestaurants(state));
+
+  let restaurants = allRestaurants
+    .filter(restaurant => restaurant.attributes.user_id === parseInt(currentUserId))
 
   const [state, setState] = useState({
     id: parseInt(props.user.id),
@@ -423,6 +440,7 @@ export const User = (props) => {
                 Run a restaurant? Add it!
               </Button> 
             </center>
+            { restaurants ? <UserRestaurantsTable restaurants={restaurants} /> : <div></div>}
           </div>
         ) :
         (<div>Loading...</div>)
