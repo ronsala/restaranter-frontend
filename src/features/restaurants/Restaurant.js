@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const Restaurant = (props) => {
-console.log('props in Restauant:', props);
   const classes = useStyles();
   const history = useHistory();
   let button = <Button></Button>;
@@ -28,7 +26,6 @@ console.log('props in Restauant:', props);
   const handleEditButtonClick = () => { history.push(`/restaurants/${props.restaurant.id}/edit`)
   }
 
-// debugger
   if (currentUserId && parseInt(currentUserId) === props.restaurant.attributes.user_id) {
     button = 
       <center>

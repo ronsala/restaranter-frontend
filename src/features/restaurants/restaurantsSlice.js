@@ -42,7 +42,6 @@ export const postRestaurant = createAsyncThunk(
       }),
 		})
     .then((res) => res.json());
-console.log('restaurant in postRestaurant:', restaurant);
     return restaurant
   }
 );

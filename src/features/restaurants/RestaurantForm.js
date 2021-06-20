@@ -61,13 +61,9 @@ export const RestaurantForm = ({match}) => {
 
   let restaurantToEdit = useSelector(state => selectRestaurantById(state, restaurantId));
 
-console.log('restaurantToEdit:', restaurantToEdit);
-
   let newRestaurantIdString = useSelector(state => state.restaurants.ids[state.restaurants.ids.length -1])
 
   let newRestaurantId = parseInt(newRestaurantIdString)
-
-console.log('newRestaurantId:', newRestaurantId);
 
   const userId = parseInt(useSelector(state => state.users.currentUserId));
 
@@ -101,9 +97,6 @@ console.log('newRestaurantId:', newRestaurantId);
 
   useEffect(() => {
     if (status === 'succeeded' && page !== 'edit') {
-
-      // eslint-disable-next-line no-debugger
-      // debugger
       history.push(`/restaurants/${newRestaurantId}`);
     }
   }, [history, newRestaurantId, page, status]);

@@ -9,7 +9,7 @@ export const fetchMenu = createAsyncThunk(
   async (restaurantId) => {
     const menu = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/menus`)
     .then((res) => res.json());
-console.log('menu in menusSlice:', menu);
+
     return menu
   }
 )

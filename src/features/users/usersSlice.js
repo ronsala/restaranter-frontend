@@ -68,7 +68,7 @@ export const loginUser = createAsyncThunk(
       }),
     })
     .then((res) => res.json());
-    console.log('user:', user);
+
     return user
   }
 );

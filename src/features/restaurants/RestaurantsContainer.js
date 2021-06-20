@@ -16,12 +16,12 @@ export const RestaurantsContainer = () => {
     dispatch(fetchRestaurants())
   }, [dispatch])
 
-  const restaurants = useSelector(state => selectAllRestaurants(state));
-  let { status, error } = useSelector(state => state.restaurants);
+  let allRestaurants = useSelector(state => selectAllRestaurants(state))
 
-  // const restaurantsList = restaurants.map((restaurant) => {
-  //   return <RestaurantCard key={restaurant.id} name={restaurant.attributes.name} street={restaurant.attributes.street} city={restaurant.attributes.city} state={restaurant.attributes.state} desc={ restaurant.attributes.desc } id={restaurant.id} />
-  // })
+  let liveRestaurants = allRestaurants
+    .filter(restaurant => restaurant.attributes.live === true)
+
+  let { status, error } = useSelector(state => state.restaurants);
 
   switch (status) {
     case 'idle':
@@ -35,7 +35,7 @@ export const RestaurantsContainer = () => {
             Restaurants
           </Typography>
           <Divider></Divider>
-          <RestaurantsTable restaurants={restaurants} />
+          <RestaurantsTable restaurants={liveRestaurants} />
         </div>
       )
     case 'failed':
