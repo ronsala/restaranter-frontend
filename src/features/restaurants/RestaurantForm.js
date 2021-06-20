@@ -57,7 +57,7 @@ export const RestaurantForm = ({match}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userId = parseInt(useSelector(state => state.users.currentUserId));
+  const userId = parseInt(useSelector(state => state.users.ids[0]));
   let restaurantToEdit = useSelector(state => selectRestaurantById(state, restaurantId));
 
   useEffect(() => {
@@ -72,6 +72,7 @@ export const RestaurantForm = ({match}) => {
     city: '' || restaurantToEdit?.attributes.city,
     state: '' || restaurantToEdit?.attributes.state,
     desc: '' || restaurantToEdit?.attributes.desc,
+    restaurant_id: '' || restaurantToEdit?.id, 
     user_id: userId,
   });
 
@@ -83,17 +84,20 @@ export const RestaurantForm = ({match}) => {
     })
   }
 
-  // setTimeout allows store to be updated before RouteNewRestaurant selects the newRestaurantId to route to.
+  // setTimeout gives time for store to be updated before rendering.
   const handleSubmit = (e) => {
     e.preventDefault();
     if (restaurantToEdit) {
       dispatch(patchRestaurant(state)) 
+      setTimeout(() => {
+        history.push(`/restaurants/${restaurantToEdit.id}`)   
+      }, 1000)
     } else {
       dispatch(postRestaurant(state))
       .then(setTimeout(() => {
         history.push(`/restaurants/route_new`)
       }, 1000))
-     }
+    }
   };
 
   return (
