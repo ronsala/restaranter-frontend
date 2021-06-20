@@ -21,7 +21,7 @@ export const Restaurant = (props) => {
   const history = useHistory();
   let button = <Button></Button>;
 
-  let currentUserId = useSelector(state => state.users.currentUserId)
+  let currentUserId = useSelector(state => state.users.ids[0])
 
   const handleEditButtonClick = () => { history.push(`/restaurants/${props.restaurant.id}/edit`)
   }

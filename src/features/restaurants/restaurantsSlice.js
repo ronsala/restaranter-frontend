@@ -25,7 +25,7 @@ export const fetchRestaurant = createAsyncThunk(
 export const patchRestaurant = createAsyncThunk(
 	'restaurants/patchRestaurant',
 	async (payload) => {
-		const restaurant = await fetch(`http://localhost:3000/api/v1/restaurants`, {
+		const restaurant = await fetch(`http://localhost:3000/api/v1/restaurants/${payload.restaurant_id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -84,6 +84,7 @@ export const restaurantsSlice = createSlice({
   reducers: {
     setAllRestaurants: restaurantsAdapter.setAll,
     addOneRestaurant: restaurantsAdapter.addOne,
+    upsertOneRestaurant: restaurantsAdapter.upsertOne, 
   },
   extraReducers: {
     [fetchRestaurants.pending]: (state) => {
@@ -107,6 +108,18 @@ export const restaurantsSlice = createSlice({
       restaurantsAdapter.addOne(state, action.payload.data)
     },
     [fetchRestaurant.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    [patchRestaurant.pending]: (state) => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [patchRestaurant.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      restaurantsAdapter.upsertOne(state, action.payload.data)
+    },
+    [patchRestaurant.rejected]: (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
     },

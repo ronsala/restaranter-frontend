@@ -83,7 +83,7 @@ export const User = (props) => {
   let displayMode;
   let selectOn;
 
-  let currentUserId = useSelector(state => state.users.currentUserId);
+  let currentUserId = useSelector(state => state.users.ids[0]);
 
   useEffect(() => {
     dispatch(fetchRestaurants())

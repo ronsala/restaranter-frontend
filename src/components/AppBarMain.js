@@ -45,8 +45,6 @@ export const AppBarMain = () => {
     dispatch(setStatusIdle('idle'))
   }
 
-console.log('currentUserId:', currentUserId);
-
   if (currentUserId) {
     accountButton = 
       <Button 
