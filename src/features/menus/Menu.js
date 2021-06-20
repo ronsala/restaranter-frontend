@@ -19,10 +19,15 @@ export const Menu = (props) => {
 
   return (
     <div>
+      { props.menu ?
+    (<div>
       <Typography className={classes.menuheader} variant="h3" align="center" >
         MENU
       </Typography>
       <SectionsContainer menu={props.menu} />
+    </div>) :
+  (<div></div>)
+      }
     </div>
   )
 }

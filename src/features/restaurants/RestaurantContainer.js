@@ -8,9 +8,7 @@ import {
 import { Restaurant } from "./Restaurant";
 
 export const RestaurantContainer = ({match}) => {
-  let { restaurantId, page } = match.params
-
-  page = (typeof page === 'undefined') ? 'menu' : page;
+  let { restaurantId } = match.params
 
   const dispatch = useDispatch();
 
@@ -32,7 +30,7 @@ export const RestaurantContainer = ({match}) => {
     case 'succeeded':
       return (
         <div>
-          <Restaurant restaurant={restaurant} page={page} />
+          <Restaurant restaurant={restaurant} />
         </div>
       )
     case 'failed':

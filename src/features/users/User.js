@@ -92,7 +92,7 @@ export const User = (props) => {
   });
 
   const handleAddRestaurantButtonClick = () => {
-    history.push(`/newrestaurant`)
+    history.push(`/restaurants/new`)
   }
 
   const handleChange = (e) => {

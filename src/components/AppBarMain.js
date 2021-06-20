@@ -43,7 +43,9 @@ export const AppBarMain = () => {
 
   let button;
 
-  let currentUserId = useSelector(state => state.users.ids[0]);
+  let currentUserIdString = useSelector(state => state.users.ids[0]);
+
+  let currentUserId = parseInt(currentUserIdString)
 
   if (currentUserId) {
     button = 

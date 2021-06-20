@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import MenuContainer from '../menus/MenuContainer';
-import OrderItemsContainer from '../orderitems/OrderItemsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,19 +18,31 @@ const useStyles = makeStyles((theme) => ({
 
 export const Restaurant = (props) => {
   const classes = useStyles();
-  
-  const page = props.page || '';
+  const history = useHistory();
+  let button = <Button></Button>;
 
-  const setPage = (page) => {
-    switch (page) {
-      case 'menu':
-        return <MenuContainer restaurantId={props.restaurant.id}/>
-      case 'orderitems':
-        return <OrderItemsContainer restaurantId={props.restaurant.id}/>
-      default:
-        return <MenuContainer restaurantId={props.restaurant.id}/>
-    }
+  let currentUserId = useSelector(state => state.users.currentUserId)
+
+  const handleEditButtonClick = () => { history.push(`/restaurants/${props.restaurant.id}/edit`)
   }
+
+  if (currentUserId && parseInt(currentUserId) === props.restaurant.attributes.user_id) {
+    button = 
+      <center>
+        <br></br>
+        <Button 
+          className={classes.button} 
+          color="secondary" 
+          onClick={handleEditButtonClick}
+          size="large" 
+          type="submit" 
+          variant="contained"
+        >
+          Edit Restaurant
+        </Button>
+      </center>
+  }
+  
 
   return (
     <div>
@@ -41,8 +55,10 @@ export const Restaurant = (props) => {
             <Typography className={classes.root} variant="subtitle1">
               { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
             </Typography>
+            { button }
+            <br></br>
             <Divider></Divider>
-            {setPage(page)}
+            <MenuContainer restaurantId={props.restaurant.id} showOrderItems={props.restaurant.attributes.live} />
           </div>
         ) : 
         (<p>Loading...</p>)

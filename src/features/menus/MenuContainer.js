@@ -11,6 +11,7 @@ export const MenuContainer = (props) => {
   const { status, error } = useSelector(state => state.menus)
   const restaurantId = parseInt(props.restaurantId)
   let restaurantMenu;
+  let showOrderItems = props.showOrderItems;
 
   useEffect(() => {
     if (!restaurantMenu) {
@@ -35,9 +36,13 @@ export const MenuContainer = (props) => {
           <Grid item xs={8}>
             <Menu menu={restaurantMenu} />
           </Grid>
-          <Grid item xs={4}> 
-            <OrderItemsContainer />
-          </Grid>
+          { showOrderItems ?
+              (<Grid item xs={4}> 
+                <OrderItemsContainer />
+              </Grid>) :
+              (<div></div>)
+          }
+
         </Grid>
       )
     case 'failed':
@@ -49,6 +54,7 @@ export const MenuContainer = (props) => {
 
 MenuContainer.propTypes = {
   restaurantId: PropTypes.string.isRequired,
+  showOrderItems: PropTypes.bool
 }
 
 export default MenuContainer;

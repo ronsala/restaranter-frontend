@@ -12,11 +12,10 @@ import Home from './components/Home'
 import About from './components/About';
 import AppBarMain from './components/AppBarMain';
 import Footer from './components/Footer';
-import { NewRestaurant } from './features/restaurants/NewRestaurant';
 import Proprietors from './components/Proprietors';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
+import { RestaurantForm } from './features/restaurants/RestaurantForm';
 import { RestaurantsContainer } from './features/restaurants/RestaurantsContainer';
-import RestaurantReview from './features/restaurants/RestaurantReview';
 import SignupLogin from './components/SignupLogin'
 import { UserContainer } from './features/users/UserContainer';
 
@@ -40,9 +39,9 @@ export const App = () => {
                   <div className={classes.main}>
                     <Switch>
                       <Route path="/about" component={About} />
-                      <Route path="/newrestaurant" component={NewRestaurant} />
+                      <Route path="/restaurants/:restaurantId/edit" component={RestaurantForm} />
+                      <Route path="/restaurants/new" component={RestaurantForm} />
                       <Route path="/proprietors" component={Proprietors} />
-                      <Route path="/restaurants/:restaurantId/review" component={RestaurantReview} />
                       <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
                       <Route path="/restaurants" component={RestaurantsContainer} />
                       <Route path="/signuplogin" component={SignupLogin} />

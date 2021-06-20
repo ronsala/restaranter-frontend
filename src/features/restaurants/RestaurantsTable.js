@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,13 +24,18 @@ const useStyles = makeStyles((theme) => ({
 
 export const RestaurantsTable = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  // const handleMenuButtonClick = (props.restaurant.id) => { 
+  //   history.push(`/restaurants/${props.restaurant.id}`)
+  // }
 
   return (
     <TableContainer className={classes.container}>
       <Table aria-label="restaurants table">
         <TableBody>
           {props.restaurants.map((restaurant) => (
-            <TableRow key={restaurant.attributes.name}>
+            <TableRow key={restaurant.id}>
               <TableCell className={classes.root}>
                 <Typography className={classes.name} variant="subtitle1" >
                   {restaurant.attributes.name}
@@ -44,8 +50,18 @@ export const RestaurantsTable = (props) => {
                 </Typography>
               </TableCell>
               <TableCell className={classes.root}>
-                <Button size="large" fullWidth={true} variant="contained" color="secondary" href={`restaurants/${restaurant.id}`}>
-                  menu
+                <Button 
+                  className={classes.button} 
+                  color="secondary" 
+                  onClick={() => { 
+                    history.push(`/restaurants/${restaurant.id}`)
+                    }
+                  }
+                  size="large" 
+                  type="submit" 
+                  variant="contained"
+                >
+                  Menu
                 </Button>
               </TableCell>
             </TableRow>
