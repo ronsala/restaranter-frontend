@@ -49,34 +49,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const RestaurantForm = ({match}) => {
-console.log('match:', match);
   let { restaurantId } = match.params
   let url = match.url
   let dirs = url.split('/')
   let page = dirs[(dirs.length -1)]
-  let submitted = false;
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
 
   let { status } = useSelector(state => state.restaurants);
 
-  let restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
+  let restaurantToEdit = useSelector(state => selectRestaurantById(state, restaurantId));
+
+console.log('restaurantToEdit:', restaurantToEdit);
+
+  let newRestaurantIdString = useSelector(state => state.restaurants.ids[state.restaurants.ids.length -1])
+
+  let newRestaurantId = parseInt(newRestaurantIdString)
+
+console.log('newRestaurantId:', newRestaurantId);
 
   const userId = parseInt(useSelector(state => state.users.currentUserId));
 
   useEffect(() => {
-    if (!restaurant && restaurantId) {
+    if (!restaurantToEdit && restaurantId) {
       dispatch(fetchRestaurant(restaurantId))
     }
-  }, [dispatch, restaurant, restaurantId])
+  }, [dispatch, restaurantToEdit, restaurantId])
 
   const [state, setState] = useState({
-    name: '' || restaurant?.attributes.name,
-    street: '' || restaurant?.attributes.street,
-    city: '' || restaurant?.attributes.city,
-    state: '' || restaurant?.attributes.state,
-    desc: '' || restaurant?.attributes.desc,
+    name: '' || restaurantToEdit?.attributes.name,
+    street: '' || restaurantToEdit?.attributes.street,
+    city: '' || restaurantToEdit?.attributes.city,
+    state: '' || restaurantToEdit?.attributes.state,
+    desc: '' || restaurantToEdit?.attributes.desc,
     user_id: userId,
   });
 
@@ -90,17 +96,17 @@ console.log('match:', match);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitted = true;
     dispatch(postRestaurant(state))
   };
 
-console.log('restaurant:', restaurant);
-
   useEffect(() => {
-    if (status === 'succeeded' && submitted === true) {
-      history.push(`/restaurants/${restaurantId}`);
+    if (status === 'succeeded' && page !== 'edit') {
+
+      // eslint-disable-next-line no-debugger
+      // debugger
+      history.push(`/restaurants/${newRestaurantId}`);
     }
-  }, [history, restaurantId, status, submitted]);
+  }, [history, newRestaurantId, page, status]);
 
   return (
     <div>
