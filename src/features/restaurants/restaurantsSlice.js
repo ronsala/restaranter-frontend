@@ -4,6 +4,21 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 
+export const deleteRestaurant = createAsyncThunk(
+	'restaurants/deleteRestaurant',
+	async (payload) => {
+console.log('payload in deleteRestaurant:', payload);
+		const result = await fetch(`http://localhost:3000/api/v1/restaurants/${payload}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+    .then((res) => res.json());
+    return result
+  }
+);
+
 export const fetchRestaurants = createAsyncThunk(
   'restaurants/fetchRestaurants', 
   async () => {
@@ -87,6 +102,19 @@ export const restaurantsSlice = createSlice({
     upsertOneRestaurant: restaurantsAdapter.upsertOne, 
   },
   extraReducers: {
+    [deleteRestaurant.pending]: (state) => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [deleteRestaurant.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+console.log('action in deleteRestaurant:', action);
+      restaurantsAdapter.removeOne(state, action.payload.data.id)
+    },
+    [deleteRestaurant.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
     [fetchRestaurants.pending]: (state) => {
       state.status = 'loading'
       state.error = null

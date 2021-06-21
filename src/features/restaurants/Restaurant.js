@@ -1,12 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import MenuContainer from '../menus/MenuContainer';
+import { deleteRestaurant } from './restaurantsSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,16 +15,31 @@ const useStyles = makeStyles((theme) => ({
     color: '#000',
     textAlign: 'center',
   },
+  button: {
+    marginLeft: '2%',
+    marginRight: '2%',
+    marginBottom: '2%',
+  },
 }))
 
 export const Restaurant = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
+
   let button = <Button></Button>;
 
   let currentUserId = useSelector(state => state.users.ids[0])
 
   const handleEditButtonClick = () => { history.push(`/restaurants/${props.restaurant.id}/edit`)
+  }
+
+  const handleDeleteButtonClick = () => {
+    alert('Restaurant Deleted')
+console.log('props in handleDeleteButtonClick:', props);
+console.log('props.restaurant:', props.restaurant);
+    dispatch(deleteRestaurant(props.restaurant.id))
+    history.push(`/`);
   }
 
   if (currentUserId && parseInt(currentUserId) === props.restaurant.attributes.user_id) {
@@ -38,7 +54,17 @@ export const Restaurant = (props) => {
           type="submit" 
           variant="contained"
         >
-          Edit Restaurant
+          Edit
+        </Button>
+        <Button 
+          className={classes.button} 
+          color="primary" 
+          onClick={handleDeleteButtonClick}
+          size="large" 
+          type="submit" 
+          variant="contained"
+        >
+          Delete
         </Button>
       </center>
   }
