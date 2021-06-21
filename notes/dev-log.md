@@ -893,3 +893,4 @@ Ah, needed an initial `/` in `to`. Now works fine.
 
 Want to separate read and update for users like for restaurants. Will develop and manually test restaurants first to make sure everything works.
 
+Can CRUD restaurants. Now working on menus.

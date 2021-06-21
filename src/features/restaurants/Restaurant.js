@@ -28,16 +28,20 @@ export const Restaurant = (props) => {
   const history = useHistory();
 
   let button = <Button></Button>;
+  let addMenuButton;
 
   let currentUserId = useSelector(state => state.users.ids[0])
 
-  const handleEditButtonClick = () => { history.push(`/restaurants/${props.restaurant.id}/edit`)
+  const handleAddMenuButtonClick = () => {
+    history.push(`/restaurants/${props.restaurant.id}/menus/new`)
+  }
+
+  const handleEditButtonClick = () => { 
+    history.push(`/restaurants/${props.restaurant.id}/edit`)
   }
 
   const handleDeleteButtonClick = () => {
     alert('Restaurant Deleted')
-console.log('props in handleDeleteButtonClick:', props);
-console.log('props.restaurant:', props.restaurant);
     dispatch(deleteRestaurant(props.restaurant.id))
     history.push(`/`);
   }
@@ -67,6 +71,21 @@ console.log('props.restaurant:', props.restaurant);
           Delete
         </Button>
       </center>
+
+    addMenuButton =
+      <center>
+        <br></br>
+        <Button 
+          className={classes.button} 
+          color="secondary" 
+          onClick={handleAddMenuButtonClick}
+          size="large" 
+          type="submit" 
+          variant="contained"
+        >
+          Add menu
+        </Button>
+      </center>
   }
   
 
@@ -84,6 +103,7 @@ console.log('props.restaurant:', props.restaurant);
             { button }
             <br></br>
             <Divider></Divider>
+            { addMenuButton }
             <MenuContainer restaurantId={props.restaurant.id} showOrderItems={props.restaurant.attributes.live} />
           </div>
         ) : 
