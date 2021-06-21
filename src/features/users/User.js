@@ -94,6 +94,8 @@ export const User = (props) => {
   let restaurants = allRestaurants
     .filter(restaurant => restaurant.attributes.user_id === parseInt(currentUserId))
 
+console.log('restaurants:', restaurants);
+
   const [state, setState] = useState({
     id: parseInt(props.user.id),
     first_name: props.user.attributes.first_name,
@@ -440,7 +442,7 @@ export const User = (props) => {
                 Run a restaurant? Add it!
               </Button> 
             </center>
-            { restaurants ? <UserRestaurantsTable restaurants={restaurants} /> : <div></div>}
+            { (restaurants.length !== 0) ? <UserRestaurantsTable restaurants={restaurants} /> : <div></div>}
           </div>
         ) :
         (<div>Loading...</div>)
