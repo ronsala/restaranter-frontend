@@ -29,21 +29,22 @@ export const fetchMenu = createAsyncThunk(
 )
 
 export const patchMenu = createAsyncThunk(
-	'restaurants/patchRestaurant',
+	'menus/patchMenu',
 	async (payload) => {
+console.log('payload in patchMenu:', payload);
 		const menu = await fetch(`http://localhost:3000/api/v1/menus/${payload.menu_id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ 
-        restaurant: {
+        menu: {
           name: payload.name, 
-          restaurant_id: payload.restaurant_id, 
         }
       }),
 		})
     .then((res) => res.json());
+console.log('menu in patchMenu:', menu);
     return menu
   }
 );

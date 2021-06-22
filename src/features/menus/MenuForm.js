@@ -58,7 +58,7 @@ export const MenuForm = ({match}) => {
   const history = useHistory();
 
   const userId = parseInt(useSelector(state => state.users.ids[0]));
-  let menuToEdit = useSelector(state => selectMenuById(state, match.menuId));
+  let menuToEdit = useSelector(state => selectMenuById(state, match.params.menuId));
 
   useEffect(() => {
     if (!menuToEdit && match.menuId) {
@@ -86,7 +86,7 @@ export const MenuForm = ({match}) => {
     if (menuToEdit) {
       dispatch(patchMenu(state)) 
       setTimeout(() => {
-        history.push(`/menus/${menuToEdit.id}`)   
+        history.push(`/restaurants/${restaurantId}`)   
       }, 1000)
     } else {
       dispatch(postMenu(state))

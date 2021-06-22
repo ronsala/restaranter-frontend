@@ -22,7 +22,7 @@ export const Menu = (props) => {
       { props.menu ?
     (<div>
       <Typography className={classes.menuheader} variant="h3" align="center" >
-        MENU
+        { props.menu.attributes.name }
       </Typography>
       <SectionsContainer menu={props.menu} />
     </div>) :
