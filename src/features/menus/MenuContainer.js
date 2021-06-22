@@ -34,9 +34,9 @@ export const MenuContainer = (props) => {
     .filter(element => typeof element === 'object')
     .find(menu => menu.attributes.restaurant_id === restaurantId);
 
-  // const handleAddSectionButtonClick = () => {
-  //   history.push(`/restaurants/${props.restaurant.id}/menus/${restaurantMenu.id}/sections/new`)
-  // }
+  const handleAddSectionButtonClick = () => {
+    history.push(`/restaurants/${restaurantId}/menus/${restaurantMenu.id}/sections/new`)
+  }
 
   const handleEditButtonClick = () => { 
     history.push(`/restaurants/${restaurantId}/menus/${restaurantMenu.id}/edit`)
@@ -74,7 +74,7 @@ export const MenuContainer = (props) => {
       <Button 
         className={classes.button} 
         color="secondary" 
-        // onClick={handleAddSectionButtonClick}
+        onClick={handleAddSectionButtonClick}
         size="large" 
         type="submit" 
         variant="contained"
