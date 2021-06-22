@@ -27,9 +27,6 @@ export const Restaurant = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  let button = <Button></Button>;
-  let addMenuButton;
-
   let currentUserId = useSelector(state => state.users.ids[0])
 
   const handleAddMenuButtonClick = () => {
@@ -46,8 +43,10 @@ export const Restaurant = (props) => {
     history.push(`/`);
   }
 
+  let buttons;
+
   if (currentUserId && parseInt(currentUserId) === props.restaurant.attributes.user_id) {
-    button = 
+    buttons = 
       <center>
         <br></br>
         <Button 
@@ -70,11 +69,6 @@ export const Restaurant = (props) => {
         >
           Delete
         </Button>
-      </center>
-
-    addMenuButton =
-      <center>
-        <br></br>
         <Button 
           className={classes.button} 
           color="secondary" 
@@ -100,10 +94,9 @@ export const Restaurant = (props) => {
             <Typography className={classes.root} variant="subtitle1">
               { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
             </Typography>
-            { button }
+            { buttons }
             <br></br>
             <Divider></Divider>
-            { addMenuButton }
             <MenuContainer restaurantId={props.restaurant.id} showOrderItems={props.restaurant.attributes.live} />
           </div>
         ) : 

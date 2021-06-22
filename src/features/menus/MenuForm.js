@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const MenuForm = ({match}) => {
-  console.log('match:', match);
   let { restaurantId } = match.params;
   let url = match.url
   let dirs = url.split('/')

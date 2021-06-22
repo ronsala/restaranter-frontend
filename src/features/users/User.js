@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -93,8 +92,6 @@ export const User = (props) => {
 
   let restaurants = allRestaurants
     .filter(restaurant => restaurant.attributes.user_id === parseInt(currentUserId))
-
-console.log('restaurants:', restaurants);
 
   const [state, setState] = useState({
     id: parseInt(props.user.id),

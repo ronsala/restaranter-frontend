@@ -7,7 +7,6 @@ import {
 export const deleteRestaurant = createAsyncThunk(
 	'restaurants/deleteRestaurant',
 	async (payload) => {
-console.log('payload in deleteRestaurant:', payload);
 		const result = await fetch(`http://localhost:3000/api/v1/restaurants/${payload}`, {
 			method: 'DELETE',
 			headers: {
@@ -108,7 +107,6 @@ export const restaurantsSlice = createSlice({
     },
     [deleteRestaurant.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-console.log('action in deleteRestaurant:', action);
       restaurantsAdapter.removeOne(state, action.payload.data.id)
     },
     [deleteRestaurant.rejected]: (state, action) => {
