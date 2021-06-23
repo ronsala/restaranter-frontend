@@ -29,7 +29,7 @@ export const fetchMenu = createAsyncThunk(
 )
 
 export const patchMenu = createAsyncThunk(
-	'restaurants/patchRestaurant',
+	'menus/patchMenu',
 	async (payload) => {
 		const menu = await fetch(`http://localhost:3000/api/v1/menus/${payload.menu_id}`, {
 			method: 'PATCH',
@@ -37,9 +37,8 @@ export const patchMenu = createAsyncThunk(
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ 
-        restaurant: {
+        menu: {
           name: payload.name, 
-          restaurant_id: payload.restaurant_id, 
         }
       }),
 		})
@@ -51,7 +50,6 @@ export const patchMenu = createAsyncThunk(
 export const postMenu = createAsyncThunk(
 	'menus/postMenu',
 	async (payload) => {
-console.log('payload in postMenu:', payload);
 		const menu = await fetch(`http://localhost:3000/api/v1/menus`, {
 			method: 'POST',
 			headers: {
@@ -89,7 +87,6 @@ export const menusSlice = createSlice({
     },
     [deleteMenu.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-console.log('action in deleteRestaurant:', action);
       menusAdapter.removeOne(state, action.payload.data.id)
     },
     [deleteMenu.rejected]: (state, action) => {
