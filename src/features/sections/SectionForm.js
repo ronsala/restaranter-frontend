@@ -64,7 +64,7 @@ export const SectionForm = ({match}) => {
     if (page === 'edit' && !sectionToEdit && match.params.sectionId) {
       dispatch(fetchSections())
     }
-  }, [dispatch, sectionToEdit, match.params.sectionId])
+  }, [dispatch, page, sectionToEdit, match.params.sectionId])
 
   const [state, setState] = useState({
     name: '' || sectionToEdit?.attributes.name,
@@ -86,7 +86,7 @@ export const SectionForm = ({match}) => {
     if (sectionToEdit) {
       dispatch(patchSection(state)) 
       setTimeout(() => {
-        history.push(`/sections/${sectionToEdit.id}`)   
+        history.push(`/restaurants/${restaurantId}`) 
       }, 1000)
     } else {
       dispatch(postSection(state))

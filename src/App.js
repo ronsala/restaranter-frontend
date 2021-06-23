@@ -43,21 +43,21 @@ export const App = () => {
                   <div className={classes.main}>
                     <Switch>
                       <Route path="/about" component={About} />
-                      <Route path="/proprietors" component={Proprietors} />
                       <Route path="/restaurants/:restaurantId/edit" component={RestaurantForm} />
                       <Route path="/restaurants/new" component={RestaurantForm} />
                       <Route path="/restaurants/route_new" component={RouteNewRestaurant} />
-                      <Route path="/restaurants/:restaurantId/menus/:menuId/edit" component={MenuForm} />
+                      <Route path="/proprietors" component={Proprietors} />
                       <Route path="/restaurants/:restaurantId/menus/new" component={MenuForm} />
-                      <Route path="/restaurants/:restaurantId/menus/:menuId/sections/edit" component={SectionForm} />
+                      <Route exact path="/restaurants/:restaurantId" component={RestaurantContainer} />
+                      <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/edit" component={SectionForm} />
                       <Route path="/restaurants/:restaurantId/menus/:menuId/sections/new" component={SectionForm} />
-                      {/* <Route path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/edit" component={ItemForm} /> */}
-                      {/* <Route path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} /> */}
-                      <Route path="/restaurants/:restaurantId" component={RestaurantContainer} />
-                      <Route path="/restaurants" component={RestaurantsContainer} />
+                      <Route exact path="/restaurants" component={RestaurantsContainer} />
                       <Route path="/signuplogin" component={SignupLogin} />
                       <Route path="/users/:userId" component={UserContainer} />
                       <Route exact path="/" component={Home} />
+
+                      {/* <Route path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/edit" component={ItemForm} /> */}
+                      {/* <Route path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} /> */}
                     </Switch>
                   </div>
                 <Footer />
