@@ -41,9 +41,9 @@ export const SectionsContainer = (props) => {
     history.push(`/restaurants/${restaurantId}/menus/${props.menu.attributes.restaurant_id}/sections/${sectionId}/edit`)
   }
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteButtonClick = (sectionId) => {
     alert('Section Deleted')
-    dispatch(deleteSection(section.id))
+    dispatch(deleteSection(sectionId))
     history.push(`/restaurants/${restaurantId}`);
   }
 
@@ -58,7 +58,7 @@ export const SectionsContainer = (props) => {
               { live ?
                   <div></div>
                 :
-                  <Buttons handleEditButton={handleEditButtonClick} sectionId={parseInt(section.id)} />}
+                  <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} sectionId={parseInt(section.id)} />}
             </Grid>
         </Grid>
       </div>

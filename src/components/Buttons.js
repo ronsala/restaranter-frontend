@@ -32,7 +32,7 @@ const Buttons = (props) => {
       <Button 
         className={classes.button} 
         color="primary" 
-        onClick={props.handleDeleteButton}
+        onClick={() => props.handleDeleteButton(props.sectionId)}
         size="large" 
         type="submit" 
         variant="contained"
