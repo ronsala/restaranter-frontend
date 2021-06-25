@@ -47,6 +47,7 @@ export const App = () => {
                       <Route path="/restaurants/new" component={RestaurantForm} />
                       <Route path="/restaurants/route_new" component={RouteNewRestaurant} />
                       <Route path="/proprietors" component={Proprietors} />
+                      <Route path="/restaurants/:restaurantId/menus/:menuId/edit" component={MenuForm} />
                       <Route path="/restaurants/:restaurantId/menus/new" component={MenuForm} />
                       <Route exact path="/restaurants/:restaurantId" component={RestaurantContainer} />
                       <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/edit" component={SectionForm} />

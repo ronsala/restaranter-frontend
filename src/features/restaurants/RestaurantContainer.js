@@ -39,7 +39,7 @@ export const RestaurantContainer = ({match}) => {
     history.push(`/restaurants/${restaurant.id}/edit`)
   }
 
-  const buttons = <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(restaurant.id)} child={'Menu'} />
+  const buttons = <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(restaurant?.id)} child={'Menu'} />
 
   switch (status) {
     case 'idle':

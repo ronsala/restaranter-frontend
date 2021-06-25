@@ -19,7 +19,7 @@ export const Restaurant = (props) => {
             { props.buttons }
             <br></br>
             <Divider></Divider>
-            <MenuContainer restaurantId={props.restaurant.id} showOrderItems={props.restaurant.attributes.live} />
+            <MenuContainer restaurantId={props.restaurant.id} live={props.restaurant.attributes.live} />
           </div>
         ) : 
         (<p>Loading...</p>)

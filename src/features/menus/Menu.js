@@ -19,14 +19,14 @@ export const Menu = (props) => {
 
   return (
     <div>
-      { props.menu ?
-    (<div>
-      <Typography className={classes.menuheader} variant="h3" align="center" >
-        { props.menu.attributes.name }
-      </Typography>
-      <SectionsContainer menu={props.menu} />
-    </div>) :
-  (<div></div>)
+      { props.menu 
+          ? (<div>
+              <Typography className={classes.menuheader} variant="h3" align="center" >
+                { props.menu.attributes.name }
+              </Typography>
+              <SectionsContainer menu={props.menu} />
+            </div>) 
+          : (<div></div>)
       }
     </div>
   )
