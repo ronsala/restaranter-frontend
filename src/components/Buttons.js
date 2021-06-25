@@ -42,7 +42,7 @@ const Buttons = (props) => {
       <Button 
         className={classes.button} 
         color="secondary" 
-        onClick={props.handleAddButton}
+        onClick={() => props.handleAddButton(props.sectionId)}
         size="large" 
         type="submit" 
         variant="contained"

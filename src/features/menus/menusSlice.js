@@ -126,7 +126,6 @@ export const menusSlice = createSlice({
       state.error = null
     },
     [postMenu.fulfilled]: (state, action) => {
-      state.newRestaurantId = action.payload.data.id
       state.status = 'succeeded'
       menusAdapter.addOne(state, action.payload.data)
     },

@@ -33,7 +33,7 @@ export const SectionsContainer = (props) => {
   .filter(element => typeof element === 'object')
   .filter(section => section.attributes.menu_id === menuId);
 
-  const handleAddButtonClick = () => {
+  const handleAddButtonClick = (sectionId) => {
     history.push(`/restaurants/${restaurantId}/menus/${menuId}/sections/${sectionId}/items/new`)
   }
 
@@ -58,7 +58,7 @@ export const SectionsContainer = (props) => {
               { live ?
                   <div></div>
                 :
-                  <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} sectionId={parseInt(section.id)} />}
+                  <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} sectionId={parseInt(section.id)} />}
             </Grid>
         </Grid>
       </div>
