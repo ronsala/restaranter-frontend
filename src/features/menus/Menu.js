@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     backgroundColor: '#000',
   },
-  branch: {
-    minWidth: 375,
-  }
 }));
 
 export const Menu = (props) => {

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap', 
   }, 
   button: {
-    marginLeft: '5%', 
+    marginLeft: '5px', 
   },
 }))
 
