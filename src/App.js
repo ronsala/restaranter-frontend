@@ -12,7 +12,7 @@ import About from './components/About';
 import AppBarMain from './components/AppBarMain';
 import Footer from './components/Footer';
 import Home from './components/Home'
-// import { ItemForm } from './features/items/ItemForm';
+import { ItemForm } from './features/items/ItemForm';
 import { MenuForm } from './features/menus/MenuForm';
 import Proprietors from './components/Proprietors';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
@@ -55,9 +55,8 @@ export const App = () => {
                       <Route path="/signuplogin" component={SignupLogin} />
                       <Route path="/users/:userId" component={UserContainer} />
                       <Route exact path="/" component={Home} />
-
-                      {/* <Route path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/edit" component={ItemForm} /> */}
-                      {/* <Route path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} /> */}
+                      <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/edit" component={ItemForm} />
+                      <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} />
                     </Switch>
                   </div>
                 <Footer />

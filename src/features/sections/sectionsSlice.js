@@ -122,7 +122,6 @@ export const sectionsSlice = createSlice({
       state.error = null
     },
     [postSection.fulfilled]: (state, action) => {
-      state.newRestaurantId = action.payload.data.id
       state.status = 'succeeded'
       sectionsAdapter.addOne(state, action.payload.data)
     },
