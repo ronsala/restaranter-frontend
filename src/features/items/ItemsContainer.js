@@ -1,23 +1,35 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes, { array } from 'prop-types';
-import ItemsTable from "./ItemsTable";
+import { useHistory } from 'react-router-dom';
+import ItemsTable from './ItemsTable';
+import { deleteItem } from './itemsSlice'
 
 export const ItemsContainer = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const menuId = props.menu_id
+  const restaurantId = props.restaurant_id
+  const sectionId = parseInt(props.section?.id)
+
+  const handleEditButtonClick = (itemId) => { 
+    history.push(`/restaurants/${restaurantId}/menus/${menuId}/sections/${sectionId}/items/${itemId}/edit`)
+  }
+
+  const handleDeleteButtonClick = (itemId) => {
+    alert('Item Deleted')
+    dispatch(deleteItem(itemId))
+    history.push(`/restaurants/${restaurantId}`);
+  }
+
   const { status, error } = useSelector(state => state.items);
 
-  const sectionId = parseInt(props.section?.id);
 
-  // let orderitems = props.items;
-  
-  // let freshItems = Object
   let items = Object
   .entries(useSelector((state) => state.items.entities))
   .flat()
   .filter(element => typeof element === 'object')
   .filter(item => item.attributes.section_id === sectionId);
-
-  // const items = (orderitems.length !== 0) ? orderitems : freshItems
 
   // Sort the items by name.
   items.sort((a, b) => {
@@ -35,7 +47,7 @@ export const ItemsContainer = (props) => {
       return (<div>Loading...</div>)
     case 'succeeded':
       return (
-          <ItemsTable items={items}/>
+        <ItemsTable handleDeleteButtonClick={handleDeleteButtonClick} handleEditButtonClick={handleEditButtonClick} items={items} live={props.live} />
       )
     case 'failed':
       return (<div>{error}</div>)
@@ -45,10 +57,11 @@ export const ItemsContainer = (props) => {
 }
 
 ItemsContainer.propTypes = {
-  section: PropTypes.object.isRequired,
-  restaurant_id: PropTypes.number.isRequired,
-  menu_id: PropTypes.number.isRequired,
   items: array,
+  live: PropTypes.bool, 
+  menu_id: PropTypes.number.isRequired,
+  restaurant_id: PropTypes.number.isRequired,
+  section: PropTypes.object.isRequired,
 };
 
 export default ItemsContainer;

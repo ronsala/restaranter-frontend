@@ -64,7 +64,14 @@ export const SectionsContainer = (props) => {
       <div key={section.id} className={classes.root} style={{width: '109.25%'}}>
         <Grid container spacing={3}>
             <Grid item xs={11}>
-              <SectionAccordion square={true} key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
+              <SectionAccordion 
+                key={section.id} 
+                live={live} 
+                menuId={menuId} 
+                restaurant_id={restaurantId} 
+                section={section} 
+                square={true} 
+              />
             </Grid>
             <Grid item xs={1}> 
               { live 

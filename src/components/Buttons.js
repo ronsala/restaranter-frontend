@@ -39,16 +39,19 @@ const Buttons = (props) => {
       >
         Delete
       </Button>
-      <Button 
-        className={classes.button} 
-        color="secondary" 
-        onClick={() => props.handleAddButton(props.modelId)}
-        size="large" 
-        type="submit" 
-        variant="contained"
-      >
-        Add { props.child }
-      </Button>
+      { props.child 
+          ? (<Button 
+              className={classes.button} 
+              color="secondary" 
+              onClick={() => props.handleAddButton(props.modelId)}
+              size="large" 
+              type="submit" 
+              variant="contained"
+            >
+              Add { props.child }
+            </Button>)
+          : (<div></div>)
+      }
     </center>
   )
 }
