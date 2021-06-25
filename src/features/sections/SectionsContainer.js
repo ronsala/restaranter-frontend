@@ -58,7 +58,7 @@ export const SectionsContainer = (props) => {
               { live ?
                   <div></div>
                 :
-                  <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} sectionId={parseInt(section.id)} />}
+                  <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(section.id)} child={'Item'} />}
             </Grid>
         </Grid>
       </div>

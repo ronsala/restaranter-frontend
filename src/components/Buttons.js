@@ -22,7 +22,7 @@ const Buttons = (props) => {
       <Button 
         className={classes.button} 
         color="secondary" 
-        onClick={() => props.handleEditButton(props.sectionId)}
+        onClick={() => props.handleEditButton(props.modelId)}
         size="large" 
         type="submit" 
         variant="contained"
@@ -32,7 +32,7 @@ const Buttons = (props) => {
       <Button 
         className={classes.button} 
         color="primary" 
-        onClick={() => props.handleDeleteButton(props.sectionId)}
+        onClick={() => props.handleDeleteButton(props.modelId)}
         size="large" 
         type="submit" 
         variant="contained"
@@ -42,12 +42,12 @@ const Buttons = (props) => {
       <Button 
         className={classes.button} 
         color="secondary" 
-        onClick={() => props.handleAddButton(props.sectionId)}
+        onClick={() => props.handleAddButton(props.modelId)}
         size="large" 
         type="submit" 
         variant="contained"
       >
-        Add item
+        Add { props.child }
       </Button>
     </center>
   )
@@ -57,7 +57,8 @@ Buttons.propTypes = {
   handleAddButton: PropTypes.func, 
   handleDeleteButton: PropTypes.func, 
   handleEditButton: PropTypes.func, 
-  sectionId: PropTypes.number, 
+  modelId: PropTypes.number, 
+  child: PropTypes.string, 
 }
 
 export default Buttons;
