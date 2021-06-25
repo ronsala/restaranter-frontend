@@ -899,3 +899,15 @@ Can CRUD restaurants. Now working on menus.
 
 Can do all CRUD in restaurant/menu/section/item creation now except updating and deleting items. About to work on coherent way of letting components know if the restaurant is live or not for their rendering and allowing user to take it live. Thinking of the Container-Branch-View pattern for this. Looking at [Simple React Patterns](https://lucasmreis.github.io/blog/simple-react-patterns/).
 
+              // ? <Restaurant restaurant={restaurant} />
+              // : (<div>
+              //     <Grid style={{ padding: 10 }} container spacing={5}>
+              //       <Grid item xs={8}>
+              //         <Restaurant restaurant={restaurant} />
+              //       </Grid>
+              //       <Grid item xs={4}>
+              //         <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(restaurant.id)} child={'Menu'} />
+              //       </Grid>
+              //     </Grid>
+              //   </div>)
+              ? 
