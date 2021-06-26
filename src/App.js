@@ -56,7 +56,7 @@ export const App = () => {
                       <Route path="/signuplogin" component={SignupLogin} />
                       <Route path="/users/:userId" component={UserContainer} />
                       <Route exact path="/" component={Home} />
-                      <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/edit" component={ItemForm} />
+                      <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/:itemId/edit" component={ItemForm} />
                       <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} />
                     </Switch>
                   </div>
