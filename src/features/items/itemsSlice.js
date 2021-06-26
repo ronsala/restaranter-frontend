@@ -30,7 +30,6 @@ export const fetchItems = createAsyncThunk(
 export const patchItem = createAsyncThunk(
 	'items/patchItem',
 	async (payload) => {
-console.log('payload in patchItems:', payload);
 		const item = await fetch(`http://localhost:3000/api/v1/items/${payload.item_id}`, {
 			method: 'PATCH',
 			headers: {

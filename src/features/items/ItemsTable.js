@@ -52,20 +52,20 @@ export const ItemsTable = (props) => {
                   align="right">
                     {formatCurrency(item.attributes.price)}
                 </TableCell>
-                { live 
-                    ? (<TableCell 
-                        align="right"
-                      >
-                        <QuantityBox 
+                <TableCell
+                  align="right"
+                >
+                  { live 
+                    ? (<QuantityBox 
                           item={item} 
-                        />
-                      </TableCell>)
+                        />)
                     : (<Buttons 
                         handleDeleteButton={props.handleDeleteButtonClick} 
                         handleEditButton={props.handleEditButtonClick} 
                         modelId={parseInt(item.id)} 
                       />)
-                }
+                  }
+                </TableCell>)
               </TableRow>
         ))}
         </TableBody>
