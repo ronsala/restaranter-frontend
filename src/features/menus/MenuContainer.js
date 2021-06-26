@@ -56,7 +56,7 @@ export const MenuContainer = (props) => {
           </Grid>
           { props.live 
               ? (<Grid item xs={4}> 
-                  <OrderItemsContainer />
+                  <OrderItemsContainer restaurantId={restaurantId} />
                 </Grid>) 
               : restaurantMenu 
                 ? <div>

@@ -1,28 +1,34 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchOrders } from './ordersSlice';
-import OrdersTable from "./OrdersTable";
+/* eslint-disable no-debugger */
+// import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes, { array } from 'prop-types';
+// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+// import { fetchOrders } from './ordersSlice';
+// import OrdersTable from "./OrdersTable";
 
-export const OrdersContainer = (props) => {
-  const dispatch = useDispatch();
+export const OrdersContainer = ({match}) => {
+  // debugger
+  let url = match.url
+  // const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.orders);
-  const sectionId = parseInt(props.section?.id)
 
-  useEffect(() => {
-    if (props && props.section) {
-      dispatch(fetchOrders({restaurantId: props.restaurant_id, menuId: props.menu_id, sectionId: sectionId}))
-    }
-  }, [dispatch, props, sectionId])
+  // useEffect(() => {
+  //   if (props && props.section) {
+  //     dispatch(fetchOrders({restaurantId: props.restaurant_id, menuId: props.menu_id, sectionId: sectionId}))
+  //   }
+  // }, [dispatch, props, sectionId])
 
-  const orders = Object
-  .entries(useSelector((state) => state.orders.entities))
-  .flat()
-  .filter(element => typeof element === 'object')
-  .filter(order => order.attributes.section_id === sectionId);
+  // const orders = Object
+  // .entries(useSelector((state) => state.orders.entities))
+  // .flat()
+  // .filter(element => typeof element === 'object')
+  // .filter(order => order.attributes.restaurant_id === restaurantId);
 
   // const ordersList = orders.map((order) => {
   //   return <OrderCard key={order.id} name={order.attributes.name} price={order.attributes.price} desc={order.attributes.desc} id={order.id} />
   // })
+/* <OrdersTable orders={orders}/>  */
 
   switch (status) {
     case 'idle':
@@ -31,13 +37,25 @@ export const OrdersContainer = (props) => {
       return (<div>Loading...</div>)
     case 'succeeded':
       return (
-          <OrdersTable orders={orders}/>
+        <div>
+          OrdersContainer
+          { url === '/your_order'
+              ? <div>Your Order</div>
+              : <div>not it</div>
+          }
+        </div>
       )
     case 'failed':
       return (<div>{error}</div>)
     default:
       return (<div>Unknown error</div>)
   }
+}
+
+OrdersContainer.propTypes = {
+  orders: array, 
+  match: PropTypes.object.isRequired,
+  // orders.map: PropTypes.array, 
 }
 
 export default OrdersContainer;

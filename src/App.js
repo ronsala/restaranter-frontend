@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import Home from './components/Home'
 import { ItemForm } from './features/items/ItemForm';
 import { MenuForm } from './features/menus/MenuForm';
+import { OrdersContainer } from './features/orders/OrdersContainer';
 import Proprietors from './components/Proprietors';
 import { RestaurantContainer } from './features/restaurants/RestaurantContainer';
 import { RestaurantForm } from './features/restaurants/RestaurantForm';
@@ -58,6 +59,9 @@ export const App = () => {
                       <Route exact path="/" component={Home} />
                       <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/:itemId/edit" component={ItemForm} />
                       <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} />
+                      <Route path="restaurants/:restaurantId/orders" component={OrdersContainer} />
+                      <Route path="/orders/:orderId" component={OrdersContainer} />
+                      <Route path="/your_order" component={OrdersContainer} />
                     </Switch>
                   </div>
                 <Footer />
