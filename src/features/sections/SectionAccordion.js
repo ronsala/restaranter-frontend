@@ -42,12 +42,18 @@ export const SectionAccordion = (props) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography variant="h3">
+          <Typography variant="h4">
             { props.section.attributes.name }
           </Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.root}>
-          <ItemsContainer className={classes.branch} section={props.section} restaurant_id={props.restaurant_id} menu_id={props.menuId} />
+          <ItemsContainer 
+            className={classes.branch} 
+            live={props.live} 
+            menu_id={props.menuId} 
+            restaurant_id={props.restaurant_id} 
+            section={props.section}
+          />
         </AccordionDetails>
       </Accordion>
       <Divider className={classes.root}></Divider>
@@ -56,11 +62,12 @@ export const SectionAccordion = (props) => {
 }
 
 SectionAccordion.propTypes = {
-  section: PropTypes.object.isRequired,
-  restaurant_id: PropTypes.number.isRequired,
-  menuId: PropTypes.number.isRequired,
+  live: PropTypes.bool, 
   menu_id: PropTypes.object,
-  square: PropTypes.bool
+  menuId: PropTypes.number.isRequired,
+  restaurant_id: PropTypes.number.isRequired,
+  section: PropTypes.object.isRequired,
+  square: PropTypes.bool, 
 }
 
 export default SectionAccordion;

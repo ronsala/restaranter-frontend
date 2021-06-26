@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     backgroundColor: '#000',
   },
-  branch: {
-    minWidth: 375,
-  }
 }));
 
 export const Menu = (props) => {
@@ -19,14 +16,14 @@ export const Menu = (props) => {
 
   return (
     <div>
-      { props.menu ?
-    (<div>
-      <Typography className={classes.menuheader} variant="h3" align="center" >
-        { props.menu.attributes.name }
-      </Typography>
-      <SectionsContainer menu={props.menu} />
-    </div>) :
-  (<div></div>)
+      { props.menu 
+          ? (<div>
+              <Typography className={classes.menuheader} variant="h3" align="center" >
+                { props.menu.attributes.name }
+              </Typography>
+              <SectionsContainer menu={props.menu} />
+            </div>) 
+          : (<div></div>)
       }
     </div>
   )

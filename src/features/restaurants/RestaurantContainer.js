@@ -1,26 +1,45 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Buttons from '../../components/Buttons';
 import { 
+  deleteRestaurant, 
   fetchRestaurant, 
   selectRestaurantById, 
 } from './restaurantsSlice';
 import { Restaurant } from "./Restaurant";
 
 export const RestaurantContainer = ({match}) => {
-  let { restaurantId } = match.params
-
+  const currentUserId = useSelector(state => state.users.ids[0])
   const dispatch = useDispatch();
-
-  let restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
-  
-  let { status, error } = useSelector(state => state.restaurants);
+  const history = useHistory();
+  const { restaurantId } = match.params
+  const restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
+  const live = restaurant?.attributes.live;
+  const { status, error } = useSelector(state => state.restaurants);
 
   useEffect(() => {
     if (!restaurant) {
       dispatch(fetchRestaurant(restaurantId))
     }
   }, [dispatch, restaurant, restaurantId])
+
+  const handleAddButtonClick = () => {
+    history.push(`/restaurants/${restaurant.id}/menus/new`)
+  }
+
+  const handleDeleteButtonClick = () => {
+    alert('Restaurant Deleted')
+    dispatch(deleteRestaurant(restaurant.id))
+    history.push(`/`);
+  }
+
+  const handleEditButtonClick = () => { 
+    history.push(`/restaurants/${restaurant.id}/edit`)
+  }
+
+  const buttons = <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(restaurant?.id)} child={'Menu'} />
 
   switch (status) {
     case 'idle':
@@ -30,7 +49,12 @@ export const RestaurantContainer = ({match}) => {
     case 'succeeded':
       return (
         <div>
-          <Restaurant restaurant={restaurant} />
+          { parseInt(currentUserId) === restaurant.attributes.user_id
+              ? <Restaurant restaurant={restaurant} buttons={buttons} />
+              : live
+                  ? <Restaurant restaurant={restaurant} /> 
+                  : <div>Restaurant not found.</div>
+          }
         </div>
       )
     case 'failed':

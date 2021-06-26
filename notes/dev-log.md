@@ -894,3 +894,10 @@ Ah, needed an initial `/` in `to`. Now works fine.
 Want to separate read and update for users like for restaurants. Will develop and manually test restaurants first to make sure everything works.
 
 Can CRUD restaurants. Now working on menus.
+
+## Fri Jun 25 10:03:23 EDT 2021
+
+Can do all CRUD in restaurant/menu/section/item creation now except updating and deleting items. About to work on coherent way of letting components know if the restaurant is live or not for their rendering and allowing user to take it live. Thinking of the Container-Branch-View pattern for this. Looking at [Simple React Patterns](https://lucasmreis.github.io/blog/simple-react-patterns/).
+
+Tried Container-Branch-View but it seemed like a 5th wheel for this simple use case. Wasn't difficult to just pass the 'live' prop down. Now can do all CRUD for a restaurant and its children except dealing with an order.
+

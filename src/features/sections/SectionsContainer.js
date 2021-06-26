@@ -9,8 +9,20 @@ import Buttons from '../../components/Buttons';
 import { deleteSection, fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
 import { selectRestaurantById } from '../restaurants/restaurantsSlice';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // whiteSpace: 'nowrap', 
+    
+  }, 
+  button: {
+    // marginLeft: '5%', 
+  },
+}))
 
 export const SectionsContainer = (props) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const { status, error } = useSelector(state => state.sections)
@@ -49,16 +61,22 @@ export const SectionsContainer = (props) => {
 
   const sectionsList = sections.map((section) => {
     return (
-      <div key={section.id}>
-        <Grid style={{ padding: 10 }} container spacing={5}>
+      <div key={section.id} className={classes.root} style={{width: '109.25%'}}>
+        <Grid container spacing={3}>
             <Grid item xs={11}>
-                <SectionAccordion square={true} key={section.id} restaurant_id={restaurantId} menuId={menuId} section={section} />
+              <SectionAccordion 
+                key={section.id} 
+                live={live} 
+                menuId={menuId} 
+                restaurant_id={restaurantId} 
+                section={section} 
+                square={true} 
+              />
             </Grid>
             <Grid item xs={1}> 
-              { live ?
-                  <div></div>
-                :
-                  <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} sectionId={parseInt(section.id)} />}
+              { live 
+                  ? <div></div>
+                  : <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(section.id)} child={'Item'} />}
             </Grid>
         </Grid>
       </div>
