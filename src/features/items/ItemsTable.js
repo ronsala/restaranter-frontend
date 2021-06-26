@@ -56,16 +56,16 @@ export const ItemsTable = (props) => {
                   align="right"
                 >
                   { live 
-                    ? (<QuantityBox 
+                    ? <QuantityBox 
                           item={item} 
-                        />)
-                    : (<Buttons 
+                        />
+                    : <Buttons 
                         handleDeleteButton={props.handleDeleteButtonClick} 
                         handleEditButton={props.handleEditButtonClick} 
                         modelId={parseInt(item.id)} 
-                      />)
+                      />
                   }
-                </TableCell>)
+                </TableCell>
               </TableRow>
         ))}
         </TableBody>
