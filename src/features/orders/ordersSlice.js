@@ -25,6 +25,7 @@ export const fetchOrders = createAsyncThunk(
 export const postOrder = createAsyncThunk(
 	'orders/postOrder',
 	async (payload) => {
+console.log('payload in postOrder:', payload);
 		const order = await fetch(`http://localhost:3000/api/v1/orders`, {
 			method: 'POST',
 			headers: {
@@ -32,9 +33,9 @@ export const postOrder = createAsyncThunk(
 			},
 			body: JSON.stringify({ 
         order: {
-          order_type: payload.order_type, 
-          restaurant_id: payload.restaurant_id, 
-          total: payload.total, 
+          order_type: payload.state.order_type, 
+          restaurant_id: payload.state.restaurant_id, 
+          order_items: payload.order_items, 
         }
       }),
 		})

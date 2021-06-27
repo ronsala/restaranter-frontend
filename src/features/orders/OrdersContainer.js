@@ -5,12 +5,19 @@ import PropTypes, { array } from 'prop-types';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 // import { fetchOrders } from './ordersSlice';
+import { selectOrderById, selectOrderIds } from './ordersSlice'
 // import OrdersTable from "./OrdersTable";
 
 export const OrdersContainer = ({match}) => {
   // debugger
   let url = match.url
   // const dispatch = useDispatch();
+  const orderIds = useSelector(state => selectOrderIds(state))
+
+  const newOrderId = parseInt(orderIds[orderIds.length - 1])
+
+  const newOrder = useSelector(state => selectOrderById(state, newOrderId))
+
   const { status, error } = useSelector(state => state.orders);
 
   // useEffect(() => {
@@ -40,7 +47,13 @@ export const OrdersContainer = ({match}) => {
         <div>
           OrdersContainer
           { url === '/your_order'
-              ? <div>Your Order</div>
+              ? <div>
+                  <p>Your Order</p>
+                  <p>Order Id: { newOrder.id }</p>
+                  <p>Order Type: { newOrder.attributes.order_type }</p>
+                  <p>Item 1 ID: { newOrder.attributes.order_items[0].id }</p>
+                  <p>Item 1 Name: { newOrder.attributes.order_items[0].attributes.name } x { newOrder.attributes.order_items[0].count } </p>
+                </div>
               : <div>not it</div>
           }
         </div>

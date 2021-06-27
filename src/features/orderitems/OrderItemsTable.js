@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import uuid from 'uuid';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
@@ -20,7 +19,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../helpers';
 import { postOrder } from '../orders/ordersSlice';
-import { postOrderitem } from './orderitemsSlice';
 
 // const date = new Date();
 // const mm = date.getMonth();
@@ -47,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const OrderItemsTable= (props) => {
+console.log('props in OrderItemsTable:', props);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -55,11 +54,9 @@ export const OrderItemsTable= (props) => {
 
   const [state, setState] = useState({
     order_type: 'dine in', 
-    // orderitems: props.orderitems, 
     proceed: false, 
     restaurant_id: props.restaurantId, 
-    total: total, 
-    // uuid: uuid(), 
+    // order_items: props.orderitems, 
   });
 
   const handleChange = (e) => {
@@ -70,12 +67,10 @@ export const OrderItemsTable= (props) => {
     })
   }
 
+console.log('state in body of OrderItemsTable:', state);
   const handleCheckoutButtonClick = () => {
-    dispatch(postOrder(state))
-    props.orderitems.map(orderitem => {
-      console.log('orderitem in handleCheckoutButtonClick:', orderitem);
-      dispatch(postOrderitem(orderitem))    
-    })
+console.log('state in handleCheckoutButtonClick:', state);
+    dispatch(postOrder({state: state, order_items: props.orderitems}))
     history.push(`/your_order`)
   }
 
