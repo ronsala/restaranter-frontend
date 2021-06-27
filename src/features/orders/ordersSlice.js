@@ -15,7 +15,7 @@ export const fetchOrder = createAsyncThunk(
 
 export const fetchOrders = createAsyncThunk(
   'orders/fetchOrders', 
-  async ({restaurantId, menuId, sectionId}) => {
+  async ({restaurantId}) => {
     const orders = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/orders`)
     .then((res) => res.json());
     return orders

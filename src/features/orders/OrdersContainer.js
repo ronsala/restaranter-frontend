@@ -1,18 +1,25 @@
 /* eslint-disable no-debugger */
-// import React, { useEffect } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes, { array } from 'prop-types';
-// import { useSelector, useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-// import { fetchOrders } from './ordersSlice';
-import { selectOrderById, selectOrderIds } from './ordersSlice'
-// import OrdersTable from "./OrdersTable";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectOrderById, selectOrderIds, fetchOrders } from './ordersSlice'
+import OrdersTable from "./OrdersTable";
 import { Order } from './Order';
 import { selectRestaurantById } from '../restaurants/restaurantsSlice';
 
 export const OrdersContainer = ({match}) => {
-  // debugger
+  console.log('match in OrdersContainer:', match);
+  const dispatch = useDispatch();
+  let path = match.path
   let url = match.url
+  console.log('url in OrdersContainer:', url);
+
+  // let dirs = url.split('/')
+  // console.log('dirs in OrdersContainer:', match);
+
+  // let id = dirs[1]
+  // console.log('id in OrdersContainer:', match);
+
   // const dispatch = useDispatch();
   const orderIds = useSelector(state => selectOrderIds(state))
 
@@ -23,6 +30,18 @@ export const OrdersContainer = ({match}) => {
   const { status, error } = useSelector(state => state.orders);
 
   const newOrderRestaurant = useSelector(state => selectRestaurantById(state, newOrder?.attributes.restaurant_id))
+
+  useEffect(() => {
+    dispatch(fetchOrders(match.params.restaurantId))
+  }, [match, dispatch])
+
+  const restaurantOrders = Object
+    .entries(useSelector((state) => state.orders.entities))
+    .flat()
+    .filter(element => typeof element === 'object')
+    .filter(order => order.attributes.restaurant_id === parseInt(match.params.restaurantId));
+
+  // console.log('restaurantOrders in OrdersContainer:', restaurantOrders);
 
   // useEffect(() => {
   //   if (props && props.section) {
@@ -41,22 +60,30 @@ export const OrdersContainer = ({match}) => {
   // })
 /* <OrdersTable orders={orders}/>  */
 
+    // case 'succeeded':
+    //   switch (path) {
+    //     case '/your_order':
+    //       return (<Order order={ newOrder } restaurant={newOrderRestaurant} />);
+    //     case '/restaurants/:restaurantId/orders':
+    //       return (<OrdersTable orders={restaurantOrders} />);
+    //   }
+
   switch (status) {
     case 'idle':
       return null;
     case 'loading':
       return (<div>Loading...</div>)
     case 'succeeded':
-      return (
-        <div>
-          { url === '/your_order'
-            ? <div>
-                <Order order={ newOrder } restaurant={newOrderRestaurant} />
-              </div>
-            : <div>Loading...</div>
-          }
-        </div>
-      )
+      switch (path) {
+        case '/your_order':
+          return (<Order order={ newOrder } restaurant={newOrderRestaurant} />);
+        case '/restaurants/:restaurantId/orders':
+          return (<OrdersTable orders={restaurantOrders} />);
+        case '/orders/:orderId':
+          return (<Order />)
+        default:
+          return (<div>Unknown error</div>)
+      }
     case 'failed':
       return (<div>{error}</div>)
     default:

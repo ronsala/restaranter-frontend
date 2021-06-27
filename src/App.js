@@ -43,6 +43,7 @@ export const App = () => {
                 <AppBarMain />
                   <div className={classes.main}>
                     <Switch>
+                      <Route path="/restaurants/:restaurantId/orders" component={OrdersContainer} />
                       <Route path="/about" component={About} />
                       <Route path="/restaurants/:restaurantId/edit" component={RestaurantForm} />
                       <Route path="/restaurants/new" component={RestaurantForm} />
@@ -59,7 +60,6 @@ export const App = () => {
                       <Route exact path="/" component={Home} />
                       <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/:itemId/edit" component={ItemForm} />
                       <Route exact path="/restaurants/:restaurantId/menus/:menuId/sections/:sectionId/items/new" component={ItemForm} />
-                      <Route path="restaurants/:restaurantId/orders" component={OrdersContainer} />
                       <Route path="/orders/:orderId" component={OrdersContainer} />
                       <Route path="/your_order" component={OrdersContainer} />
                     </Switch>
