@@ -8,12 +8,14 @@ import { fetchMenu } from './menusSlice';
 import { Menu } from "./Menu";
 import { deleteMenu } from './menusSlice'
 import OrderItemsContainer from '../orderitems/OrderItemsContainer';
+// import { selectRestaurantById } from '../restaurants/restaurantsSlice';
 
 export const MenuContainer = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { status, error } = useSelector(state => state.menus)
   const restaurantId = parseInt(props.restaurantId)
+  // const restaurant = useSelector(state => selectRestaurantById(state, restaurantId))
 
   let restaurantMenu = Object
     .entries(useSelector((state) => state.menus.entities))
@@ -52,9 +54,9 @@ export const MenuContainer = (props) => {
       return (
         <Grid style={{ padding: 10 }} container spacing={5}>
           <Grid item xs={8}>
-            <Menu menu={restaurantMenu} />
+            <Menu menu={restaurantMenu} live={props.live} proprietorView={props.proprietorView} />
           </Grid>
-          { props.live 
+          { props.live && !props.proprietorView
               ? (<Grid item xs={4}> 
                   <OrderItemsContainer restaurantId={restaurantId} />
                 </Grid>) 
@@ -76,6 +78,7 @@ export const MenuContainer = (props) => {
 MenuContainer.propTypes = {
   live: PropTypes.bool, 
   restaurantId: PropTypes.string.isRequired,
+  proprietorView: PropTypes.bool,
 }
 
 export default MenuContainer;

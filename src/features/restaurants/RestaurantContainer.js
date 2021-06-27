@@ -16,7 +16,7 @@ export const RestaurantContainer = ({match}) => {
   const history = useHistory();
   const { restaurantId } = match.params
   const restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
-  const live = restaurant?.attributes.live;
+  // const live = restaurant?.attributes.live;
   const { status, error } = useSelector(state => state.restaurants);
 
   useEffect(() => {
@@ -41,6 +41,12 @@ export const RestaurantContainer = ({match}) => {
 
   const buttons = <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(restaurant?.id)} child={'Menu'} />
 
+  let proprietorView = false
+
+  if (parseInt(currentUserId) === restaurant.attributes.user_id) {
+    proprietorView = true
+  }
+
   switch (status) {
     case 'idle':
       return null;
@@ -49,11 +55,9 @@ export const RestaurantContainer = ({match}) => {
     case 'succeeded':
       return (
         <div>
-          { parseInt(currentUserId) === restaurant.attributes.user_id
-              ? <Restaurant restaurant={restaurant} buttons={buttons} />
-              : live
-                  ? <Restaurant restaurant={restaurant} /> 
-                  : <div>Restaurant not found.</div>
+          { proprietorView
+              ? <Restaurant restaurant={restaurant} buttons={buttons} proprietorView={proprietorView} />
+              : <Restaurant restaurant={restaurant} /> 
           }
         </div>
       )

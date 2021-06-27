@@ -55,7 +55,7 @@ export const ItemsTable = (props) => {
                 <TableCell
                   align="right"
                 >
-                  { live 
+                  { live && !props.proprietorView
                     ? <QuantityBox 
                           item={item} 
                         />
@@ -80,6 +80,7 @@ ItemsTable.propTypes = {
   handleEditButtonClick: PropTypes.func, 
   items: PropTypes.array.isRequired, 
   live: PropTypes.bool, 
+  proprietorView: PropTypes.bool, 
 };
 
 export default ItemsTable;

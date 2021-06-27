@@ -71,12 +71,14 @@ export const SectionsContainer = (props) => {
                 restaurant_id={restaurantId} 
                 section={section} 
                 square={true} 
+                proprietorView={props.proprietorView}
               />
             </Grid>
             <Grid item xs={1}> 
-              { live 
-                  ? <div></div>
-                  : <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(section.id)} child={'Item'} />}
+              { props.proprietorView 
+                  ? <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(section.id)} child={'Item'} />
+                  : <div></div>
+              }
             </Grid>
         </Grid>
       </div>
@@ -105,6 +107,7 @@ SectionsContainer.propTypes = {
   menu: PropTypes.object,
   restaurantId: PropTypes.number, 
   section: PropTypes.object, 
+  proprietorView: PropTypes.bool,
 }
 
 export default SectionsContainer;

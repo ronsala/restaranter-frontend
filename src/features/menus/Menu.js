@@ -21,7 +21,7 @@ export const Menu = (props) => {
               <Typography className={classes.menuheader} variant="h3" align="center" >
                 { props.menu.attributes.name }
               </Typography>
-              <SectionsContainer menu={props.menu} />
+              <SectionsContainer menu={props.menu} live={props.live} proprietorView={props.proprietorView} />
             </div>) 
           : (<div></div>)
       }
@@ -30,7 +30,10 @@ export const Menu = (props) => {
 }
 
 Menu.propTypes = {
+  live: PropTypes.bool, 
   menu: PropTypes.object,
+  userId: PropTypes.number, 
+  proprietorView: PropTypes.bool,
 };
 
 export default Menu;

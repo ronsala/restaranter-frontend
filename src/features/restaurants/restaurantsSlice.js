@@ -52,6 +52,7 @@ export const patchRestaurant = createAsyncThunk(
           state: payload.state,
           desc: payload.desc, 
           user_id: payload.user_id, 
+          live: payload.live, 
         }
       }),
 		})
