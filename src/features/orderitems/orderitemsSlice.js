@@ -13,8 +13,7 @@ export const postOrderitem = createAsyncThunk(
 			},
 			body: JSON.stringify({ 
         order_item: {
-          item_id: payload.item_id, 
-          restaurant_id: payload.restaurant_id, 
+          item_id: parseInt(payload.id), 
           count: payload.count, 
         }
       }),

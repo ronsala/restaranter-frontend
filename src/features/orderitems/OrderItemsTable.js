@@ -73,6 +73,7 @@ export const OrderItemsTable= (props) => {
   const handleCheckoutButtonClick = () => {
     dispatch(postOrder(state))
     props.orderitems.map(orderitem => {
+      console.log('orderitem in handleCheckoutButtonClick:', orderitem);
       dispatch(postOrderitem(orderitem))    
     })
     history.push(`/your_order`)

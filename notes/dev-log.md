@@ -924,3 +924,7 @@ orders table order_items array column:
 
 Thinking that long-term using the order_items table makes sense.
 
+## Sat Jun 26 20:50:25 EDT 2021
+
+Finding out that's more difficult than a foresaw. I can't create an order_item in the backend because I don't know the order_id when I create it. Was reading about using a client-generated uuid as a primary key, but it looked complex, including configuring pg. Think I'll try to the array column idea.
+
