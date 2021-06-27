@@ -1,6 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -10,6 +13,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow'
 import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../helpers';
+import {patchOrder} from './ordersSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,16 +28,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Order = (props) => {
-console.log('props in Order:', props);
+  console.log('props in Order:', props);
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-const classes = useStyles();
-
-const date = new Date(props?.order.attributes.created_at);
+  const date = new Date(props?.order.attributes.created_at);
   const mm = date.getMonth();
   const dd = date.getDate();
   const yyyy = date.getFullYear();
   const hh = ('0' + date.getHours()).slice(-2);
   const mn = ('0' + date.getMinutes()).slice(-2);
+
+  const handleMarkFulfilledButtonClick = (orderId) => {
+    dispatch(patchOrder({order_id: orderId, fulfilled: true}))
+    alert('Order fulfilled')
+    history.goBack()
+  }
 
   return (
     <div>
@@ -90,6 +101,16 @@ const date = new Date(props?.order.attributes.created_at);
                 <Typography variant="h6">
                   Order Total: { formatCurrency(props.order.attributes.total) }
                 </Typography>
+                { props.order.attributes.fulfilled || props.restaurant.attributes.user_id !== parseInt(props.currentUserId)
+                    ? <div></div>
+                    : (<div>
+                        <center>
+                          <br></br>
+                          <Button color="primary" variant="contained" size="large" onClick={() => handleMarkFulfilledButtonClick(props.order.id)}>Mark Fulfilled</Button>
+                          <br></br>
+                        </center>
+                      </div>)
+                }
                 <br></br>
               </Paper>
             </div>) 
@@ -104,6 +125,7 @@ Order.propTypes = {
   restaurant: PropTypes.object, 
   total: PropTypes.number, 
   buttons: PropTypes.node, 
+  currentUserId: PropTypes.string, 
 }
 
 export default Order;

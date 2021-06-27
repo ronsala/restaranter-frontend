@@ -34,6 +34,8 @@ export const OrdersContainer = ({match}) => {
 
   const restaurantId = match.params.restaurantId
 
+  const restaurant = useSelector(state => selectRestaurantById(state, restaurantId))
+
   useEffect(() => {
     // if (match.params.restaurantId) {
 console.log('match.params.restaurantId in OrdersContainer:', match.params.restaurantId);
@@ -82,11 +84,9 @@ console.log('match.params.restaurantId in OrdersContainer:', match.params.restau
     case 'succeeded':
       switch (path) {
         case '/your_order':
-          return (<Order order={ newOrder } restaurant={newOrderRestaurant} />);
+          return (<Order order={newOrder} restaurant={newOrderRestaurant} />);
         case '/restaurants/:restaurantId/orders':
-          return (<OrdersTable orders={restaurantOrders} />);
-        case '/orders/:orderId':
-          return (<Order />)
+          return (<OrdersTable orders={restaurantOrders} restaurant={restaurant} />);
         default:
           return (<div>Unknown error</div>)
       }
