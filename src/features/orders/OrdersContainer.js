@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 // import { fetchOrders } from './ordersSlice';
 import { selectOrderById, selectOrderIds } from './ordersSlice'
 // import OrdersTable from "./OrdersTable";
+import { Order } from './Order';
+import { selectRestaurantById } from '../restaurants/restaurantsSlice';
 
 export const OrdersContainer = ({match}) => {
   // debugger
@@ -19,6 +21,8 @@ export const OrdersContainer = ({match}) => {
   const newOrder = useSelector(state => selectOrderById(state, newOrderId))
 
   const { status, error } = useSelector(state => state.orders);
+
+  const newOrderRestaurant = useSelector(state => selectRestaurantById(state, newOrder?.attributes.restaurant_id))
 
   // useEffect(() => {
   //   if (props && props.section) {
@@ -45,16 +49,16 @@ export const OrdersContainer = ({match}) => {
     case 'succeeded':
       return (
         <div>
-          OrdersContainer
           { url === '/your_order'
-              ? <div>
-                  <p>Your Order</p>
-                  <p>Order Id: { newOrder.id }</p>
-                  <p>Order Type: { newOrder.attributes.order_type }</p>
-                  <p>Item 1 ID: { newOrder.attributes.order_items[0].id }</p>
-                  <p>Item 1 Name: { newOrder.attributes.order_items[0].attributes.name } x { newOrder.attributes.order_items[0].count } </p>
-                </div>
-              : <div>not it</div>
+            ? <div>
+
+                <p>Order Type: { newOrder.attributes.order_type }</p>
+                <p>Item 1 ID: { newOrder.attributes.order_items[0].id }</p>
+                <p>Item 1 Name: { newOrder.attributes.order_items[0].attributes.name } x { newOrder.attributes.order_items[0].count } 
+                </p>
+                <Order order={ newOrder } restaurant={newOrderRestaurant} />
+              </div>
+            : <div>Error</div>
           }
         </div>
       )

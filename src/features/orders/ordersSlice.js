@@ -40,6 +40,7 @@ console.log('payload in postOrder:', payload);
       }),
 		})
     .then((res) => res.json());
+console.log('order in postOrder:', order);
     return order
   }
 );
@@ -54,7 +55,8 @@ export const ordersSlice = createSlice({
     status: 'idle'
   }),
   reducers: {
-    addManyOrders: ordersAdapter.addMany
+    addManyOrders: ordersAdapter.addMany, 
+    addOneOrder: ordersAdapter.addOne, 
   },
   extraReducers: {
     [fetchOrder.pending]: (state) => {

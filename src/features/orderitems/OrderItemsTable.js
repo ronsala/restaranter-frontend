@@ -20,13 +20,6 @@ import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../helpers';
 import { postOrder } from '../orders/ordersSlice';
 
-// const date = new Date();
-// const mm = date.getMonth();
-// const dd = date.getDate();
-// const yyyy = date.getFullYear();
-// const hh = date.getHours();
-// const mn = date.getMinutes();
-
 const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '12rem'
