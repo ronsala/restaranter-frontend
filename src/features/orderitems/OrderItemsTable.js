@@ -32,9 +32,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     backgroundColor: '#000',
   },
-  // date: {
-  //   margin: '1rem',
-  // },
 }));
 
 export const OrderItemsTable= (props) => {
@@ -43,14 +40,13 @@ console.log('props in OrderItemsTable:', props);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const total = props.orderitems.reduce((acc, orderitem) => acc + orderitem.attributes.price * orderitem.count, 0)
-
   const [state, setState] = useState({
     order_type: 'dine in', 
     proceed: false, 
     restaurant_id: props.restaurantId, 
-    // order_items: props.orderitems, 
   });
+
+  let total = props.orderitems.reduce((acc, orderitem) => acc + orderitem.attributes.price * orderitem.count, 0)
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -60,10 +56,9 @@ console.log('props in OrderItemsTable:', props);
     })
   }
 
-console.log('state in body of OrderItemsTable:', state);
   const handleCheckoutButtonClick = () => {
-console.log('state in handleCheckoutButtonClick:', state);
-    dispatch(postOrder({state: state, order_items: props.orderitems}))
+console.log('total in handleCheckoutButtonClick:', total);
+    dispatch(postOrder({state: state, total: total, order_items: props.orderitems}))
     history.push(`/your_order`)
   }
 
@@ -131,11 +126,6 @@ console.log('state in handleCheckoutButtonClick:', state);
                   proceed
                 </Button>
           }
-
-
-        {/* <Typography className={classes.date}>
-          {mm}/{dd}/{yyyy} {hh}:{mn}
-        </Typography> */}
         <Divider></Divider>
       </center>
         <Table className={classes.container} aria-label="order items table">

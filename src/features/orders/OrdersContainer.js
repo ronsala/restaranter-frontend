@@ -51,14 +51,9 @@ export const OrdersContainer = ({match}) => {
         <div>
           { url === '/your_order'
             ? <div>
-
-                <p>Order Type: { newOrder.attributes.order_type }</p>
-                <p>Item 1 ID: { newOrder.attributes.order_items[0].id }</p>
-                <p>Item 1 Name: { newOrder.attributes.order_items[0].attributes.name } x { newOrder.attributes.order_items[0].count } 
-                </p>
                 <Order order={ newOrder } restaurant={newOrderRestaurant} />
               </div>
-            : <div>Error</div>
+            : <div>Loading...</div>
           }
         </div>
       )

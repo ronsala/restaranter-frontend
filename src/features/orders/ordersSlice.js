@@ -36,6 +36,7 @@ console.log('payload in postOrder:', payload);
           order_type: payload.state.order_type, 
           restaurant_id: payload.state.restaurant_id, 
           order_items: payload.order_items, 
+          total: payload.total, 
         }
       }),
 		})

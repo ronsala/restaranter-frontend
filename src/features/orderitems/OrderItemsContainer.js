@@ -29,11 +29,6 @@ export const OrderItemsContainer = (props) => {
     }
   })
 
-  // const restaurant = Object
-  // .entries(useSelector((state) => state.restaurants.entities))
-  // .flat()
-  // .filter(element => typeof element === 'object')
-  // .filter(restaurant => restaurant.id === props.restaurantId)
 console.log('props in OrderItemsContainer:', props);
   return (
     <OrderItemsTable restaurantId={parseInt(props.restaurantId)} orderitems={orderitems} />

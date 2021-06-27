@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Order = (props) => {
+console.log('props in Order:', props);
 
 const classes = useStyles();
 
@@ -31,8 +32,8 @@ const date = new Date(props?.order.attributes.created_at);
   const mm = date.getMonth();
   const dd = date.getDate();
   const yyyy = date.getFullYear();
-  const hh = date.getHours();
-  const mn = date.getMinutes();
+  const hh = ('0' + date.getHours()).slice(-2);
+  const mn = ('0' + date.getMinutes()).slice(-2);
 
   return (
     <div>
@@ -40,19 +41,20 @@ const date = new Date(props?.order.attributes.created_at);
           ? (<div>
               <Paper>
                 <Typography variant="h1">
-                  Your Order
+                  Order #{ props.order.id }
                 </Typography>
                 <Typography variant="subtitle1">
-                  Order Id: { props.order.id }
+                  Restaurant: { props.restaurant.attributes.name }, { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
                 </Typography>
                 <Typography variant="subtitle1">
                   Placed: {mm}/{dd}/{yyyy} {hh}:{mn}
                 </Typography>
                 <Typography variant="subtitle1">
-                  Restaurant: { props.restaurant.attributes.name }, { props.restaurant.attributes.street }, { props.restaurant.attributes.city }, { props.restaurant.attributes.state }
+                  Order Type: { props.order.attributes.order_type }
                 </Typography>
                 <br></br>
                 <Divider></Divider>
+                <br></br>
                 <Typography variant="h6">
                   Items: 
                 </Typography> 
@@ -62,17 +64,21 @@ const date = new Date(props?.order.attributes.created_at);
                       { props.order.attributes.order_items.map((order_item) => (
                         <TableRow key={order_item.id}>
                           <TableCell className={classes.root}>
-                            <Typography className={classes.name} variant="subtitle1" >
+                            <Typography>
+                            </Typography>
+                          </TableCell>
+                          <TableCell className={classes.root}>
+                            <Typography className={classes.name} >
                               {order_item.attributes.name}
                             </Typography>
                           </TableCell>
                           <TableCell className={classes.root}>
-                            <Typography className={classes.name} variant="subtitle1" >
+                            <Typography>
                               {formatCurrency(order_item.attributes.price)}
                             </Typography>
                           </TableCell>
                           <TableCell className={classes.root}>
-                            <Typography className={classes.name} variant="subtitle1" >
+                            <Typography>
                               X {order_item.count}
                             </Typography>
                           </TableCell>
@@ -81,10 +87,13 @@ const date = new Date(props?.order.attributes.created_at);
                     </TableBody>
                   </Table>
                 </TableContainer>
-                </Paper>
-              </div>
-            ) : 
-        (<p>Loading...</p>)
+                <Typography variant="h6">
+                  Order Total: { formatCurrency(props.order.attributes.total) }
+                </Typography>
+                <br></br>
+              </Paper>
+            </div>) 
+          : (<p>Loading...</p>)
       }
     </div>
   );
@@ -93,6 +102,7 @@ const date = new Date(props?.order.attributes.created_at);
 Order.propTypes = {
   order: PropTypes.object,
   restaurant: PropTypes.object, 
+  total: PropTypes.number, 
   buttons: PropTypes.node, 
 }
 
