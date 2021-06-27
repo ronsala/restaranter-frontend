@@ -8,11 +8,12 @@ import { Order } from './Order';
 import { selectRestaurantById } from '../restaurants/restaurantsSlice';
 
 export const OrdersContainer = ({match}) => {
-  console.log('match in OrdersContainer:', match);
+  // console.log('match in OrdersContainer:', match);
   const dispatch = useDispatch();
   let path = match.path
-  let url = match.url
-  console.log('url in OrdersContainer:', url);
+  // let url = match.url
+  // console.log('url in OrdersContainer:', url);
+
 
   // let dirs = url.split('/')
   // console.log('dirs in OrdersContainer:', match);
@@ -31,9 +32,14 @@ export const OrdersContainer = ({match}) => {
 
   const newOrderRestaurant = useSelector(state => selectRestaurantById(state, newOrder?.attributes.restaurant_id))
 
+  const restaurantId = match.params.restaurantId
+
   useEffect(() => {
-    dispatch(fetchOrders(match.params.restaurantId))
-  }, [match, dispatch])
+    // if (match.params.restaurantId) {
+console.log('match.params.restaurantId in OrdersContainer:', match.params.restaurantId);
+      dispatch(fetchOrders(restaurantId))
+    // }
+  }, [match, dispatch, restaurantId])
 
   const restaurantOrders = Object
     .entries(useSelector((state) => state.orders.entities))

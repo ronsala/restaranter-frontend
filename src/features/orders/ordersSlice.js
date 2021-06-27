@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { 
   createAsyncThunk, 
   createSlice,
@@ -15,8 +16,10 @@ export const fetchOrder = createAsyncThunk(
 
 export const fetchOrders = createAsyncThunk(
   'orders/fetchOrders', 
-  async ({restaurantId}) => {
-    const orders = await fetch(`http://localhost:3000/api/v1/restaurants/${restaurantId}/orders`)
+  async (payload) => {
+// debugger
+console.log('payload in fetchOrders:', payload);
+    const orders = await fetch(`http://localhost:3000/api/v1/restaurants/${payload}/orders`)
     .then((res) => res.json());
     return orders
   }
