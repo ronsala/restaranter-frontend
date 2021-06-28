@@ -44,7 +44,6 @@ export const patchOrder = createAsyncThunk(
 export const postOrder = createAsyncThunk(
 	'orders/postOrder',
 	async (payload) => {
-console.log('payload in postOrder:', payload);
 		const order = await fetch(`http://localhost:3000/api/v1/orders`, {
 			method: 'POST',
 			headers: {

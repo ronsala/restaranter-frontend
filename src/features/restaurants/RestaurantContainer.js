@@ -16,7 +16,6 @@ export const RestaurantContainer = ({match}) => {
   const history = useHistory();
   const { restaurantId } = match.params
   const restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
-  // const live = restaurant?.attributes.live;
   const { status, error } = useSelector(state => state.restaurants);
 
   useEffect(() => {

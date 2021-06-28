@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Order = (props) => {
-  console.log('props in Order:', props);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();

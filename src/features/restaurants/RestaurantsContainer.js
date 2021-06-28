@@ -6,7 +6,6 @@ import {
   fetchRestaurants, 
   selectAllRestaurants, 
 } from './restaurantsSlice';
-// import RestaurantCard from './RestaurantCard';
 import RestaurantsTable from './RestaurantsTable';
 
 export const RestaurantsContainer = () => {

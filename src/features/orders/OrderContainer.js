@@ -1,6 +1,4 @@
-/* eslint-disable no-debugger */
 import React, { useEffect } from 'react';
-// import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectOrderById, fetchOrder } from './ordersSlice'

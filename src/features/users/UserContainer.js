@@ -10,8 +10,6 @@ import { User } from "./User";
 export const UserContainer = ({match}) => {
   let { userId } = match.params
 
-  // page = (typeof page === 'undefined') ? 'menu' : page;
-
   const dispatch = useDispatch();
 
   let user = useSelector(state => selectUserById(state, userId));

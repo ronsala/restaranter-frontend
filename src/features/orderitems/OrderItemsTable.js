@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const OrderItemsTable= (props) => {
-console.log('props in OrderItemsTable:', props);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -57,7 +56,6 @@ console.log('props in OrderItemsTable:', props);
   }
 
   const handleCheckoutButtonClick = () => {
-console.log('total in handleCheckoutButtonClick:', total);
     dispatch(postOrder({state: state, total: total, order_items: props.orderitems}))
     history.push(`/your_order`)
   }

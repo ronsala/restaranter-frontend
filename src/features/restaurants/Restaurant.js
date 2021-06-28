@@ -8,7 +8,6 @@ import MenuContainer from '../menus/MenuContainer';
 import { patchRestaurant } from './restaurantsSlice';
 
 export const Restaurant = (props) => {
-console.log('props in Restaurant:', props);
   const dispatch = useDispatch();
 
   const handleGoLiveButtonClick = () => {

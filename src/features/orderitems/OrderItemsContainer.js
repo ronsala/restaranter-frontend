@@ -29,7 +29,6 @@ export const OrderItemsContainer = (props) => {
     }
   })
 
-console.log('props in OrderItemsContainer:', props);
   return (
     <OrderItemsTable restaurantId={parseInt(props.restaurantId)} orderitems={orderitems} />
   )

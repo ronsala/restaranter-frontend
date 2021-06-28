@@ -8,14 +8,12 @@ import { fetchMenu } from './menusSlice';
 import { Menu } from "./Menu";
 import { deleteMenu } from './menusSlice'
 import OrderItemsContainer from '../orderitems/OrderItemsContainer';
-// import { selectRestaurantById } from '../restaurants/restaurantsSlice';
 
 export const MenuContainer = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { status, error } = useSelector(state => state.menus)
   const restaurantId = parseInt(props.restaurantId)
-  // const restaurant = useSelector(state => selectRestaurantById(state, restaurantId))
 
   let restaurantMenu = Object
     .entries(useSelector((state) => state.menus.entities))

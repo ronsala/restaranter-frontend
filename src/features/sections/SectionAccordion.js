@@ -14,7 +14,6 @@ import { Divider } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 375,
-    // width: '67vw',
   },
   branch: {
     minWidth: 375,
