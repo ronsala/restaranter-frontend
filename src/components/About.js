@@ -43,6 +43,12 @@ export const About = () => {
               <ListItemIcon>
                 <FiberManualRecordIcon fontSize="small" />
               </ListItemIcon>
+              <ListItemText primary="Choose a restaurant" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <FiberManualRecordIcon fontSize="small" />
+              </ListItemIcon>
               <ListItemText primary="Order dishes from a menu" />
             </ListItem>
             <ListItem>
@@ -57,13 +63,7 @@ export const About = () => {
               </ListItemIcon>
               <ListItemText primary="Check out" />
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <FiberManualRecordIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="sign up for an account for return visits (optional)" />
-            </ListItem>
-          </List>
+            </List>
         </div>
         <div className="column">
           <List className={classes.list}>
@@ -82,6 +82,12 @@ export const About = () => {
                 <FiberManualRecordIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText primary="Set up a restaurant and menu" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <FiberManualRecordIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText primary="Edit a restaurant and menu" />
             </ListItem>
             <ListItem>
               <ListItemIcon>

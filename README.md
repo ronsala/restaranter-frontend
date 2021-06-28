@@ -1,17 +1,19 @@
-# Restauranter [Work In Progress]
+# Restauranter
 
 Restauranter is an open-source restaurant management web app. A user can act as a Patron and/or Proprietor. A corresponding Rails API can be found at [https://github.com/ronsala/restauranter-backend](https://github.com/ronsala/restauranter-backend).
 
 Patrons can ...
 
+* Choose a restaurant
 * order dishes from a menu
 * arrange to pick up or dine in
 * check out
-  
+
 Proprietors can ...
 
 * Sign up for an account
 * Set up a restaurant and menu
+* Edit a restaurant and menu
 * See their restaurant's orders and mark them fulfilled
 
 You can watch a video demo 
