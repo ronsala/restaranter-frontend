@@ -1,4 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { 
+  createAsyncThunk, 
+  createSlice 
+} from '@reduxjs/toolkit';
+
+export const postOrderitem = createAsyncThunk(
+	'orderitems/postOrderitem',
+	async (payload) => {
+		const orderitem = await fetch(`http://localhost:3000/api/v1/order_items`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ 
+        order_item: {
+          item_id: parseInt(payload.id), 
+          count: payload.count, 
+        }
+      }),
+		})
+    .then((res) => res.json());
+    return orderitem
+  }
+);
 
 const initialState = []
 
@@ -19,6 +42,6 @@ export const orderitemsSlice = createSlice({
   },
 })
 
-export const { addItemToOrderitems, deleteItemFromOrderitems} = orderitemsSlice.actions;
+export const { addItemToOrderitems, deleteItemFromOrderitems } = orderitemsSlice.actions;
 
 export default orderitemsSlice.reducer;

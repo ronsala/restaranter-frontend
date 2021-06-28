@@ -52,11 +52,11 @@ export const MenuContainer = (props) => {
       return (
         <Grid style={{ padding: 10 }} container spacing={5}>
           <Grid item xs={8}>
-            <Menu menu={restaurantMenu} />
+            <Menu menu={restaurantMenu} live={props.live} proprietorView={props.proprietorView} />
           </Grid>
-          { props.live 
+          { props.live && !props.proprietorView
               ? (<Grid item xs={4}> 
-                  <OrderItemsContainer />
+                  <OrderItemsContainer restaurantId={restaurantId} />
                 </Grid>) 
               : restaurantMenu 
                 ? <div>
@@ -76,6 +76,7 @@ export const MenuContainer = (props) => {
 MenuContainer.propTypes = {
   live: PropTypes.bool, 
   restaurantId: PropTypes.string.isRequired,
+  proprietorView: PropTypes.bool,
 }
 
 export default MenuContainer;

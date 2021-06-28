@@ -1,13 +1,12 @@
 # Restauranter [Work In Progress]
 
-Restauranter is an open-source restaurant management web app. A user can act as a Patron and/or Proprietor. A corresponding Rails API can be found at [https://github.com/ronsala/restaranter-backend](https://github.com/ronsala/restaranter-backend).
+Restauranter is an open-source restaurant management web app. A user can act as a Patron and/or Proprietor. A corresponding Rails API can be found at [https://github.com/ronsala/restauranter-backend](https://github.com/ronsala/restauranter-backend).
 
 Patrons can ...
 
 * order dishes from a menu
 * arrange to pick up or dine in
 * check out
-* sign up for an account for return visits (optional)
   
 Proprietors can ...
 

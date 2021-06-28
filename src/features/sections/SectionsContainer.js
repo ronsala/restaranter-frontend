@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
@@ -9,20 +7,8 @@ import Buttons from '../../components/Buttons';
 import { deleteSection, fetchSections } from './sectionsSlice';
 import SectionAccordion from "./SectionAccordion";
 import { selectRestaurantById } from '../restaurants/restaurantsSlice';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // whiteSpace: 'nowrap', 
-    
-  }, 
-  button: {
-    // marginLeft: '5%', 
-  },
-}))
 
 export const SectionsContainer = (props) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const { status, error } = useSelector(state => state.sections)
@@ -61,7 +47,7 @@ export const SectionsContainer = (props) => {
 
   const sectionsList = sections.map((section) => {
     return (
-      <div key={section.id} className={classes.root} style={{width: '109.25%'}}>
+      <div key={section.id} style={{width: '109.25%'}}>
         <Grid container spacing={3}>
             <Grid item xs={11}>
               <SectionAccordion 
@@ -71,12 +57,14 @@ export const SectionsContainer = (props) => {
                 restaurant_id={restaurantId} 
                 section={section} 
                 square={true} 
+                proprietorView={props.proprietorView}
               />
             </Grid>
             <Grid item xs={1}> 
-              { live 
-                  ? <div></div>
-                  : <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(section.id)} child={'Item'} />}
+              { props.proprietorView 
+                  ? <Buttons handleEditButton={handleEditButtonClick}  handleDeleteButton={handleDeleteButtonClick} handleAddButton={handleAddButtonClick} modelId={parseInt(section.id)} child={'Item'} />
+                  : <div></div>
+              }
             </Grid>
         </Grid>
       </div>
@@ -105,6 +93,7 @@ SectionsContainer.propTypes = {
   menu: PropTypes.object,
   restaurantId: PropTypes.number, 
   section: PropTypes.object, 
+  proprietorView: PropTypes.bool,
 }
 
 export default SectionsContainer;

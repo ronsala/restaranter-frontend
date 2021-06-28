@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-// import Grid from '@material-ui/core/Grid';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
@@ -23,7 +22,6 @@ export const ItemsTable = (props) => {
   let live = props.live
 
   return (
-    // <div style={{width: '109.25%'}}>
     <TableContainer>
       <Table aria-label="items table">
         <TableBody>
@@ -55,7 +53,7 @@ export const ItemsTable = (props) => {
                 <TableCell
                   align="right"
                 >
-                  { live 
+                  { live && !props.proprietorView
                     ? <QuantityBox 
                           item={item} 
                         />
@@ -80,6 +78,7 @@ ItemsTable.propTypes = {
   handleEditButtonClick: PropTypes.func, 
   items: PropTypes.array.isRequired, 
   live: PropTypes.bool, 
+  proprietorView: PropTypes.bool, 
 };
 
 export default ItemsTable;

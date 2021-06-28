@@ -1,28 +1,38 @@
 import React, { useEffect } from 'react';
+import PropTypes, { array } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchOrders } from './ordersSlice';
+import { selectOrderById, selectOrderIds, fetchOrders } from './ordersSlice'
 import OrdersTable from "./OrdersTable";
+import { Order } from './Order';
+import { selectRestaurantById } from '../restaurants/restaurantsSlice';
 
-export const OrdersContainer = (props) => {
+export const OrdersContainer = ({match}) => {
   const dispatch = useDispatch();
+  let path = match.path
+
+  const orderIds = useSelector(state => selectOrderIds(state))
+
+  const newOrderId = parseInt(orderIds[orderIds.length - 1])
+
+  const newOrder = useSelector(state => selectOrderById(state, newOrderId))
+
   const { status, error } = useSelector(state => state.orders);
-  const sectionId = parseInt(props.section?.id)
+
+  const newOrderRestaurant = useSelector(state => selectRestaurantById(state, newOrder?.attributes.restaurant_id))
+
+  const restaurantId = match.params.restaurantId
+
+  const restaurant = useSelector(state => selectRestaurantById(state, restaurantId))
 
   useEffect(() => {
-    if (props && props.section) {
-      dispatch(fetchOrders({restaurantId: props.restaurant_id, menuId: props.menu_id, sectionId: sectionId}))
-    }
-  }, [dispatch, props, sectionId])
+      dispatch(fetchOrders(restaurantId))
+  }, [match, dispatch, restaurantId])
 
-  const orders = Object
-  .entries(useSelector((state) => state.orders.entities))
-  .flat()
-  .filter(element => typeof element === 'object')
-  .filter(order => order.attributes.section_id === sectionId);
-
-  // const ordersList = orders.map((order) => {
-  //   return <OrderCard key={order.id} name={order.attributes.name} price={order.attributes.price} desc={order.attributes.desc} id={order.id} />
-  // })
+  const restaurantOrders = Object
+    .entries(useSelector((state) => state.orders.entities))
+    .flat()
+    .filter(element => typeof element === 'object')
+    .filter(order => order.attributes.restaurant_id === parseInt(match.params.restaurantId));
 
   switch (status) {
     case 'idle':
@@ -30,14 +40,24 @@ export const OrdersContainer = (props) => {
     case 'loading':
       return (<div>Loading...</div>)
     case 'succeeded':
-      return (
-          <OrdersTable orders={orders}/>
-      )
+      switch (path) {
+        case '/your_order':
+          return (<Order order={newOrder} restaurant={newOrderRestaurant} />);
+        case '/restaurants/:restaurantId/orders':
+          return (<OrdersTable orders={restaurantOrders} restaurant={restaurant} />);
+        default:
+          return (<div>Unknown error</div>)
+      }
     case 'failed':
       return (<div>{error}</div>)
     default:
       return (<div>Unknown error</div>)
   }
+}
+
+OrdersContainer.propTypes = {
+  orders: array, 
+  match: PropTypes.object.isRequired,
 }
 
 export default OrdersContainer;

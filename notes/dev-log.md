@@ -901,3 +901,30 @@ Can do all CRUD in restaurant/menu/section/item creation now except updating and
 
 Tried Container-Branch-View but it seemed like a 5th wheel for this simple use case. Wasn't difficult to just pass the 'live' prop down. Now can do all CRUD for a restaurant and its children except dealing with an order.
 
+## Sat Jun 26 14:02:40 EDT 2021
+
+Now setting up order creation (checkout) process. I had set up an `order_items` table in backend. Should I use that to store the orderitems for an order or add an array column to the orders table?
+
+order_items table:
+
+* already set up
+* access with orders/:orderId/order_items
+* need to create each order_item
+* already have orderItemsSlice to handle fetching and reducing
+* each order_item row can have a count column to match the count on each orderitem in frontend
+* seems easier to find out how many times an item has been ordered (for future)
+* need to iterate over orderitems array in props in OrderItemsTable to post each orderitem
+
+orders table order_items array column:
+
+* need to set up
+* access with orders/:orderId
+* count would be an attribute of each object element of orderitems array
+* one post fetch
+
+Thinking that long-term using the order_items table makes sense.
+
+## Sat Jun 26 20:50:25 EDT 2021
+
+Finding out that's more difficult than a foresaw. I can't create an order_item in the backend because I don't know the order_id when I create it. Was reading about using a client-generated uuid as a primary key, but it looked complex, including configuring pg. Think I'll try to the array column idea.
+

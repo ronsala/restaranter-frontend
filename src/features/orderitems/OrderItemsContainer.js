@@ -29,20 +29,14 @@ export const OrderItemsContainer = (props) => {
     }
   })
 
-  const restaurant = Object
-  .entries(useSelector((state) => state.restaurants.entities))
-  .flat()
-  .filter(element => typeof element === 'object')
-  .filter(restaurant => restaurant.id === props.restaurantId)
-
   return (
-    <OrderItemsTable restaurant={restaurant} orderitems={orderitems} />
+    <OrderItemsTable restaurantId={parseInt(props.restaurantId)} orderitems={orderitems} />
   )
 }
 
 OrderItemsContainer.propTypes = {
   match: PropTypes.object,
-  restaurantId: PropTypes.string
+  restaurantId: PropTypes.number, 
 }
 
 export default OrderItemsContainer; 

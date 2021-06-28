@@ -26,10 +26,6 @@ export const RestaurantsTable = (props) => {
   const classes = useStyles();
   const history = useHistory();
 
-  // const handleMenuButtonClick = (props.restaurant.id) => { 
-  //   history.push(`/restaurants/${props.restaurant.id}`)
-  // }
-
   return (
     <TableContainer className={classes.container}>
       <Table aria-label="restaurants table">

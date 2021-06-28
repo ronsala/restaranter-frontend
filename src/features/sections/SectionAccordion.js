@@ -14,7 +14,6 @@ import { Divider } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 375,
-    // width: '67vw',
   },
   branch: {
     minWidth: 375,
@@ -53,6 +52,7 @@ export const SectionAccordion = (props) => {
             menu_id={props.menuId} 
             restaurant_id={props.restaurant_id} 
             section={props.section}
+            proprietorView={props.proprietorView}
           />
         </AccordionDetails>
       </Accordion>
@@ -68,6 +68,7 @@ SectionAccordion.propTypes = {
   restaurant_id: PropTypes.number.isRequired,
   section: PropTypes.object.isRequired,
   square: PropTypes.bool, 
+  proprietorView: PropTypes.bool, 
 }
 
 export default SectionAccordion;

@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme) => ({
   desc: {
     textAlign: 'center',
   },
-  list: {
-    // marginLeft: '12.5%',
-  },
   listItem: {
     marginLeft: '35%',
   },

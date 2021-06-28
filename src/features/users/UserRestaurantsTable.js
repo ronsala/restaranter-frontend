@@ -73,7 +73,22 @@ export const UserRestaurantsTable = (props) => {
                         type="submit" 
                         variant="contained"
                       >
-                        View
+                        Menu
+                      </Button>
+                    </TableCell>
+                    <TableCell className={classes.root}>
+                      <Button 
+                        className={classes.button} 
+                        color="primary" 
+                        onClick={() => { 
+                          history.push(`/restaurants/${restaurant.id}/orders`)
+                          }
+                        }
+                        size="large" 
+                        type="submit" 
+                        variant="contained"
+                      >
+                        Orders
                       </Button>
                     </TableCell>
                   </TableRow>

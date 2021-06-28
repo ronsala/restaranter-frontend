@@ -1,29 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Paper from '@material-ui/core/Paper';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button'
 import { formatCurrency } from '../../helpers';
-
-// const date = new Date();
-// const mm = date.getMonth();
-// const dd = date.getDate();
-// const yyyy = date.getFullYear();
-// const hh = date.getHours();
-// const mn = date.getMinutes();
+import { postOrder } from '../orders/ordersSlice';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '12rem'
   },
-  checkoutButton: {
+  button: {
     margin: '0.5rem',
     width: '80%',
   },
@@ -31,15 +32,33 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     backgroundColor: '#000',
   },
-  // date: {
-  //   margin: '1rem',
-  // },
 }));
 
 export const OrderItemsTable= (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const total = props.orderitems.reduce((acc, orderitem) => acc + orderitem.attributes.price * orderitem.count, 0)
+  const [state, setState] = useState({
+    order_type: 'dine in', 
+    proceed: false, 
+    restaurant_id: props.restaurantId, 
+  });
+
+  let total = props.orderitems.reduce((acc, orderitem) => acc + orderitem.attributes.price * orderitem.count, 0)
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value
+    })
+  }
+
+  const handleCheckoutButtonClick = () => {
+    dispatch(postOrder({state: state, total: total, order_items: props.orderitems}))
+    history.push(`/your_order`)
+  }
 
   return (
     <div>
@@ -51,12 +70,60 @@ export const OrderItemsTable= (props) => {
           <Typography className={classes.total} variant="h6">
             Total: {formatCurrency(total)}
           </Typography>
-          <Button className={classes.checkoutButton} size="small"  variant="contained" color="primary">
-            checkout
-          </Button>
-        {/* <Typography className={classes.date}>
-          {mm}/{dd}/{yyyy} {hh}:{mn}
-        </Typography> */}
+          { state.proceed
+              ? <div>
+                  <br></br>
+                  <FormControl 
+                    component="fieldset"
+                  >
+                    <FormLabel 
+                      component="legend">
+                        <strong>Choose Order Type:</strong>
+                    </FormLabel>
+                    <RadioGroup 
+                      aria-label="order type" 
+                      defaultValue="dine in"
+                      name="order_type" 
+                      onChange={handleChange} 
+                      value={state.order_type} 
+                    >
+                      <FormControlLabel 
+                        control={<Radio />} 
+                        label="Dine In" 
+                        value="dine in" 
+                      />
+                      <FormControlLabel 
+                        control={<Radio />} 
+                        label="Pick Up" 
+                        value="pick up" 
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                  <Button 
+                    className={classes.button} 
+                    color="primary"
+                    onClick={handleCheckoutButtonClick} 
+                    size="small" 
+                    variant="contained" 
+                  >
+                    checkout
+                  </Button>
+                </div>
+              : <Button 
+                  className={classes.button} 
+                  color="secondary"
+                  onClick={() => {
+                    setState({
+                      ...state,
+                      proceed: true
+                    })
+                  }}
+                  size="small"  
+                  variant="contained"
+                >
+                  proceed
+                </Button>
+          }
         <Divider></Divider>
       </center>
         <Table className={classes.container} aria-label="order items table">
@@ -84,8 +151,7 @@ export const OrderItemsTable= (props) => {
 
 OrderItemsTable.propTypes = {
   orderitems: PropTypes.array,
-  restaurant: PropTypes.array,
-  orderitem: PropTypes.object,
+  restaurantId: PropTypes.number,
 }
 
 export default OrderItemsTable;

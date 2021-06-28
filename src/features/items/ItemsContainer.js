@@ -47,7 +47,7 @@ export const ItemsContainer = (props) => {
       return (<div>Loading...</div>)
     case 'succeeded':
       return (
-        <ItemsTable handleDeleteButtonClick={handleDeleteButtonClick} handleEditButtonClick={handleEditButtonClick} items={items} live={props.live} />
+        <ItemsTable handleDeleteButtonClick={handleDeleteButtonClick} handleEditButtonClick={handleEditButtonClick} items={items} live={props.live} proprietorView={props.proprietorView} />
       )
     case 'failed':
       return (<div>{error}</div>)
@@ -62,6 +62,7 @@ ItemsContainer.propTypes = {
   menu_id: PropTypes.number.isRequired,
   restaurant_id: PropTypes.number.isRequired,
   section: PropTypes.object.isRequired,
+  proprietorView: PropTypes.bool, 
 };
 
 export default ItemsContainer;
