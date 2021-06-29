@@ -24,8 +24,6 @@
 
 ## Proprietors
 
-## Signup/Login
-
 ### Sign up for an account
 
 ### Set up a restaurant and menu
