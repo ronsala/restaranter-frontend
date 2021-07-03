@@ -928,3 +928,15 @@ Thinking that long-term using the order_items table makes sense.
 
 Finding out that's more difficult than a foresaw. I can't create an order_item in the backend because I don't know the order_id when I create it. Was reading about using a client-generated uuid as a primary key, but it looked complex, including configuring pg. Think I'll try to the array column idea.
 
+## Fri Jul  2 18:58:21 EDT 2021
+
+Now that project is submitted, looking into some minimal testing.
+
+`yarn add cypress`
+
+`yarn run cypress open`.
+
+Cool! Will start testing tomorrow.
+
+## Sat Jul  3 15:02:33 EDT 2021
+
