@@ -1,7 +1,9 @@
 describe('Home page', function () {
 
+  const baseUrl = 'http://localhost:3001'
+
   beforeEach(() => {
-    cy.visit('http://localhost:3001')
+    cy.visit(baseUrl)
   })
 
   it ('Allows navigation via app bar', function () {
