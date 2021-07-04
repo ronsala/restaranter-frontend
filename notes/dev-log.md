@@ -940,3 +940,27 @@ Cool! Will start testing tomorrow.
 
 ## Sat Jul  3 15:02:33 EDT 2021
 
+Can't believe how straightforward Cypress is to use.
+
+## Sun Jul  4 12:37:29 EDT 2021
+
+Working out the best way to run tests and update README.
+
+Can run headless with
+
+`yarn cypress run`
+
+and in browser with
+
+`yarn cypress open`
+
+then, in the Cypress window that opens, clicking `Run [number] integration specs` for all tests or an individual test for that one alone.
+
+With changing package.json can run headless from command line:
+
+`yarn test`
+
+or in browser with
+
+`yarn test:open`.
+

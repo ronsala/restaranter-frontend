@@ -30,6 +30,26 @@ Rails 6.0.3.6
 
 You can either clone the repository directly from GitHub into a local directory on your computer or you can Fork the app so that you can contribute to the code.
 
+## Testing
+
+Restauranter uses [Cypress](https://www.cypress.io/) for testing and Behavior Driven Development.
+
+To run headless from command line:
+
+`yarn test` for all tests
+
+`yarn test --spec [path/to/test/file/or/files]` or `yarn test -s [path/to/test/file/or/files]` for a specific test or tests, e.g.
+
+`yarn test -s "cypress/integration/home_spec.js"`
+
+`yarn test -s "cypress/integration/home_spec.js,cypress/integration/signup_spec.js"`
+
+To run in browser from command line:
+
+`yarn test:open`
+
+Then, in the Cypress window that opens, click `Run [number] integration specs` for all tests or an individual test for that one alone.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/ronsala/restauranter-frontend](https://github.com/ronsala/restauranter-frontend). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
