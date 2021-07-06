@@ -76,27 +76,33 @@ export const loginUser = createAsyncThunk(
 export const signupUser = createAsyncThunk(
 	'users/signupUser',
 	async (payload) => {
-		const user = await fetch(`http://localhost:3000/api/v1/users`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-        user: {
-          first_name: payload.first_name, 
-          last_name: payload.last_name, 
-          email: payload.email, 
-          street: payload.street, 
-          city: payload.city,  
-          state: payload.state,  
-          password: payload.password, 
-        }
-      }),
-		})
-    .then((res) => res.json());
-    return user
-  }
-);
+    // try {
+      const response = await fetch(`http://localhost:3000/api/v1/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          user: {
+            first_name: payload.first_name, 
+            last_name: payload.last_name, 
+            email: payload.email, 
+            street: payload.street, 
+            city: payload.city,  
+            state: payload.state,  
+            password: payload.password, 
+          }
+        }),
+      })
+
+      let json = response.json();
+
+      if (response.ok === true) {
+        return json;
+      } else {
+        return json.then(Promise.reject.bind(Promise));
+      }
+})
 
 const usersAdapter = createEntityAdapter({
   selectId: (user) => user.id
@@ -120,10 +126,6 @@ export const usersSlice = createSlice({
         }
       }
     },
-    deleteCurrentUserId: 
-      (state) => {
-        state.currentUserId = ''
-    }, 
   },
   extraReducers: {
     [deleteUser.pending]: (state) => {
@@ -168,7 +170,6 @@ export const usersSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      state.currentUserId = action.payload.data.id
       usersAdapter.addOne(state, action.payload.data)
     },
     [loginUser.rejected]: (state, action) => {
@@ -181,7 +182,6 @@ export const usersSlice = createSlice({
     },
     [signupUser.fulfilled]: (state, action) => {
       state.status = 'succeeded'
-      state.currentUserId = action.payload.data.id
       usersAdapter.addOne(state, action.payload.data)
     },
     [signupUser.rejected]: (state, action) => {
@@ -192,7 +192,6 @@ export const usersSlice = createSlice({
 })
 
 export const {
-  deleteCurrentUserId,
   removeAllUsers,
   setStatusIdle, 
 } = usersSlice.actions;
