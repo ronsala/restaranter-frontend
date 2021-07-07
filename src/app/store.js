@@ -18,3 +18,8 @@ export const store = configureStore({
     users: usersReducer,
   },
 });
+
+// Expose store when run in Cypress.
+if (window.Cypress) {
+  window.store = store
+}
