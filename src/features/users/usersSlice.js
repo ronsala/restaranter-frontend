@@ -76,7 +76,7 @@ export const loginUser = createAsyncThunk(
 export const signupUser = createAsyncThunk(
 	'users/signupUser',
 	async (payload) => {
-    // try {
+    try {
       const response = await fetch(`http://localhost:3000/api/v1/users`, {
         method: 'POST',
         headers: {
@@ -102,6 +102,9 @@ export const signupUser = createAsyncThunk(
       } else {
         return json.then(Promise.reject.bind(Promise));
       }
+    } catch (err) {
+        alert(err)
+    }
 })
 
 const usersAdapter = createEntityAdapter({

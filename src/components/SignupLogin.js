@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
@@ -39,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignupLogin = () => {
   const classes = useStyles();
+
+  const errorMessage = useSelector(state => state.users.error)
+
+  if (errorMessage) {
+    alert(errorMessage)
+  }
 
   return (
     <div className="row">
