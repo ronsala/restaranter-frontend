@@ -55,6 +55,43 @@ export const SignupForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!state.first_name) {
+      alert('First name is required.')
+      return
+    }
+    if (!state.last_name) {
+      alert('Last name is required.')
+      return
+    }
+    if (!state.email) {
+      alert('Email is required.')
+      return
+    }
+    if (!state.street) {
+      alert('Street is required.')
+      return
+    }
+    if (!state.city) {
+      alert('City is required.')
+      return
+    }
+    if (!state.state) {
+      alert('State is required.')
+      return
+    }
+    if (!state.password) {
+      alert('Password is required.')
+      return
+    }
+    if (!state.password_confirm) {
+      alert('Password confirm is required.')
+      return
+    }
+    if (state.password !== state.password_confirm) {
+      alert('Password and password confirm must match.')
+      return
+    }
+
     dispatch(signupUser(state))
   };
 
