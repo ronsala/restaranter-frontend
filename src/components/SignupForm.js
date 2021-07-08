@@ -87,6 +87,10 @@ export const SignupForm = (props) => {
       alert('Password confirm is required.')
       return
     }
+    if (state.password !== state.password_confirm) {
+      alert('Password and password confirm must match.')
+      return
+    }
 
     dispatch(signupUser(state))
   };

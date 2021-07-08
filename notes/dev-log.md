@@ -966,3 +966,7 @@ or in browser with
 
 See that when I try to signup a user without a first_name it gets a 422 from the backend but still seems to be hitting the signupUser.fulfilled extraReducer. I don't have a thunkAPI argument to the callback function in the createAsyncThunk. I may also need to add some unwrapping or other logic that will extract the error message about the missing name, which I see when I console.log the result from the fetch. Next time, will read more about promises and the conditions under which they are rejected.
 
+## Wed Jul  7 19:51:15 EDT 2021
+
+Added simple frontend validation to SignupForm. Next, try to adapt usersSlice error handling to helper function.
+
