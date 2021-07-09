@@ -55,21 +55,30 @@ export const fetchUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'users/loginUser',
   async (payload) => {
-    const user = await fetch(`http://localhost:3000/api/v1/login`, {
-      method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-        user: {
-          email: payload.email, 
-          password: payload.password, 
-        }
-      }),
-    })
-    .then((res) => res.json());
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          user: {
+            email: payload.email, 
+            password: payload.password, 
+          }
+        }),
+      })
 
-    return user
+      let json = response.json();
+
+      if (response.ok === true) {
+        return json;
+      } else {
+        return json.then(Promise.reject.bind(Promise));
+      }
+    } catch (err) {
+        alert(err)
+    }
   }
 );
 
@@ -105,7 +114,8 @@ export const signupUser = createAsyncThunk(
     } catch (err) {
         alert(err)
     }
-})
+  }
+)
 
 const usersAdapter = createEntityAdapter({
   selectId: (user) => user.id

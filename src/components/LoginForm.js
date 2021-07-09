@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginUser } from '../features/users/usersSlice';
+import { validateEntries } from '../helpers';
 
 export const LoginForm = (props) => {
   const classes = props.classes;
@@ -38,7 +39,10 @@ export const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser(state))
+
+    if (validateEntries(state) === true) { 
+      dispatch(loginUser(state))
+    }
   };
 
   return (
@@ -64,7 +68,7 @@ export const LoginForm = (props) => {
             style = {{width: '90%'}} 
             variant="filled"
           >
-            <InputLabel htmlFor="login_password"> Password</InputLabel>
+            <InputLabel htmlFor="login_password"> Password *</InputLabel>
             <FilledInput 
               autoComplete="on"
               endAdornment={
