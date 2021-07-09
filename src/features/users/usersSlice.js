@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { 
   createAsyncThunk, 
   createSlice,
@@ -6,76 +7,114 @@ import {
 
 export const deleteUser = createAsyncThunk(
 	'users/deleteUser',
-	async (payload) => {
-		const result = await fetch(`http://localhost:3000/api/v1/users/${payload.id}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-    .then((res) => res.json());
-    return result
+	async (payload, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/users/${payload.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      let json = response.json();
+
+      if (response.ok === true) {
+        return json;
+      } else {
+        return rejectWithValue(`${response.status} ${response.statusText}`)
+      }
+    } catch (err) {
+      return rejectWithValue(`${err}`)
+    }
   }
 );
 
 export const editUser = createAsyncThunk(
 	'users/editUser',
-	async (payload) => {
-		const user = await fetch(`http://localhost:3000/api/v1/users/${payload.id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-        user: {
-          first_name: payload.first_name, 
-          last_name: payload.last_name, 
-          email: payload.email, 
-          street: payload.street, 
-          city: payload.city,  
-          state: payload.state,  
-          password: payload.password, 
-        }
-      }),
-		})
-    .then((res) => res.json());
-    return user
+	async (payload, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/users/${payload.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          user: {
+            first_name: payload.first_name, 
+            last_name: payload.last_name, 
+            email: payload.email, 
+            street: payload.street, 
+            city: payload.city,  
+            state: payload.state,  
+            password: payload.password, 
+          }
+        }),
+      })
+
+      let json = response.json();
+
+      if (response.ok === true) {
+        return json;
+      } else {
+        return rejectWithValue(`${response.status} ${response.statusText}`)
+      }
+    } catch (err) {
+      return rejectWithValue(`${err}`)
+    }
   }
 );
 
 export const fetchUser = createAsyncThunk(
   'users/fetchUser', 
-  async (userId, { dispatch }) => {
-    const user = await fetch(`http://localhost:3000/api/v1/users/${userId}`)
-    .then((res) => res.json());
-    return user
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/users/${userId}`)
+      let json = response.json();
+
+      if (response.ok === true) {
+        return json;
+      } else {
+        return rejectWithValue(`${response.status} ${response.statusText}`)
+      }
+    } catch (err) {
+      return rejectWithValue(`${err}`)
+    }
   }
 );
 
 export const loginUser = createAsyncThunk(
   'users/loginUser',
-  async (payload) => {
-    const user = await fetch(`http://localhost:3000/api/v1/login`, {
-      method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-        user: {
-          email: payload.email, 
-          password: payload.password, 
-        }
-      }),
-    })
-    .then((res) => res.json());
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          user: {
+            email: payload.email, 
+            password: payload.password, 
+          }
+        }),
+      })
 
-    return user
+      let json = response.json();
+
+      if (response.ok === true) {
+        return json;
+      } else {
+        return rejectWithValue(`${response.status} ${response.statusText}`)
+      }
+    } catch (err) {
+      return rejectWithValue(`${err}`)
+    }
   }
 );
 
 export const signupUser = createAsyncThunk(
 	'users/signupUser',
-	async (payload) => {
+	async (payload, { rejectWithValue }) => {
     try {
       const response = await fetch(`http://localhost:3000/api/v1/users`, {
         method: 'POST',
@@ -100,12 +139,13 @@ export const signupUser = createAsyncThunk(
       if (response.ok === true) {
         return json;
       } else {
-        return json.then(Promise.reject.bind(Promise));
+        return rejectWithValue(`${response.status} ${response.statusText}`)
       }
     } catch (err) {
-        alert(err)
+      return rejectWithValue(`${err}`)
     }
-})
+  }
+)
 
 const usersAdapter = createEntityAdapter({
   selectId: (user) => user.id
@@ -141,7 +181,7 @@ export const usersSlice = createSlice({
     },
     [deleteUser.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.error.message
+      state.error = action.payload
     },
     [editUser.pending]: (state) => {
       state.status = 'loading'
@@ -153,7 +193,7 @@ export const usersSlice = createSlice({
     },
     [editUser.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.error.message
+      state.error = action.payload
     },
     [fetchUser.pending]: (state) => {
       state.status = 'loading'
@@ -165,7 +205,7 @@ export const usersSlice = createSlice({
     },
     [fetchUser.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.error.message
+      state.error = action.payload
     },
     [loginUser.pending]: (state) => {
       state.status = 'loading'
@@ -177,7 +217,7 @@ export const usersSlice = createSlice({
     },
     [loginUser.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.error.message
+      state.error = action.payload
     },
     [signupUser.pending]: (state) => {
       state.status = 'loading'
@@ -189,7 +229,7 @@ export const usersSlice = createSlice({
     },
     [signupUser.rejected]: (state, action) => {
       state.status = 'failed'
-      state.error = action.error.message
+      state.error = action.payload
     },
   },
 })

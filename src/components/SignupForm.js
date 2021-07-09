@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { signupUser } from '../features/users/usersSlice';
+import { validateEntries } from '../helpers';
 
 export const SignupForm = (props) => {
   const classes = props.classes;
@@ -26,6 +27,7 @@ export const SignupForm = (props) => {
   const userId = parseInt(useSelector(state => state.users.ids));
 
   const [state, setState] = useState({
+    showPassword: false,
     first_name: '',
     last_name: '',
     email: '',
@@ -34,7 +36,6 @@ export const SignupForm = (props) => {
     state: '',
     password: '',
     password_confirm: '',
-    showPassword: false,
   });
 
   const handleChange = (e) => {
@@ -55,25 +56,16 @@ export const SignupForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    for (let key of Object.keys(state)) {
-      if (state[key] === '') {
-        let split = key.split('_')
-        let upCased = split.map(word => {
-          return word.toUpperCase()
-        })
-        let joined = upCased.join(' ')
-        alert(`${joined} IS REQUIRED.`)
-        return
-      }
-    }
+    let valid = validateEntries(state)
 
     if (state.password !== state.password_confirm) {
       alert('PASSWORD AND PASSWORD CONFIRM MUST MATCH.')
-      return
+      valid = false
     }
 
-    dispatch(signupUser(state))
+    if (valid === true) {
+      dispatch(signupUser(state))
+    }
   };
 
   useEffect(() => {
@@ -214,7 +206,7 @@ export const SignupForm = (props) => {
             style = {{width: '90%'}} 
             variant="filled"
           >
-            <InputLabel htmlFor="filled-adornment-password"> Password</InputLabel>
+            <InputLabel htmlFor="filled-adornment-password">Password *</InputLabel>
             <FilledInput 
               autoComplete="on"
               endAdornment={
@@ -241,7 +233,7 @@ export const SignupForm = (props) => {
             style = {{width: '90%'}} 
             variant="filled"
           >
-            <InputLabel htmlFor="filled-adornment-password">Confirm Password</InputLabel>
+            <InputLabel htmlFor="filled-adornment-password">Confirm Password *</InputLabel>
             <FilledInput 
               autoComplete="on"
               endAdornment={
