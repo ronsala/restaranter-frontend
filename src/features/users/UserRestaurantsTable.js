@@ -27,60 +27,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const UserRestaurantsTable = (props) => {
-  const classes = useStyles();
-  const history = useHistory();
-
-console.log('props:', props);
-
+  const classes = useStyles()
+  const history = useHistory()
   let { restaurants } = props
 
-  const originalRestaurants = [...restaurants]
-
   const [state, setState] = useState({
-    restaurants: originalRestaurants, 
     sorted: true, 
   })
-
-console.log('state.sorted in body:', state.sorted);
-
-  // let restaurants = props.restaurants
 
   const handleSortRestaurantsButtonClick = () => {
     setState(state => ({
       ...state,
       sorted: !state.sorted
     }))
-console.log('state.sorted in handleSortRestaurantsButtonClick body:', state.sorted);
 
     if (state.sorted) {
-console.log('state.sorted in handleSortRestaurantsButtonClick if:', state.sorted);
-console.log('in if')
       restaurants = props.restaurants.sort((a, b) => {
         if (Object.values(a.attributes.name) < Object.values(b.attributes.name)) {
-          return -1;
+          return -1
         } else {
-          return 1;
+          return 1
         }
       })
-console.log('restaurants:', restaurants);
     } else {
-console.log('in else')
       restaurants = props.restaurants.sort((a, b) => {
         if (Object.values(a.id) < Object.values(b.id)) {
-          return -1;
+          return -1
         } else {
-          return 1;
+          return 1
         }
       })
-      setState(state => ({
-        ...state,
-        restaurants: restaurants
-      }))
-console.log('props.restaurants:', props.restaurants);
-console.log('originalRestaurants:', originalRestaurants);
-restaurants = originalRestaurants
-console.log('restaurants:', restaurants);
-console.log('state.restaurants:', state.restaurants);
     }
   }
 
