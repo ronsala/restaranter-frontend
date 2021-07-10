@@ -974,3 +974,7 @@ Added simple frontend validation to SignupForm. Next, try to adapt usersSlice er
 
 Found that I couldn't prevent fetching to the database with invalid entries using an imported helper function that sets an attribute of the SignupForm state since I can't use useState in the helper. Tried setting a state attribute from within SignupForm to prevent an invalid fetch but the state was not updating in time to prevent it. Settled on setting the return value of the helper function to a variable in SignupForm that could also be set to false if the password and password confirm don't match. In LoginForm simply invoked the helper function in the conditional that determines whether to dispatch the fetch action.
 
+## Fri Jul  9 16:59:40 EDT 2021
+
+Have assignment for project review to add a sort button to the list of a user's restaurants that when clicked will sort alphabetically by restaurant name and when clicked again will return to the original sort order. I am to email a Github link to him.
+

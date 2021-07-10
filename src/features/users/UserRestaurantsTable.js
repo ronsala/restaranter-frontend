@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,8 +27,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const UserRestaurantsTable = (props) => {
-  const classes = useStyles();
-  const history = useHistory();
+  const classes = useStyles()
+  const history = useHistory()
+  let { restaurants } = props
+
+  const [state, setState] = useState({
+    sorted: true, 
+  })
+
+  const handleSortRestaurantsButtonClick = () => {
+    setState(state => ({
+      ...state,
+      sorted: !state.sorted
+    }))
+
+    if (state.sorted) {
+      restaurants = props.restaurants.sort((a, b) => {
+        if (Object.values(a.attributes.name) < Object.values(b.attributes.name)) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+    } else {
+      restaurants = props.restaurants.sort((a, b) => {
+        if (Object.values(a.id) < Object.values(b.id)) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+    }
+  }
 
   return (
     <div>
@@ -46,7 +76,23 @@ export const UserRestaurantsTable = (props) => {
           <TableContainer className={classes.container}>
             <Table aria-label="restaurants table">
               <TableBody>
-                {props.restaurants.map((restaurant) => (
+                <TableRow>
+                  <TableCell>
+                    <Button 
+                      color="secondary" 
+                      onClick={handleSortRestaurantsButtonClick}
+                      size="small" 
+                      type="submit" 
+                      variant="contained"
+                    >
+                      {state.sorted
+                        ? 'Sort By Restaurant Name'
+                        : 'Sort By Creation Date'
+                      }
+                    </Button> 
+                  </TableCell>
+                </TableRow>
+                {restaurants.map((restaurant) => (
                   <TableRow key={restaurant.id}>
                     <TableCell className={classes.root}>
                       <Typography className={classes.name} variant="subtitle1" >
@@ -103,6 +149,7 @@ export const UserRestaurantsTable = (props) => {
 }
 
 UserRestaurantsTable.propTypes = {
+  handleSortRestaurantsButtonClick: PropTypes.func,
   restaurants: PropTypes.array.isRequired,
 };
 
