@@ -24,7 +24,7 @@ describe('UserRestaurantsTable', function () {
         expect(names[2]).to.contain.text("The Square Meal")
         expect(names[3]).to.contain.text("Sea Food")
         expect(names[4]).to.contain.text("Adam Street Eatery")
-      })
+    })
 
     cy.contains('Sort By Restaurant Name')
       .click()
@@ -35,6 +35,17 @@ describe('UserRestaurantsTable', function () {
         expect(names[2]).to.contain.text("Phoebe's Cafe")
         expect(names[3]).to.contain.text("Sea Food")
         expect(names[4]).to.contain.text("The Square Meal")
+      })
+
+      cy.contains('Sort By Creation Date')
+      .click()
+
+      cy.get('.makeStyles-name-29').then(names => {
+          expect(names[0]).to.contain.text("Phoebe's Cafe")
+          expect(names[1]).to.contain.text("Max Lite Food")
+          expect(names[2]).to.contain.text("The Square Meal")
+          expect(names[3]).to.contain.text("Sea Food")
+          expect(names[4]).to.contain.text("Adam Street Eatery")
       })
   })
 })
