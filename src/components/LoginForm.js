@@ -90,7 +90,7 @@ export const LoginForm = (props) => {
             />
           </FormControl>
           <center>
-            <Button className={classes.button} size="large" variant="contained" color="secondary" type="submit">
+            <Button className={classes.button} id="login_submit" size="large" variant="contained" color="secondary" type="submit">
               Submit
             </Button>
           </center>
