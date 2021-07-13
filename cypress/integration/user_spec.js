@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe('UserRestaurantsTable', function () {
+describe('User', function () {
 
   const baseUrl = 'http://localhost:3001'
   
