@@ -30,6 +30,12 @@ Rails 6.0.3.6
 
 You can either clone the repository directly from GitHub into a local directory on your computer or you can Fork the app so that you can contribute to the code.
 
+Once you Fork or Clone this app, cd into that directory and then execute:
+
+```zsh
+npm start
+```
+
 ## Testing
 
 Restauranter uses [Cypress](https://www.cypress.io/) for testing and Behavior Driven Development.
