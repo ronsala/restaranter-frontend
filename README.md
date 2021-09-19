@@ -42,17 +42,15 @@ Restauranter uses [Cypress](https://www.cypress.io/) for testing and Behavior Dr
 
 To run headless from command line:
 
-`yarn test` for all tests
+`npm test` for all tests
 
-`yarn test --spec [path/to/test/file/or/files]` or `yarn test -s [path/to/test/file/or/files]` for a specific test or tests, e.g.
+`npx cypress run --spec "[path/to/test/file]"` for a specific test, e.g.
 
-`yarn test -s "cypress/integration/home_spec.js"`
-
-`yarn test -s "cypress/integration/home_spec.js,cypress/integration/signup_spec.js"`
+`npx cypress run --spec "cypress/integration/home.spec.js"`
 
 To run in browser from command line:
 
-`yarn test:open`
+`npx test:open` for all tests
 
 Then, in the Cypress window that opens, click `Run [number] integration specs` for all tests or an individual test for that one alone.
 

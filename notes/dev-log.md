@@ -986,3 +986,20 @@ Got warning cypress not installed, so installed it. Now have v8.4.1.
 
 Added `cypress/screenshots`, `cypress/videos` to gitignore. Noticed that when I did so `/screenshots` in the Explorer sidebar went from green to gray. Never noticed that effect before.
 
+## Sun Sep 19 15:14:33 EDT 2021
+
+Have been getting warnings from yarn, and other devs, about having more than one package manager in a project, which is the case here. Now want to remove yarn and keep npm. It seems like npm is used more in instructional materials, which I rely on pretty heavily as recent grad.
+
+Trying to get recent commands I've run, discovered I can type `history` in zsh and get 1017 of them!
+
+Simplified summary of commands:
+
+```zsh
+g co -b package-management
+rm yarn.lock
+npm i
+npx cypress run
+npx cypress run --spec "cypress/integration/home.spec.js"
+```
+
+All tests pass, headless and open!
