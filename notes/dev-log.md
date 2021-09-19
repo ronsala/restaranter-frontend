@@ -978,3 +978,11 @@ Found that I couldn't prevent fetching to the database with invalid entries usin
 
 Have assignment for project review to add a sort button to the list of a user's restaurants that when clicked will sort alphabetically by restaurant name and when clicked again will return to the original sort order. I am to email a Github link to him.
 
+## Sun Sep 19 13:43:33 EDT 2021
+
+Now that I have passed assessment, will work on getting close to 100% coverage with Cypress tests.
+
+Got warning cypress not installed, so installed it. Now have v8.4.1.
+
+Added `cypress/screenshots`, `cypress/videos` to gitignore. Noticed that when I did so `/screenshots` in the Explorer sidebar went from green to gray. Never noticed that effect before.
+
