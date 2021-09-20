@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build:style": "postcss build src/styles/index.css -o src/styles/tailwind.css",
-    "start": "PORT=3001 craco start",
+    "start": "PORT=3001 react-scripts start",
     "build": "craco build",
     "test": "npx cypress run",
     "test:open": "npx cypress open",
@@ -53,7 +53,6 @@
     "@tailwindcss/postcss7-compat": "^2.1.2",
     "autoprefixer": "^9",
     "cypress": "^8.4.1",
-    "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "postcss": "^8.0.0"
   }
 }

@@ -1003,3 +1003,8 @@ npx cypress run --spec "cypress/integration/home.spec.js"
 ```
 
 All tests pass, headless and open!
+
+## Sun Sep 19 19:53:20 EDT 2021
+
+I restarted the server and kept getting errors that tailwind couldn't be found. Finally decided to remove it and craco, which I had installed to use with it. Switched over to using `react-scripts`. All the tests pass but the UI looks funny as I anticipated from experimentation before the assessment. At least I have simpler, more understandable code now. Next, to fix the UI issues....
+
