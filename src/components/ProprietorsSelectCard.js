@@ -25,11 +25,9 @@ export const ProprietorsSelectCard = () => {
       <Card>
         <CardContent component={Link} to={"/proprietors"}>
           <center>
-            <h1>
               <strong>
                 FOR RESTAURANT PROPRIETORS
               </strong>
-            </h1>
           </center>
         </CardContent>
         <CardMedia 
