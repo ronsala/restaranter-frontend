@@ -26,8 +26,8 @@
     "build:style": "postcss build src/styles/index.css -o src/styles/tailwind.css",
     "start": "PORT=3001 react-scripts start",
     "build": "craco build",
+    "cy:open": "npx cypress open",
     "test": "npx cypress run",
-    "test:open": "npx cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

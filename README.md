@@ -40,19 +40,19 @@ npm start
 
 Restauranter uses [Cypress](https://www.cypress.io/) for testing and Behavior Driven Development.
 
-To run headless from command line:
+To run headless:
 
 `npm test` for all tests
 
-`npx cypress run --spec "[path/to/test/file]"` for a specific test, e.g.
+`npm test -- --spec "[path/to/test/file]"` for a specific test, e.g.,
 
-`npx cypress run --spec "cypress/integration/home.spec.js"`
+`npm test -- --spec "cypress/integration/home.spec.js"`
 
-To run in browser from command line:
+To run tests in a browser:
 
-`npx test:open` for all tests
+`npm run cy:open`
 
-Then, in the Cypress window that opens, click `Run [number] integration specs` for all tests or an individual test for that one alone.
+then, in the Cypress window that opens, click `Run [number] integration specs` for all tests or an individual test for that one alone.
 
 ## Contributing
 

@@ -1008,3 +1008,8 @@ All tests pass, headless and open!
 
 I restarted the server and kept getting errors that tailwind couldn't be found. Finally decided to remove it and craco, which I had installed to use with it. Switched over to using `react-scripts`. All the tests pass but the UI looks funny as I anticipated from experimentation before the assessment. At least I have simpler, more understandable code now. Next, to fix the UI issues....
 
+## Tue Sep 21 19:29:52 EDT 2021
+
+Upon closer inspection, the only issue I wanted to prioritize for UI was fixing an asymmetry on the home page. Turns out I had some text in a heading on one side but not the other. Back to the testing, reading through [https://docs.cypress.io/guides/getting-started/testing-your-app]. Will do some (https://docs.cypress.io/guides/getting-started/testing-your-app). Will do some changes/additions based on it.
+
+In meantime, corrected testing instructions in README.
