@@ -1013,3 +1013,9 @@ I restarted the server and kept getting errors that tailwind couldn't be found. 
 Upon closer inspection, the only issue I wanted to prioritize for UI was fixing an asymmetry on the home page. Turns out I had some text in a heading on one side but not the other. Back to the testing, reading through [https://docs.cypress.io/guides/getting-started/testing-your-app]. Will do some (https://docs.cypress.io/guides/getting-started/testing-your-app). Will do some changes/additions based on it.
 
 In meantime, corrected testing instructions in README.
+
+## Sun Sep 26 21:49:41 EDT 2021
+
+Added `.github/dependabot.yml` following directions at [https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates).
+
+Wrote blog post.
