@@ -1019,3 +1019,7 @@ In meantime, corrected testing instructions in README.
 Added `.github/dependabot.yml` following directions at [https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates).
 
 Wrote blog post.
+
+## Mon Sep 27 19:59:59 EDT 2021
+
+Changed `"react-redux": "^7.2.3"` to `"react-redux": "^7.2.5"` in package.json. All tests passing.
