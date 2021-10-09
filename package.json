@@ -9,7 +9,7 @@
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/cypress": "^7.0.6",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^7.1.2",
     "eslint-plugin-react": "^7.24.0",
     "postcss-import": "^14.0.1",
@@ -19,7 +19,8 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "url-parse": "^1.5.3"
   },
   "scripts": {
     "build:style": "postcss build src/styles/index.css -o src/styles/tailwind.css",
@@ -50,7 +51,7 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.1.2",
     "autoprefixer": "^9",
-    "cypress": "^8.4.1",
+    "cypress": "^8.5.0",
     "postcss": "^8.0.0"
   }
 }
