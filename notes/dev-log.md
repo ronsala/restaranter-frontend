@@ -1023,3 +1023,9 @@ Wrote blog post.
 ## Mon Sep 27 19:59:59 EDT 2021
 
 Changed `"react-redux": "^7.2.3"` to `"react-redux": "^7.2.5"` in package.json. All tests passing.
+
+Sat Oct  9 19:24:37 EDT 2021
+
+Resolved dependabot PRs by testing locally, removing unused packages, fixing conflicts on GitHub.
+
+Wrote blog post about it.
