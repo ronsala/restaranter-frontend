@@ -1029,3 +1029,12 @@ Sat Oct  9 19:24:37 EDT 2021
 Resolved dependabot PRs by testing locally, removing unused packages, fixing conflicts on GitHub.
 
 Wrote blog post about it.
+
+
+## Wed Oct 13 21:41:42 EDT 2021
+
+Yesterday, pulled in Dependabot's PR about bumping cypress from 8.5.0 to 8.6.0 as it assured 100% compatibility. Today, thought I should make sure tests really pass with the new version. I saw the new version in package.json. A version check [`npx cypress -v`] on the command line revealed the old version. Installed the new one.
+
+Found running `npm i` did not add a new version of postcss-import but running `npm i postcss-import` did. (This is another package dependabot made a PR for).
+
+All tests pass.
